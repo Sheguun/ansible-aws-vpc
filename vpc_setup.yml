@@ -6,7 +6,7 @@
       include_vars: vars/vpc_setup
 
     - name: Create Vprofile VPC
-      ec2_vpc_subnet:
+      ec2_vpc_net:
         name: "{{ vpc_name }}"
         cidr_block: "{{ vpcCidr }}"
         region: "{{ region }}"
@@ -16,6 +16,7 @@
         state: "{{ state }}"
       register: vpcout
 
+    - name: Debug VPC output
       debug:
         var: vpcout
 
