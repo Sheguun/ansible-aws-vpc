@@ -61,10 +61,10 @@
           Name: Bastion_host
           Project: Vprofile
           Owner: DevOps Team
-        security_group_ids:
-          - "{{ BastionSG_out.group_id }}"
-        vpc_subnet_id: "{{ pubsub1id }}"
-        assign_public_ip: yes # ✅ Ensures public IP is assigned
+        network:
+          assign_public_ip: true
+          subnet_id: "{{ pubsub1id }}"
+          security_group_id: "{{ BastionSG_out.group_id }}"
       register: bastionHost_out
 
     - name: Display Bastion Host Public IP
