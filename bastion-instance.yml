@@ -66,7 +66,3 @@
           subnet_id: "{{ pubsub1id }}"
           security_group_id: "{{ BastionSG_out.group_id }}"
       register: bastionHost_out
-
-    - name: Display Bastion Host Public IP
-      debug:
-        msg: "Bastion Host Public IP is {{ bastionHost_out.instances[0].public_ip_address }}"
