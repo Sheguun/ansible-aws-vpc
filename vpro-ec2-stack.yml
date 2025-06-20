@@ -186,7 +186,18 @@
       register: db01_out
 
     - debug:
-        var: db01_out
+        var: db01_out.instances[0].id
+
+    - name: Create target group for web instances
+      amazon.aws.elb_target_group:
+        name: vproelb-tg
+        protocol: HTTP
+        port: 80
+        vpc_id: "{{ vpcid }}"
+        target_type: instance
+        state: present
+        region: "{{ region }}"
+      register: vpro_tg
 
     - name: Create Elastic Load Balancer
       amazon.aws.elb_application_lb:
@@ -200,9 +211,11 @@
           - "{{ pubsub2id }}"
           - "{{ pubsub3id }}"
         listeners:
-          - Protocol: http
-            load_balancer_port: 80
-            instance_port: 80
+          - Protocol: HTTP
+            port: 80
+            DefaultActions:
+              - Type: forward
+                TargetGroupArn: "{{ web_tg.target_group_arn }}"
 
     - name: Insert/Update Hosts IPs/Name in a file (provision-stack/group_vars/hostsip)
       blockinfile:
