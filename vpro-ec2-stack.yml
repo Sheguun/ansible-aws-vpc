@@ -215,7 +215,7 @@
             port: 80
             DefaultActions:
               - Type: forward
-                TargetGroupArn: "{{ web_tg.target_group_arn }}"
+                TargetGroupArn: "{{ vpro_tg.target_group_arn }}"
 
     - name: Insert/Update Hosts IPs/Name in a file (provision-stack/group_vars/hostsip)
       blockinfile:
