@@ -186,7 +186,7 @@
       register: db01_out
 
     - debug:
-        var: db01_out.instances[0].id
+        var: db01_out
 
     - name: Create Elastic Load Balancer
       amazon.aws.elb_application_lb:
@@ -200,7 +200,7 @@
           - "{{ pubsub2id }}"
           - "{{ pubsub3id }}"
         listeners:
-          - Protocol: HTTP
+          - Protocol: http
             load_balancer_port: 80
             instance_port: 80
 
