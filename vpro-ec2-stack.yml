@@ -6,6 +6,7 @@
 
   collections:
     - amazon.aws
+      community.aws
 
   tasks:
     - name: Import VPC setup variables
@@ -189,7 +190,7 @@
         var: db01_out.instances[0].id
 
     - name: Create target group for web instances
-      amazon.aws.elb_application_lb_target_group:
+      community.aws.elb_target_group:
         name: vproelb-tg
         protocol: HTTP
         port: 80
