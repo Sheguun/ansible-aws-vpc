@@ -187,7 +187,7 @@
       register: db01_out
 
     - debug:
-        var: db01_out.instances[0].id
+        var: db01_out
 
     - name: Create target group for web instances
       community.aws.elb_target_group:
@@ -201,7 +201,7 @@
       register: vpro_tg
 
     - name: Create Elastic Load Balancer
-      amazon.aws.elb_application_lb:
+      community.aws.elb_application_lb:
         name: vprofile-elb
         region: "{{ region }}"
         state: present
@@ -212,7 +212,7 @@
           - "{{ pubsub2id }}"
           - "{{ pubsub3id }}"
         listeners:
-          - Protocol: HTTP
+          - protocol: HTTP
             port: 80
             default_actions:
               - type: forward
