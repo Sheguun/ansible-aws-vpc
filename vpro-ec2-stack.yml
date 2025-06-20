@@ -186,16 +186,13 @@
       register: db01_out
 
     - debug:
-        var: db01_out.instances[1].instance_id
+        var: db01_out.instances[0].id
 
-    - name: Create Elastic load balancer
+    - name: Create Elastic Load Balancer
       amazon.aws.elb_application_lb:
         name: vprofile-elb
         region: "{{ region }}"
         state: present
-        instance_ids:
-          - "{{ web01_out.instances[1].instance_id }}"
-        purge_instance_ids: true
         security_groups:
           - "{{ vproELBSG_out.group_id }}"
         subnets:
@@ -207,15 +204,18 @@
             load_balancer_port: 80
             instance_port: 80
 
-    - name: Insert/Update Hosts IPs/Name in a file provision-stack/group_vars/hostsip
+    - name: Insert/Update Hosts IPs/Name in a file (provision-stack/group_vars/hostsip)
       blockinfile:
         path: ./provision-stack/group_vars/hostsip
+        marker: "# {mark} HOSTS IP BLOCK"
         block: |
-          web01_ip: {{ web01_out.instances[1].private_ip_addresses }}
-          app01_ip: {{ app01_out.instances[1].private_ip_addresses }}
-          mc01_ip: {{ mc01_out.instances[1].private_ip_addresses }}
-          rmq01_ip: {{ rmq01_out.instances[1].private_ip_addresses }}
-          db01_ip: {{ db01_out.instances[1].private_ip_addresses }}
+          web01_ip: {{ web01_out.instances[0].private_ip }}
+          app01_ip: {{ app01_out.instances[0].private_ip }}
+          mc01_ip: {{ mc01_out.instances[0].private_ip }}
+          rmq01_ip: {{ rmq01_out.instances[0].private_ip }}
+          db01_ip: {{ db01_out.instances[0].private_ip }}
+        create: yes
+        mode: "0644"
 
     - name: Copy login key to provision_stack directory
       copy:
@@ -223,9 +223,10 @@
         dest: provision-stack/loginkey_vpro.pem
         mode: "0400"
 
-    - name: Insert/Update Inventory file provision-stack/group_vars/hostsip
+    - name: Insert/Update Inventory file (inventory.ini)
       blockinfile:
         path: ./inventory.ini
+        marker: "# {mark} DYNAMIC INVENTORY"
         block: |
           web01 ansible_host={{ web01_out.instances[0].private_ip }}
           app01 ansible_host={{ app01_out.instances[0].private_ip }}
@@ -259,4 +260,8 @@
           [stack_inst:vars]
           ansible_user=ubuntu
           ansible_ssh_private_key_file=./loginkey_vpro.pem
+          # ansible_python_interpreter=/usr/bin/python3
+        create: yes
+        mode:
+          "0644"
           #ansible_python_interpreter=/usr/bin/python3
