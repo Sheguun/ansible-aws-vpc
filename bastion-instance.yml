@@ -12,7 +12,7 @@
       include_vars: vars/vpc_setup
 
     - name: Import VPC output variables
-      include_vars: vars/output_vars
+      include_vars: vars/vpc-output_vars
 
     - name: Debug AMI variable
       debug:
