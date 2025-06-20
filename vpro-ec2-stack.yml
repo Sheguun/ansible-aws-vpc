@@ -211,11 +211,11 @@
           - "{{ pubsub2id }}"
           - "{{ pubsub3id }}"
         listeners:
-          - protocol: HTTP
-            port: 80
-            default_actions:
-              - type: forward
-                target_group_arn: "{{ vpro_tg.target_group_arn }}"
+          - Protocol: HTTP
+            Port: 80
+            DefaultActions:
+              - Type: forward
+                TargetGroupArn: "{{ vpro_tg.target_group_arn }}"
 
     - name: Insert/Update Hosts IPs/Name in a file (provision-stack/group_vars/hostsip)
       blockinfile:
