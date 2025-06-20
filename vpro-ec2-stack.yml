@@ -189,7 +189,7 @@
         var: db01_out.instances[0].id
 
     - name: Create target group for web instances
-      amazon.aws.elb_target_group:
+      amazon.aws.elb_application_lb_target_group:
         name: vproelb-tg
         protocol: HTTP
         port: 80
@@ -213,9 +213,9 @@
         listeners:
           - Protocol: HTTP
             port: 80
-            DefaultActions:
-              - Type: forward
-                TargetGroupArn: "{{ vpro_tg.target_group_arn }}"
+            default_actions:
+              - type: forward
+                target_group_arn: "{{ vpro_tg.target_group_arn }}"
 
     - name: Insert/Update Hosts IPs/Name in a file (provision-stack/group_vars/hostsip)
       blockinfile:
