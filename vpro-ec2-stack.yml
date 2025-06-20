@@ -6,7 +6,7 @@
 
   collections:
     - amazon.aws
-      community.aws
+    - community.aws
 
   tasks:
     - name: Import VPC setup variables
