@@ -1,5 +1,4 @@
 vpcid: vpc-031fdde974f03b0a8
-<<<<<<< HEAD
 pubsub1id: subnet-0f67183f43fc91df3
 pubsub2id: subnet-00ade1c9f9f9c97b2
 pubsub3id: subnet-07fb090953823d983
@@ -10,15 +9,3 @@ igwid: igw-0ac57ce9411914b01
 pubRTid: rtb-01166716fc3c3b01d
 NATGWid: nat-03a28c488019c6c50
 privRTid: rtb-0925eb96392292ea3
-=======
-pubsub1id: subnet-0f25f5c2a399b62d1
-pubsub2id: subnet-02c5713dfa2490161
-pubsub3id: subnet-0a604edab39649d22
-privsub1id: subnet-07a01ff97b51ba34d
-privsub2id: subnet-099ea90aceb9ef712
-privsub3id: subnet-041f74ece478df950
-igwid: igw-0c3869594d7096df4
-pubRTid: rtb-08bd664c180c5516a
-NATGWid: nat-0b7ca38247feab109
-privRTid: rtb-0d0e9421d09ae6337
->>>>>>> 4d78fcacec3efee007a56fa5bbfad17ddfcbbb96
