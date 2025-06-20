@@ -186,6 +186,18 @@
       register: db01_out
 
     - debug:
+        var: web01_out
+
+    - debug:
+        var: app01_out
+
+    - debug:
+        var: mc01_out
+
+    - debug:
+        var: rmq01_out
+
+    - debug:
         var: db01_out
 
     - name: Create target group for web instances
