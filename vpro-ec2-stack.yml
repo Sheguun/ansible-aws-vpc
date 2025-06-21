@@ -275,6 +275,9 @@
           [dbsrvgrp]
           db01
 
+          [control]
+          cntl
+
           [stack_inst:children]
           websrvgrp
           appsrvgrp
