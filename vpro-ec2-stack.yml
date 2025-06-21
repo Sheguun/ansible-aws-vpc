@@ -3,9 +3,9 @@
   hosts: localhost
   connection: local
   gather_facts: no
-
   collections:
     - amazon.aws
+    - community.aws
 
   tasks:
     - name: Import VPC setup variables
@@ -69,3 +69,226 @@
         rules:
           - proto: all
             group_id: "{{ vproStackSG_out.group_id }}"
+
+    - name: Creating NGINX web01
+      amazon.aws.ec2_instance:
+        key_name: vpro-key
+        region: "{{ region }}"
+        instance_type: t2.micro
+        image_id: "{{ nginx_ami }}"
+        wait: yes
+        wait_timeout: 300
+        exact_count: 1
+        filters:
+          "tag:Name": "web01"
+          "tag:Project": "Vprofile"
+          "tag:Owner": "DevOps Team"
+        tags:
+          Name: web01
+          Project: Vprofile
+          Owner: DevOps Team
+        network:
+          assign_public_ip: true
+          subnet_id: "{{ privsub1id }}"
+          security_group_id: "{{ vproStackSG_out.group_id }}"
+      register: web01_out
+
+    - name: Creating tomcat app01
+      amazon.aws.ec2_instance:
+        key_name: vpro-key
+        region: "{{ region }}"
+        instance_type: t2.micro
+        image_id: "{{ tomcat_ami }}"
+        wait: yes
+        wait_timeout: 300
+        exact_count: 1
+        filters:
+          "tag:Name": "app01"
+          "tag:Project": "Vprofile"
+          "tag:Owner": "DevOps Team"
+        tags:
+          Name: app01
+          Project: Vprofile
+          Owner: DevOps Team
+        network:
+          assign_public_ip: true
+          subnet_id: "{{ privsub1id }}"
+          security_group_id: "{{ vproStackSG_out.group_id }}"
+      register: app01_out
+
+    - name: Creating memcache mc01
+      amazon.aws.ec2_instance:
+        key_name: vpro-key
+        region: "{{ region }}"
+        instance_type: t2.micro
+        image_id: "{{ memcache_ami }}"
+        wait: yes
+        wait_timeout: 300
+        exact_count: 1
+        filters:
+          "tag:Name": "mc01"
+          "tag:Project": "Vprofile"
+          "tag:Owner": "DevOps Team"
+        tags:
+          Name: mc01
+          Project: Vprofile
+          Owner: DevOps Team
+        network:
+          assign_public_ip: true
+          subnet_id: "{{ privsub1id }}"
+          security_group_id: "{{ vproStackSG_out.group_id }}"
+      register: mc01_out
+
+    - name: Creating RabbitMQ rmq01
+      amazon.aws.ec2_instance:
+        key_name: vpro-key
+        region: "{{ region }}"
+        instance_type: t2.micro
+        image_id: "{{ rmq_ami }}"
+        wait: yes
+        wait_timeout: 300
+        exact_count: 1
+        filters:
+          "tag:Name": "rmq01"
+          "tag:Project": "Vprofile"
+          "tag:Owner": "DevOps Team"
+        tags:
+          Name: rmq01
+          Project: Vprofile
+          Owner: DevOps Team
+        network:
+          assign_public_ip: true
+          subnet_id: "{{ privsub1id }}"
+          security_group_id: "{{ vproStackSG_out.group_id }}"
+      register: rmq01_out
+
+    - name: Creating Mysql db01
+      amazon.aws.ec2_instance:
+        key_name: vpro-key
+        region: "{{ region }}"
+        instance_type: t2.micro
+        image_id: "{{ mysql_ami }}"
+        wait: yes
+        wait_timeout: 300
+        exact_count: 1
+        filters:
+          "tag:Name": "db01"
+          "tag:Project": "Vprofile"
+          "tag:Owner": "DevOps Team"
+        tags:
+          Name: db01
+          Project: Vprofile
+          Owner: DevOps Team
+        network:
+          assign_public_ip: true
+          subnet_id: "{{ privsub1id }}"
+          security_group_id: "{{ vproStackSG_out.group_id }}"
+      register: db01_out
+
+    - debug:
+        var: web01_out
+
+    - debug:
+        var: app01_out
+
+    - debug:
+        var: mc01_out
+
+    - debug:
+        var: rmq01_out
+
+    - debug:
+        var: db01_out
+
+    - name: Create target group for web instances
+      community.aws.elb_target_group:
+        name: vproelb-tg
+        protocol: HTTP
+        port: 80
+        vpc_id: "{{ vpcid }}"
+        target_type: instance
+        state: present
+        region: "{{ region }}"
+      register: vpro_tg
+
+    - name: Create Elastic Load Balancer
+      community.aws.elb_application_lb:
+        name: vprofile-elb
+        region: "{{ region }}"
+        state: present
+        security_groups:
+          - "{{ vproELBSG_out.group_id }}"
+        subnets:
+          - "{{ pubsub1id }}"
+          - "{{ pubsub2id }}"
+          - "{{ pubsub3id }}"
+        listeners:
+          - Protocol: HTTP
+            Port: 80
+            DefaultActions:
+              - Type: forward
+                TargetGroupArn: "{{ vpro_tg.target_group_arn }}"
+
+    - name: Insert/Update Hosts IPs/Name in a file (provision-stack/group_vars/hostsip)
+      blockinfile:
+        path: ./provision-stack/group_vars/hostsip
+        marker: "# {mark} HOSTS IP BLOCK"
+        block: |
+          web01_ip: {{ web01_out.instances[0].private_ip_address }}
+          app01_ip: {{ app01_out.instances[0].private_ip_address }}
+          mc01_ip: {{ mc01_out.instances[0].private_ip_address }}
+          rmq01_ip: {{ rmq01_out.instances[0].private_ip_address }}
+          db01_ip: {{ db01_out.instances[0].private_ip_address }}
+        create: yes
+        mode: "0644"
+
+    - name: Copy login key to provision_stack directory
+      copy:
+        src: loginkey_vpro.pem
+        dest: provision-stack/loginkey_vpro.pem
+        mode: "0400"
+
+    - name: Insert/Update Inventory file provision-stack/inventory-vpro
+      blockinfile:
+        path: ./provision-stack/inventory-vpro
+        marker: "# {mark} DYNAMIC INVENTORY"
+        block: |
+          web01 ansible_host={{ web01_out.instances[0].private_ip_address }}
+          app01 ansible_host={{ app01_out.instances[0].private_ip_address }}
+          rmq01 ansible_host={{ rmq01_out.instances[0].private_ip_address }}
+          mc01 ansible_host={{ mc01_out.instances[0].private_ip_address }}
+          db01 ansible_host={{ db01_out.instances[0].private_ip_address }}
+          cntl ansible_host=127.0.0.1 ansible_connection=local
+
+          [websrvgrp]
+          web01
+
+          [appsrvgrp]
+          app01
+
+          [rmqsrvgrp]
+          rmq01
+
+          [mcsrvgrp]
+          mc01
+
+          [dbsrvgrp]
+          db01
+
+          [control]
+          cntl
+
+          [stack_inst:children]
+          websrvgrp
+          appsrvgrp
+          rmqsrvgrp
+          mcsrvgrp
+          dbsrvgrp
+
+          [stack_inst:vars]
+          ansible_user=ubuntu
+          ansible_ssh_private_key_file=./loginkey_vpro.pem
+        create: yes
+        mode:
+          "0644"
+          #ansible_python_interpreter=/usr/bin/python3
