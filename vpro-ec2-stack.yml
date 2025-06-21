@@ -248,9 +248,9 @@
         dest: provision-stack/loginkey_vpro.pem
         mode: "0400"
 
-    - name: Insert/Update Inventory file (inventory.ini)
+    - name: Insert/Update Inventory file provision-stack/inventory-vpro
       blockinfile:
-        path: ./inventory.ini
+        path: ./provision-stack/inventory-vpro
         marker: "# {mark} DYNAMIC INVENTORY"
         block: |
           web01 ansible_host={{ web01_out.instances[0].private_ip_address }}
@@ -285,7 +285,6 @@
           [stack_inst:vars]
           ansible_user=ubuntu
           ansible_ssh_private_key_file=./loginkey_vpro.pem
-          # ansible_python_interpreter=/usr/bin/python3
         create: yes
         mode:
           "0644"
