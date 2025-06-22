@@ -33,5 +33,9 @@ dbsrvgrp
 
 [stack_inst:vars]
 ansible_user=ubuntu
+<<<<<<< HEAD
 ansible_ssh_private_key_file=./loginkey_vpro.pem
+=======
+ansible_ssh_private_key_file=./vpro-key.pem
+>>>>>>> d173e85528f38d9fb3876c2fe283181e9102f961
 # END DYNAMIC INVENTORY
