@@ -1,94 +1,87 @@
 ---
 - name: Install & Setup RabbitMQ with user
   hosts: rmqsrvgrp
-  gather_facts: no
+  gather_facts: yes
   become: true
   tasks:
-    - name: Install Erlang from default Ubuntu repo
-      apt:
-        name: erlang
-        state: present
-        update_cache: yes
-      tags:
-        - package
-
     - name: Add Erlang Solutions public key
       apt_key:
         url: https://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc
         state: present
-      tags:
-        - package
+      tags: [package]
 
-    - name: Install Erlang
-      apt:
-        name: erlang
-        update_cache: yes
-        cache_valid_time: 86400
+    - name: Add Erlang Solutions repository
+      apt_repository:
+        repo: "deb https://packages.erlang-solutions.com/ubuntu {{ ansible_distribution_release | lower }} contrib"
         state: present
-      tags:
-        - package
+        filename: erlang_solutions
+      tags: [package]
 
-    - name: Add an apt signing key, using whichever key at the url
+    - name: Install ESL Erlang (required by RabbitMQ >=3.13.x)
+      apt:
+        name: esl-erlang
+        state: present
+        update_cache: yes
+      tags: [package]
+
+    - name: Add RabbitMQ signing key
       apt_key:
         url: https://packagecloud.io/rabbitmq/rabbitmq-server/gpgkey
         state: present
-      tags:
-        - package
+      tags: [package]
 
-    - name: Add RabbitMQ apt repository
+    - name: Add RabbitMQ repository
       apt_repository:
-        repo: "deb https://packagecloud.io/rabbitmq/rabbitmq-server/ubuntu/ {{ ansible_distribution_release }} main"
+        repo: "deb https://packagecloud.io/rabbitmq/rabbitmq-server/ubuntu/ {{ ansible_distribution_release | lower }} main"
         state: present
-      tags:
-        - package
+        filename: rabbitmq
+      tags: [package]
 
     - name: Install RabbitMQ server
       apt:
         name: rabbitmq-server
         state: present
         update_cache: yes
-      tags:
-        - package
+      tags: [package]
 
     - name: Ensure RabbitMQ service is running and enabled
       service:
         name: rabbitmq-server
         state: started
         enabled: yes
-      tags:
-        - svc
+      tags: [svc]
 
-    - name: Config setup
+    - name: Configure RabbitMQ to allow external connections
       copy:
         content: |
           [{rabbit, [{loopback_users, []}]}].
         dest: /etc/rabbitmq/rabbitmq.config
-      notify:
-        - Restart RMQ
-      tags:
-        - conf
+      notify: Restart RabbitMQ
+      tags: [config]
 
-    - name: Create RabbitMQ user permissions
+    - name: Create RabbitMQ user with permissions
       community.rabbitmq.rabbitmq_user:
         user: test
         password: test
+        tags: administrator
+        state: present
+
+    - name: Set RabbitMQ user permissions
+      community.rabbitmq.rabbitmq_user:
+        user: test
         configure_priv: .*
         read_priv: .*
         write_priv: .*
-        tags: administrator
         state: present
-      notify:
-        - Restart RMQ
-      tags:
-        - conf
+      notify: Restart RabbitMQ
+      tags: [config]
 
     - name: Enable RabbitMQ management plugin
       command: rabbitmq-plugins enable rabbitmq_management
       args:
         creates: /etc/rabbitmq/enabled_plugins
       notify: Restart RabbitMQ
-      tags:
-        - config
+      tags: [config]
 
   handlers:
     - name: Restart RabbitMQ
