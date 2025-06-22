@@ -40,6 +40,8 @@
       community.mysql.mysql_db:
         name: "{{ dbname }}"
         state: present
+        login_user: "{{ dbuser }}"
+        login_password: "{{ dbpass }}"
 
     - name: Enable remote login to MySQL svc
       lineinfile:
