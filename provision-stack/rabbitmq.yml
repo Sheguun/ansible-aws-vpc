@@ -4,10 +4,11 @@
   gather_facts: no
   become: true
   tasks:
-    - name: Install Erlang repository package
+    - name: Install Erlang from default Ubuntu repo
       apt:
-        deb: https://packages.erlang-solutions.com/erlang-solutions_2.0_all.deb
+        name: erlang
         state: present
+        update_cache: yes
       tags:
         - package
 
