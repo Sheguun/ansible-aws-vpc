@@ -4,52 +4,31 @@
   gather_facts: yes
   become: true
   tasks:
-    - name: Add Erlang Solutions public key
-      apt_key:
-        url: https://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc
-        state: present
-      tags: [package]
-
-    - name: Add Erlang Solutions repository
-      apt_repository:
-        repo: "deb https://packages.erlang-solutions.com/ubuntu {{ ansible_distribution_release | lower }} contrib"
-        state: present
-        filename: erlang_solutions
-      tags: [package]
-
-    - name: Install ESL Erlang (required by RabbitMQ >=3.13.x)
+    - name: Install required dependencies
       apt:
-        name: esl-erlang
+        name:
+          - curl
+          - gnupg
+          - apt-transport-https
+          - lsb-release
         state: present
         update_cache: yes
-      tags: [package]
 
-    - name: Add RabbitMQ signing key
-      apt_key:
-        url: https://packagecloud.io/rabbitmq/rabbitmq-server/gpgkey
+    - name: Install Erlang (from default Ubuntu repo)
+      apt:
+        name: erlang
         state: present
-      tags: [package]
 
-    - name: Add RabbitMQ repository
-      apt_repository:
-        repo: "deb https://packagecloud.io/rabbitmq/rabbitmq-server/ubuntu/ {{ ansible_distribution_release | lower }} main"
-        state: present
-        filename: rabbitmq
-      tags: [package]
-
-    - name: Install RabbitMQ server
+    - name: Install RabbitMQ (from default Ubuntu repo)
       apt:
         name: rabbitmq-server
         state: present
-        update_cache: yes
-      tags: [package]
 
     - name: Ensure RabbitMQ service is running and enabled
       service:
         name: rabbitmq-server
         state: started
         enabled: yes
-      tags: [svc]
 
     - name: Configure RabbitMQ to allow external connections
       copy:
@@ -57,31 +36,23 @@
           [{rabbit, [{loopback_users, []}]}].
         dest: /etc/rabbitmq/rabbitmq.config
       notify: Restart RabbitMQ
-      tags: [config]
-
-    - name: Create RabbitMQ user with permissions
-      community.rabbitmq.rabbitmq_user:
-        user: test
-        password: test
-        tags: administrator
-        state: present
-
-    - name: Set RabbitMQ user permissions
-      community.rabbitmq.rabbitmq_user:
-        user: test
-        configure_priv: .*
-        read_priv: .*
-        write_priv: .*
-        state: present
-      notify: Restart RabbitMQ
-      tags: [config]
 
     - name: Enable RabbitMQ management plugin
       command: rabbitmq-plugins enable rabbitmq_management
       args:
         creates: /etc/rabbitmq/enabled_plugins
       notify: Restart RabbitMQ
-      tags: [config]
+
+    - name: Create RabbitMQ user with admin rights
+      community.rabbitmq.rabbitmq_user:
+        user: test
+        password: test
+        configure_priv: .*
+        read_priv: .*
+        write_priv: .*
+        tags: administrator
+        state: present
+      notify: Restart RabbitMQ
 
   handlers:
     - name: Restart RabbitMQ
