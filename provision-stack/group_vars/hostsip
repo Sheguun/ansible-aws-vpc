@@ -1,7 +1,7 @@
 # BEGIN HOSTS IP BLOCK
-web01_ip: 172.20.4.20
-app01_ip: 172.20.4.218
-mc01_ip: 172.20.4.172
-rmq01_ip: 172.20.4.210
-db01_ip: 172.20.4.94
+web01_ip: 172.20.4.192
+app01_ip: 172.20.4.125
+mc01_ip: 172.20.4.14
+rmq01_ip: 172.20.4.11
+db01_ip: 172.20.4.167
 # END HOSTS IP BLOCK

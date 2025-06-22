@@ -1,9 +1,9 @@
 # BEGIN DYNAMIC INVENTORY
-web01 ansible_host=172.20.4.20
-app01 ansible_host=172.20.4.218
-rmq01 ansible_host=172.20.4.210
-mc01 ansible_host=172.20.4.172
-db01 ansible_host=172.20.4.94
+web01 ansible_host=172.20.4.192
+app01 ansible_host=172.20.4.125
+rmq01 ansible_host=172.20.4.11
+mc01 ansible_host=172.20.4.14
+db01 ansible_host=172.20.4.167
 cntl ansible_host=127.0.0.1 ansible_connection=local
 
 [websrvgrp]

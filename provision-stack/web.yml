@@ -1,0 +1,52 @@
+---
+- name: Setup Nginx on Web Servers
+  hosts: websrvgrp
+  gather_facts: no
+  become: yes
+  tasks:
+    - name: Install Nginx
+      apt:
+        name: nginx
+        state: present
+        update_cache: yes
+        cache_valid_time: 86400
+      tags:
+        - package
+
+    - name: Ensure Nginx is started and enabled
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+      tags:
+        - svc
+
+    - name: Disable default Nginx site
+      file:
+        path: /etc/nginx/sites-enabled/default
+        state: absent
+      tags:
+        - conf
+
+    - name: Deploy custom Nginx site config
+      template:
+        src: templates/nginxvpro.j2
+        dest: /etc/nginx/sites-available/vproapp
+      tags:
+        - conf
+
+    - name: Enable the new site
+      file:
+        src: /etc/nginx/sites-available/vproapp
+        dest: /etc/nginx/sites-enabled/vproapp
+        state: link
+        force: yes
+      notify: Restart Nginx
+      tags:
+        - conf
+
+  handlers:
+    - name: Restart Nginx
+      service:
+        name: nginx
+        state: restarted

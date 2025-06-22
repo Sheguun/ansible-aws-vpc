@@ -1,0 +1,40 @@
+---
+- name: Setup and configure Memcached service
+  hosts: mcsrvgrp
+  gather_facts: no
+  become: true
+  tasks:
+    - name: Installing Memcached and dependencies
+      apt:
+        name:
+          - memcached
+          - libmemcached-tools
+        state: present
+        update_cache: yes
+        cache_valid_time: 86400
+      tags:
+        - package
+
+    - name: Configure Memcached to listen on remote login
+      lineinfile:
+        path: /etc/memcached.conf
+        regexp: "^-l"
+        line: "-l 0.0.0.0"
+        backup: yes
+      notify: Restart Memcached
+      tags:
+        - conf
+
+    - name: Ensure Memcached is running and enabled
+      service:
+        name: memcached
+        state: started
+        enabled: yes
+      tags:
+        - svc
+
+  handlers:
+    - name: Restart Memcached
+      service:
+        name: memcached
+        state: restarted

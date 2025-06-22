@@ -1,0 +1,24 @@
+---
+- name: Deploy SQL database backup files to accounts DB
+  hosts: dbsrvgrp
+  gather_facts: no
+  become: yes
+  tasks:
+    - name: Copy SQL DB backup file to dbsrv
+      copy:
+        src: files/db_backup.sql
+        dest: /tmp/db_backup.sql
+      tags:
+        - deploy
+
+    - name: Import/Restoring backup into accounts database
+      community.mysql.mysql_db:
+        name: accounts
+        state: import
+        target: /tmp/db_backup.sql
+        login_user: "{{ dbuser }}"
+        login_password: "{{ dbpass }}"
+      notify:
+        - Restart mysql
+      tags:
+        - deploy
