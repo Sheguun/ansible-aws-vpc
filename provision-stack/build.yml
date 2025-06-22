@@ -10,9 +10,9 @@
         state: present
         update_cache: yes
       loop:
+        - git
         - openjdk-11-jdk
         - maven
-        - git
 
     # - name: Ensure files directory exists
     #   file:
@@ -33,7 +33,7 @@
       register: git_status
 
     - name: Build the artifact with Maven
-      command: mvn install
+      command: "mvn install"
       args:
         chdir: Vprofile-repo
       when: git_status.changed
