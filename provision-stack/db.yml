@@ -34,6 +34,8 @@
         priv: "*.*:ALL"
         host: "%"
         state: present
+        login_user: "{{ dbuser }}"
+        login_password: "{{ dbpass }}"
 
     - name: Create accounts database
       community.mysql.mysql_db:
