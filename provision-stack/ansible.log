@@ -461,3 +461,1391 @@ core/2.17/reference_appendices/interpreter_discovery.html for more information.
 2025-06-22 12:28:14,297 p=7154 u=ubuntu n=ansible | mc01                       : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 2025-06-22 12:28:14,297 p=7154 u=ubuntu n=ansible | rmq01                      : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 2025-06-22 12:28:14,297 p=7154 u=ubuntu n=ansible | web01                      : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 17:54:43,670 p=9321 u=ubuntu n=ansible | PLAY [Generate artifact, copy artifact & sql file to files directory] ************************
+2025-06-22 17:54:43,677 p=9321 u=ubuntu n=ansible | TASK [Gathering Facts] ***********************************************************************
+2025-06-22 17:54:44,848 p=9321 u=ubuntu n=ansible | ok: [localhost]
+2025-06-22 17:54:44,854 p=9321 u=ubuntu n=ansible | TASK [Install required packages (OpenJDK, Maven, Git)] ***************************************
+2025-06-22 17:54:51,650 p=9321 u=ubuntu n=ansible | ok: [localhost] => (item=git)
+2025-06-22 17:54:54,414 p=9321 u=ubuntu n=ansible | ok: [localhost] => (item=openjdk-11-jdk)
+2025-06-22 17:54:57,026 p=9321 u=ubuntu n=ansible | ok: [localhost] => (item=maven)
+2025-06-22 17:54:57,035 p=9321 u=ubuntu n=ansible | TASK [Clone the source code repository] ******************************************************
+2025-06-22 17:54:57,974 p=9321 u=ubuntu n=ansible | ok: [localhost]
+2025-06-22 17:54:57,980 p=9321 u=ubuntu n=ansible | TASK [Build the artifact with Maven] *********************************************************
+2025-06-22 17:54:57,994 p=9321 u=ubuntu n=ansible | skipping: [localhost]
+2025-06-22 17:54:58,000 p=9321 u=ubuntu n=ansible | TASK [Copy the built artifact (ROOT.war) to files/ directory] ********************************
+2025-06-22 17:54:59,309 p=9321 u=ubuntu n=ansible | ok: [localhost] => (item=/home/ubuntu/ansible-aws-vpc/provision-stack/Vprofile-repo/target/vprofile-v2.war)
+2025-06-22 17:54:59,317 p=9321 u=ubuntu n=ansible | TASK [Copy the SQL file to files/ directory] *************************************************
+2025-06-22 17:54:59,713 p=9321 u=ubuntu n=ansible | ok: [localhost]
+2025-06-22 17:54:59,715 p=9321 u=ubuntu n=ansible | PLAY [Map private IPs to hostnames in /etc/hosts] ********************************************
+2025-06-22 17:54:59,719 p=9321 u=ubuntu n=ansible | TASK [Gathering Facts] ***********************************************************************
+2025-06-22 17:55:00,970 p=9321 u=ubuntu n=ansible | [WARNING]: Platform linux on host cntl is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 17:55:00,972 p=9321 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 17:55:01,387 p=9321 u=ubuntu n=ansible | fatal: [web01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.192: Permission denied (publickey).", "unreachable": true}
+2025-06-22 17:55:01,429 p=9321 u=ubuntu n=ansible | fatal: [app01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.125: Permission denied (publickey).", "unreachable": true}
+2025-06-22 17:55:01,434 p=9321 u=ubuntu n=ansible | fatal: [rmq01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.11: Permission denied (publickey).", "unreachable": true}
+2025-06-22 17:55:01,452 p=9321 u=ubuntu n=ansible | fatal: [mc01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.14: Permission denied (publickey).", "unreachable": true}
+2025-06-22 17:55:02,542 p=9321 u=ubuntu n=ansible | fatal: [db01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.167: Permission denied (publickey).", "unreachable": true}
+2025-06-22 17:55:02,548 p=9321 u=ubuntu n=ansible | TASK [Import VPC setup variable] *************************************************************
+2025-06-22 17:55:02,563 p=9321 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 17:55:02,569 p=9321 u=ubuntu n=ansible | TASK [Update hosts file for all the hosts] ***************************************************
+2025-06-22 17:55:02,889 p=9321 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 17:55:02,894 p=9321 u=ubuntu n=ansible | PLAY [Setup MySQL with accounts db and remote login] *****************************************
+2025-06-22 17:55:02,896 p=9321 u=ubuntu n=ansible | PLAY [Deploy SQL database backup files to accounts DB] ***************************************
+2025-06-22 17:55:02,898 p=9321 u=ubuntu n=ansible | PLAY [Setup and configure Memcached service] *************************************************
+2025-06-22 17:55:02,900 p=9321 u=ubuntu n=ansible | PLAY [Install & Setup RabbitMQ with user] ****************************************************
+2025-06-22 17:55:02,903 p=9321 u=ubuntu n=ansible | PLAY [Setup Tomcat 8 on Ubuntu App Server] ***************************************************
+2025-06-22 17:55:02,906 p=9321 u=ubuntu n=ansible | PLAY [Setup Nginx on Web Servers] ************************************************************
+2025-06-22 17:55:02,907 p=9321 u=ubuntu n=ansible | PLAY RECAP ***********************************************************************************
+2025-06-22 17:55:02,908 p=9321 u=ubuntu n=ansible | app01                      : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 17:55:02,908 p=9321 u=ubuntu n=ansible | cntl                       : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 17:55:02,908 p=9321 u=ubuntu n=ansible | db01                       : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 17:55:02,908 p=9321 u=ubuntu n=ansible | localhost                  : ok=5    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+2025-06-22 17:55:02,908 p=9321 u=ubuntu n=ansible | mc01                       : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 17:55:02,908 p=9321 u=ubuntu n=ansible | rmq01                      : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 17:55:02,908 p=9321 u=ubuntu n=ansible | web01                      : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 18:06:52,213 p=10790 u=ubuntu n=ansible | PLAY [Generate artifact, copy artifact & sql file to files directory] ************************
+2025-06-22 18:06:52,222 p=10790 u=ubuntu n=ansible | TASK [Gathering Facts] ***********************************************************************
+2025-06-22 18:06:53,305 p=10790 u=ubuntu n=ansible | ok: [localhost]
+2025-06-22 18:06:53,310 p=10790 u=ubuntu n=ansible | TASK [Install required packages (OpenJDK, Maven, Git)] ***************************************
+2025-06-22 18:06:56,037 p=10790 u=ubuntu n=ansible | ok: [localhost] => (item=git)
+2025-06-22 18:06:58,667 p=10790 u=ubuntu n=ansible | ok: [localhost] => (item=openjdk-11-jdk)
+2025-06-22 18:07:01,298 p=10790 u=ubuntu n=ansible | ok: [localhost] => (item=maven)
+2025-06-22 18:07:01,307 p=10790 u=ubuntu n=ansible | TASK [Clone the source code repository] ******************************************************
+2025-06-22 18:07:02,008 p=10790 u=ubuntu n=ansible | ok: [localhost]
+2025-06-22 18:07:02,016 p=10790 u=ubuntu n=ansible | TASK [Build the artifact with Maven] *********************************************************
+2025-06-22 18:07:02,029 p=10790 u=ubuntu n=ansible | skipping: [localhost]
+2025-06-22 18:07:02,035 p=10790 u=ubuntu n=ansible | TASK [Copy the built artifact (ROOT.war) to files/ directory] ********************************
+2025-06-22 18:07:02,810 p=10790 u=ubuntu n=ansible | ok: [localhost] => (item=/home/ubuntu/ansible-aws-vpc/provision-stack/Vprofile-repo/target/vprofile-v2.war)
+2025-06-22 18:07:02,818 p=10790 u=ubuntu n=ansible | TASK [Copy the SQL file to files/ directory] *************************************************
+2025-06-22 18:07:03,218 p=10790 u=ubuntu n=ansible | ok: [localhost]
+2025-06-22 18:07:03,221 p=10790 u=ubuntu n=ansible | PLAY [Map private IPs to hostnames in /etc/hosts] ********************************************
+2025-06-22 18:07:03,224 p=10790 u=ubuntu n=ansible | TASK [Gathering Facts] ***********************************************************************
+2025-06-22 18:07:04,420 p=10790 u=ubuntu n=ansible | [WARNING]: Platform linux on host cntl is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 18:07:04,420 p=10790 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 18:07:04,868 p=10790 u=ubuntu n=ansible | fatal: [web01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.192: Permission denied (publickey).", "unreachable": true}
+2025-06-22 18:07:04,935 p=10790 u=ubuntu n=ansible | fatal: [rmq01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.11: Permission denied (publickey).", "unreachable": true}
+2025-06-22 18:07:04,950 p=10790 u=ubuntu n=ansible | fatal: [mc01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.14: Permission denied (publickey).", "unreachable": true}
+2025-06-22 18:07:04,957 p=10790 u=ubuntu n=ansible | fatal: [app01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.125: Permission denied (publickey).", "unreachable": true}
+2025-06-22 18:07:05,953 p=10790 u=ubuntu n=ansible | fatal: [db01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.167: Permission denied (publickey).", "unreachable": true}
+2025-06-22 18:07:05,962 p=10790 u=ubuntu n=ansible | TASK [Import VPC setup variable] *************************************************************
+2025-06-22 18:07:05,978 p=10790 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 18:07:05,982 p=10790 u=ubuntu n=ansible | TASK [Update hosts file for all the hosts] ***************************************************
+2025-06-22 18:07:06,300 p=10790 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 18:07:06,304 p=10790 u=ubuntu n=ansible | PLAY [Setup MySQL with accounts db and remote login] *****************************************
+2025-06-22 18:07:06,307 p=10790 u=ubuntu n=ansible | PLAY [Deploy SQL database backup files to accounts DB] ***************************************
+2025-06-22 18:07:06,310 p=10790 u=ubuntu n=ansible | PLAY [Setup and configure Memcached service] *************************************************
+2025-06-22 18:07:06,312 p=10790 u=ubuntu n=ansible | PLAY [Install & Setup RabbitMQ with user] ****************************************************
+2025-06-22 18:07:06,315 p=10790 u=ubuntu n=ansible | PLAY [Setup Tomcat 8 on Ubuntu App Server] ***************************************************
+2025-06-22 18:07:06,318 p=10790 u=ubuntu n=ansible | PLAY [Setup Nginx on Web Servers] ************************************************************
+2025-06-22 18:07:06,320 p=10790 u=ubuntu n=ansible | PLAY RECAP ***********************************************************************************
+2025-06-22 18:07:06,320 p=10790 u=ubuntu n=ansible | app01                      : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 18:07:06,320 p=10790 u=ubuntu n=ansible | cntl                       : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 18:07:06,320 p=10790 u=ubuntu n=ansible | db01                       : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 18:07:06,320 p=10790 u=ubuntu n=ansible | localhost                  : ok=5    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+2025-06-22 18:07:06,320 p=10790 u=ubuntu n=ansible | mc01                       : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 18:07:06,320 p=10790 u=ubuntu n=ansible | rmq01                      : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 18:07:06,320 p=10790 u=ubuntu n=ansible | web01                      : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 18:09:34,850 p=12215 u=ubuntu n=ansible | PLAY [Map private IPs to hostnames in /etc/hosts] ********************************************
+2025-06-22 18:09:34,857 p=12215 u=ubuntu n=ansible | TASK [Gathering Facts] ***********************************************************************
+2025-06-22 18:09:36,297 p=12215 u=ubuntu n=ansible | [WARNING]: Platform linux on host cntl is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 18:09:36,301 p=12215 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 18:09:36,494 p=12215 u=ubuntu n=ansible | fatal: [app01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.125: Permission denied (publickey).", "unreachable": true}
+2025-06-22 18:09:36,500 p=12215 u=ubuntu n=ansible | fatal: [web01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.192: Permission denied (publickey).", "unreachable": true}
+2025-06-22 18:09:36,550 p=12215 u=ubuntu n=ansible | fatal: [rmq01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.11: Permission denied (publickey).", "unreachable": true}
+2025-06-22 18:09:36,597 p=12215 u=ubuntu n=ansible | fatal: [mc01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.14: Permission denied (publickey).", "unreachable": true}
+2025-06-22 18:09:37,804 p=12215 u=ubuntu n=ansible | fatal: [db01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.167: Permission denied (publickey).", "unreachable": true}
+2025-06-22 18:09:37,811 p=12215 u=ubuntu n=ansible | TASK [Import VPC setup variable] *************************************************************
+2025-06-22 18:09:37,827 p=12215 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 18:09:37,832 p=12215 u=ubuntu n=ansible | TASK [Update hosts file for all the hosts] ***************************************************
+2025-06-22 18:09:38,151 p=12215 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 18:09:38,152 p=12215 u=ubuntu n=ansible | PLAY RECAP ***********************************************************************************
+2025-06-22 18:09:38,152 p=12215 u=ubuntu n=ansible | app01                      : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 18:09:38,153 p=12215 u=ubuntu n=ansible | cntl                       : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 18:09:38,153 p=12215 u=ubuntu n=ansible | db01                       : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 18:09:38,154 p=12215 u=ubuntu n=ansible | mc01                       : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 18:09:38,154 p=12215 u=ubuntu n=ansible | rmq01                      : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 18:09:38,154 p=12215 u=ubuntu n=ansible | web01                      : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 18:12:24,993 p=12361 u=ubuntu n=ansible | PLAY [Map private IPs to hostnames in /etc/hosts] ********************************************
+2025-06-22 18:12:25,001 p=12361 u=ubuntu n=ansible | TASK [Gathering Facts] ***********************************************************************
+2025-06-22 18:12:26,445 p=12361 u=ubuntu n=ansible | [WARNING]: Platform linux on host cntl is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 18:12:26,445 p=12361 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 18:12:26,621 p=12361 u=ubuntu n=ansible | fatal: [web01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.192: Permission denied (publickey).", "unreachable": true}
+2025-06-22 18:12:26,695 p=12361 u=ubuntu n=ansible | fatal: [rmq01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.11: Permission denied (publickey).", "unreachable": true}
+2025-06-22 18:12:26,702 p=12361 u=ubuntu n=ansible | fatal: [app01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.125: Permission denied (publickey).", "unreachable": true}
+2025-06-22 18:12:26,702 p=12361 u=ubuntu n=ansible | fatal: [mc01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.14: Permission denied (publickey).", "unreachable": true}
+2025-06-22 18:12:27,985 p=12361 u=ubuntu n=ansible | fatal: [db01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.167: Permission denied (publickey).", "unreachable": true}
+2025-06-22 18:12:27,991 p=12361 u=ubuntu n=ansible | TASK [Import VPC setup variable] *************************************************************
+2025-06-22 18:12:28,006 p=12361 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 18:12:28,011 p=12361 u=ubuntu n=ansible | TASK [Update hosts file for all the hosts] ***************************************************
+2025-06-22 18:12:28,341 p=12361 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 18:12:28,344 p=12361 u=ubuntu n=ansible | PLAY RECAP ***********************************************************************************
+2025-06-22 18:12:28,344 p=12361 u=ubuntu n=ansible | app01                      : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 18:12:28,344 p=12361 u=ubuntu n=ansible | cntl                       : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 18:12:28,344 p=12361 u=ubuntu n=ansible | db01                       : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 18:12:28,344 p=12361 u=ubuntu n=ansible | mc01                       : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 18:12:28,344 p=12361 u=ubuntu n=ansible | rmq01                      : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 18:12:28,344 p=12361 u=ubuntu n=ansible | web01                      : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 18:23:44,493 p=12641 u=ubuntu n=ansible | [WARNING]:  * Failed to parse /home/ubuntu/ansible-aws-vpc/provision-stack/inventory-vpro
+with yaml plugin: YAML inventory has invalid structure, it should be a dictionary, got:
+<class 'ansible.parsing.yaml.objects.AnsibleUnicode'>
+
+2025-06-22 18:23:44,493 p=12641 u=ubuntu n=ansible | [WARNING]:  * Failed to parse /home/ubuntu/ansible-aws-vpc/provision-stack/inventory-vpro
+with ini plugin: /home/ubuntu/ansible-aws-vpc/provision-stack/inventory-vpro:36: Expected
+key=value, got: <<<<<<< HEAD
+
+2025-06-22 18:23:44,493 p=12641 u=ubuntu n=ansible | [WARNING]: Unable to parse /home/ubuntu/ansible-aws-vpc/provision-stack/inventory-vpro as an
+inventory source
+
+2025-06-22 18:23:44,494 p=12641 u=ubuntu n=ansible | [WARNING]: No inventory was parsed, only implicit localhost is available
+
+2025-06-22 18:23:44,567 p=12641 u=ubuntu n=ansible | PLAY [Map private IPs to hostnames in /etc/hosts] ********************************************
+2025-06-22 18:23:44,572 p=12641 u=ubuntu n=ansible | TASK [Gathering Facts] ***********************************************************************
+2025-06-22 18:23:46,015 p=12641 u=ubuntu n=ansible | fatal: [web01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.192: Permission denied (publickey).", "unreachable": true}
+2025-06-22 18:23:46,017 p=12641 u=ubuntu n=ansible | fatal: [rmq01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.11: Permission denied (publickey).", "unreachable": true}
+2025-06-22 18:23:46,043 p=12641 u=ubuntu n=ansible | fatal: [app01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.125: Permission denied (publickey).", "unreachable": true}
+2025-06-22 18:23:46,043 p=12641 u=ubuntu n=ansible | fatal: [db01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.167: Permission denied (publickey).", "unreachable": true}
+2025-06-22 18:23:46,058 p=12641 u=ubuntu n=ansible | fatal: [mc01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.14: Permission denied (publickey).", "unreachable": true}
+2025-06-22 18:23:47,127 p=12641 u=ubuntu n=ansible | [WARNING]: Platform linux on host cntl is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 18:23:47,127 p=12641 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 18:23:47,133 p=12641 u=ubuntu n=ansible | TASK [Import VPC setup variable] *************************************************************
+2025-06-22 18:23:47,147 p=12641 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 18:23:47,153 p=12641 u=ubuntu n=ansible | TASK [Update hosts file for all the hosts] ***************************************************
+2025-06-22 18:23:47,470 p=12641 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 18:23:47,471 p=12641 u=ubuntu n=ansible | PLAY RECAP ***********************************************************************************
+2025-06-22 18:23:47,471 p=12641 u=ubuntu n=ansible | app01                      : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 18:23:47,471 p=12641 u=ubuntu n=ansible | cntl                       : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 18:23:47,472 p=12641 u=ubuntu n=ansible | db01                       : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 18:23:47,472 p=12641 u=ubuntu n=ansible | mc01                       : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 18:23:47,472 p=12641 u=ubuntu n=ansible | rmq01                      : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 18:23:47,472 p=12641 u=ubuntu n=ansible | web01                      : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 18:32:24,688 p=12802 u=ubuntu n=ansible | PLAY [Map private IPs to hostnames in /etc/hosts] ********************************************
+2025-06-22 18:32:24,694 p=12802 u=ubuntu n=ansible | TASK [Gathering Facts] ***********************************************************************
+2025-06-22 18:32:26,354 p=12802 u=ubuntu n=ansible | [WARNING]: Platform linux on host cntl is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 18:32:26,354 p=12802 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 18:32:26,608 p=12802 u=ubuntu n=ansible | [WARNING]: Platform linux on host rmq01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 18:32:26,608 p=12802 u=ubuntu n=ansible | ok: [rmq01]
+2025-06-22 18:32:26,724 p=12802 u=ubuntu n=ansible | [WARNING]: Platform linux on host web01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 18:32:26,724 p=12802 u=ubuntu n=ansible | ok: [web01]
+2025-06-22 18:32:26,770 p=12802 u=ubuntu n=ansible | [WARNING]: Platform linux on host mc01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 18:32:26,770 p=12802 u=ubuntu n=ansible | ok: [mc01]
+2025-06-22 18:32:26,774 p=12802 u=ubuntu n=ansible | [WARNING]: Platform linux on host app01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 18:32:26,774 p=12802 u=ubuntu n=ansible | ok: [app01]
+2025-06-22 18:32:27,984 p=12802 u=ubuntu n=ansible | [WARNING]: Platform linux on host db01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 18:32:27,985 p=12802 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 18:32:27,990 p=12802 u=ubuntu n=ansible | TASK [Import VPC setup variable] *************************************************************
+2025-06-22 18:32:28,034 p=12802 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 18:32:28,053 p=12802 u=ubuntu n=ansible | ok: [web01]
+2025-06-22 18:32:28,077 p=12802 u=ubuntu n=ansible | ok: [app01]
+2025-06-22 18:32:28,099 p=12802 u=ubuntu n=ansible | ok: [rmq01]
+2025-06-22 18:32:28,100 p=12802 u=ubuntu n=ansible | ok: [mc01]
+2025-06-22 18:32:28,109 p=12802 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 18:32:28,115 p=12802 u=ubuntu n=ansible | TASK [Update hosts file for all the hosts] ***************************************************
+2025-06-22 18:32:28,829 p=12802 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 18:32:28,836 p=12802 u=ubuntu n=ansible | ok: [web01]
+2025-06-22 18:32:28,837 p=12802 u=ubuntu n=ansible | ok: [mc01]
+2025-06-22 18:32:28,837 p=12802 u=ubuntu n=ansible | ok: [rmq01]
+2025-06-22 18:32:28,839 p=12802 u=ubuntu n=ansible | ok: [app01]
+2025-06-22 18:32:29,119 p=12802 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 18:32:29,122 p=12802 u=ubuntu n=ansible | PLAY RECAP ***********************************************************************************
+2025-06-22 18:32:29,122 p=12802 u=ubuntu n=ansible | app01                      : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 18:32:29,122 p=12802 u=ubuntu n=ansible | cntl                       : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 18:32:29,123 p=12802 u=ubuntu n=ansible | db01                       : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 18:32:29,123 p=12802 u=ubuntu n=ansible | mc01                       : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 18:32:29,123 p=12802 u=ubuntu n=ansible | rmq01                      : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 18:32:29,123 p=12802 u=ubuntu n=ansible | web01                      : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 18:33:11,901 p=13033 u=ubuntu n=ansible | PLAY [Generate artifact, copy artifact & sql file to files directory] ************************
+2025-06-22 18:33:11,907 p=13033 u=ubuntu n=ansible | TASK [Gathering Facts] ***********************************************************************
+2025-06-22 18:33:12,959 p=13033 u=ubuntu n=ansible | ok: [localhost]
+2025-06-22 18:33:12,964 p=13033 u=ubuntu n=ansible | TASK [Install required packages (OpenJDK, Maven, Git)] ***************************************
+2025-06-22 18:33:17,991 p=13033 u=ubuntu n=ansible | ok: [localhost] => (item=git)
+2025-06-22 18:33:20,627 p=13033 u=ubuntu n=ansible | ok: [localhost] => (item=openjdk-11-jdk)
+2025-06-22 18:33:23,246 p=13033 u=ubuntu n=ansible | ok: [localhost] => (item=maven)
+2025-06-22 18:33:23,255 p=13033 u=ubuntu n=ansible | TASK [Clone the source code repository] ******************************************************
+2025-06-22 18:33:23,976 p=13033 u=ubuntu n=ansible | ok: [localhost]
+2025-06-22 18:33:23,983 p=13033 u=ubuntu n=ansible | TASK [Build the artifact with Maven] *********************************************************
+2025-06-22 18:33:23,996 p=13033 u=ubuntu n=ansible | skipping: [localhost]
+2025-06-22 18:33:24,001 p=13033 u=ubuntu n=ansible | TASK [Copy the built artifact (ROOT.war) to files/ directory] ********************************
+2025-06-22 18:33:25,021 p=13033 u=ubuntu n=ansible | ok: [localhost] => (item=/home/ubuntu/ansible-aws-vpc/provision-stack/Vprofile-repo/target/vprofile-v2.war)
+2025-06-22 18:33:25,027 p=13033 u=ubuntu n=ansible | TASK [Copy the SQL file to files/ directory] *************************************************
+2025-06-22 18:33:25,416 p=13033 u=ubuntu n=ansible | ok: [localhost]
+2025-06-22 18:33:25,420 p=13033 u=ubuntu n=ansible | PLAY [Map private IPs to hostnames in /etc/hosts] ********************************************
+2025-06-22 18:33:25,423 p=13033 u=ubuntu n=ansible | TASK [Gathering Facts] ***********************************************************************
+2025-06-22 18:33:26,750 p=13033 u=ubuntu n=ansible | [WARNING]: Platform linux on host web01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 18:33:26,755 p=13033 u=ubuntu n=ansible | ok: [web01]
+2025-06-22 18:33:26,782 p=13033 u=ubuntu n=ansible | [WARNING]: Platform linux on host rmq01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 18:33:26,782 p=13033 u=ubuntu n=ansible | ok: [rmq01]
+2025-06-22 18:33:26,824 p=13033 u=ubuntu n=ansible | [WARNING]: Platform linux on host app01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 18:33:26,824 p=13033 u=ubuntu n=ansible | ok: [app01]
+2025-06-22 18:33:26,854 p=13033 u=ubuntu n=ansible | [WARNING]: Platform linux on host mc01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 18:33:26,857 p=13033 u=ubuntu n=ansible | ok: [mc01]
+2025-06-22 18:33:26,881 p=13033 u=ubuntu n=ansible | [WARNING]: Platform linux on host cntl is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 18:33:26,883 p=13033 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 18:33:27,791 p=13033 u=ubuntu n=ansible | [WARNING]: Platform linux on host db01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 18:33:27,792 p=13033 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 18:33:27,799 p=13033 u=ubuntu n=ansible | TASK [Import VPC setup variable] *************************************************************
+2025-06-22 18:33:27,844 p=13033 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 18:33:27,865 p=13033 u=ubuntu n=ansible | ok: [web01]
+2025-06-22 18:33:27,887 p=13033 u=ubuntu n=ansible | ok: [app01]
+2025-06-22 18:33:27,905 p=13033 u=ubuntu n=ansible | ok: [rmq01]
+2025-06-22 18:33:27,907 p=13033 u=ubuntu n=ansible | ok: [mc01]
+2025-06-22 18:33:27,915 p=13033 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 18:33:27,920 p=13033 u=ubuntu n=ansible | TASK [Update hosts file for all the hosts] ***************************************************
+2025-06-22 18:33:28,630 p=13033 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 18:33:28,632 p=13033 u=ubuntu n=ansible | ok: [web01]
+2025-06-22 18:33:28,644 p=13033 u=ubuntu n=ansible | ok: [app01]
+2025-06-22 18:33:28,646 p=13033 u=ubuntu n=ansible | ok: [mc01]
+2025-06-22 18:33:28,646 p=13033 u=ubuntu n=ansible | ok: [rmq01]
+2025-06-22 18:33:28,921 p=13033 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 18:33:28,924 p=13033 u=ubuntu n=ansible | PLAY [Setup MySQL with accounts db and remote login] *****************************************
+2025-06-22 18:33:28,933 p=13033 u=ubuntu n=ansible | TASK [installing mysql services and dependencies] ********************************************
+2025-06-22 18:34:16,048 p=13033 u=ubuntu n=ansible | changed: [db01] => (item=mysql-server)
+2025-06-22 18:34:21,652 p=13033 u=ubuntu n=ansible | changed: [db01] => (item=mysql-client)
+2025-06-22 18:34:27,613 p=13033 u=ubuntu n=ansible | changed: [db01] => (item=python3-pymysql)
+2025-06-22 18:34:38,806 p=13033 u=ubuntu n=ansible | changed: [db01] => (item=libmysqlclient-dev)
+2025-06-22 18:34:38,818 p=13033 u=ubuntu n=ansible | TASK [Ensure MySQL service is running and enabled] *******************************************
+2025-06-22 18:34:39,617 p=13033 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 18:34:39,625 p=13033 u=ubuntu n=ansible | TASK [Creating MySQL user] *******************************************************************
+2025-06-22 18:34:40,256 p=13033 u=ubuntu n=ansible | fatal: [db01]: FAILED! => {"changed": false, "msg": "unable to connect to database, check login_user and login_password are correct or /root/.my.cnf has the credentials. Exception message: (1698, \"Access denied for user 'root'@'localhost'\")"}
+2025-06-22 18:34:40,257 p=13033 u=ubuntu n=ansible | PLAY RECAP ***********************************************************************************
+2025-06-22 18:34:40,257 p=13033 u=ubuntu n=ansible | app01                      : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 18:34:40,257 p=13033 u=ubuntu n=ansible | cntl                       : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 18:34:40,257 p=13033 u=ubuntu n=ansible | db01                       : ok=5    changed=1    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2025-06-22 18:34:40,257 p=13033 u=ubuntu n=ansible | localhost                  : ok=5    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+2025-06-22 18:34:40,257 p=13033 u=ubuntu n=ansible | mc01                       : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 18:34:40,258 p=13033 u=ubuntu n=ansible | rmq01                      : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 18:34:40,258 p=13033 u=ubuntu n=ansible | web01                      : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 18:49:28,445 p=14603 u=ubuntu n=ansible | PLAY [Generate artifact, copy artifact & sql file to files directory] ************************
+2025-06-22 18:49:28,451 p=14603 u=ubuntu n=ansible | TASK [Gathering Facts] ***********************************************************************
+2025-06-22 18:49:29,504 p=14603 u=ubuntu n=ansible | ok: [localhost]
+2025-06-22 18:49:29,512 p=14603 u=ubuntu n=ansible | TASK [Install required packages (OpenJDK, Maven, Git)] ***************************************
+2025-06-22 18:49:32,319 p=14603 u=ubuntu n=ansible | ok: [localhost] => (item=git)
+2025-06-22 18:49:34,928 p=14603 u=ubuntu n=ansible | ok: [localhost] => (item=openjdk-11-jdk)
+2025-06-22 18:49:37,544 p=14603 u=ubuntu n=ansible | ok: [localhost] => (item=maven)
+2025-06-22 18:49:37,550 p=14603 u=ubuntu n=ansible | TASK [Clone the source code repository] ******************************************************
+2025-06-22 18:49:38,247 p=14603 u=ubuntu n=ansible | ok: [localhost]
+2025-06-22 18:49:38,253 p=14603 u=ubuntu n=ansible | TASK [Build the artifact with Maven] *********************************************************
+2025-06-22 18:49:38,266 p=14603 u=ubuntu n=ansible | skipping: [localhost]
+2025-06-22 18:49:38,273 p=14603 u=ubuntu n=ansible | TASK [Copy the built artifact (ROOT.war) to files/ directory] ********************************
+2025-06-22 18:49:39,037 p=14603 u=ubuntu n=ansible | ok: [localhost] => (item=/home/ubuntu/ansible-aws-vpc/provision-stack/Vprofile-repo/target/vprofile-v2.war)
+2025-06-22 18:49:39,045 p=14603 u=ubuntu n=ansible | TASK [Copy the SQL file to files/ directory] *************************************************
+2025-06-22 18:49:39,436 p=14603 u=ubuntu n=ansible | ok: [localhost]
+2025-06-22 18:49:39,439 p=14603 u=ubuntu n=ansible | PLAY [Map private IPs to hostnames in /etc/hosts] ********************************************
+2025-06-22 18:49:39,443 p=14603 u=ubuntu n=ansible | TASK [Gathering Facts] ***********************************************************************
+2025-06-22 18:49:40,874 p=14603 u=ubuntu n=ansible | [WARNING]: Platform linux on host cntl is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 18:49:40,874 p=14603 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 18:49:41,269 p=14603 u=ubuntu n=ansible | [WARNING]: Platform linux on host web01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 18:49:41,269 p=14603 u=ubuntu n=ansible | ok: [web01]
+2025-06-22 18:49:41,288 p=14603 u=ubuntu n=ansible | [WARNING]: Platform linux on host app01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 18:49:41,288 p=14603 u=ubuntu n=ansible | ok: [app01]
+2025-06-22 18:49:41,367 p=14603 u=ubuntu n=ansible | [WARNING]: Platform linux on host mc01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 18:49:41,368 p=14603 u=ubuntu n=ansible | ok: [mc01]
+2025-06-22 18:49:41,369 p=14603 u=ubuntu n=ansible | [WARNING]: Platform linux on host rmq01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 18:49:41,369 p=14603 u=ubuntu n=ansible | ok: [rmq01]
+2025-06-22 18:49:42,873 p=14603 u=ubuntu n=ansible | [WARNING]: Platform linux on host db01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 18:49:42,874 p=14603 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 18:49:42,879 p=14603 u=ubuntu n=ansible | TASK [Import VPC setup variable] *************************************************************
+2025-06-22 18:49:42,931 p=14603 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 18:49:42,946 p=14603 u=ubuntu n=ansible | ok: [web01]
+2025-06-22 18:49:42,963 p=14603 u=ubuntu n=ansible | ok: [app01]
+2025-06-22 18:49:42,985 p=14603 u=ubuntu n=ansible | ok: [rmq01]
+2025-06-22 18:49:42,990 p=14603 u=ubuntu n=ansible | ok: [mc01]
+2025-06-22 18:49:42,996 p=14603 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 18:49:43,005 p=14603 u=ubuntu n=ansible | TASK [Update hosts file for all the hosts] ***************************************************
+2025-06-22 18:49:43,697 p=14603 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 18:49:43,717 p=14603 u=ubuntu n=ansible | ok: [web01]
+2025-06-22 18:49:43,726 p=14603 u=ubuntu n=ansible | ok: [app01]
+2025-06-22 18:49:43,729 p=14603 u=ubuntu n=ansible | ok: [mc01]
+2025-06-22 18:49:43,733 p=14603 u=ubuntu n=ansible | ok: [rmq01]
+2025-06-22 18:49:44,000 p=14603 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 18:49:44,005 p=14603 u=ubuntu n=ansible | PLAY [Setup MySQL with accounts db and remote login] *****************************************
+2025-06-22 18:49:44,012 p=14603 u=ubuntu n=ansible | TASK [installing mysql services and dependencies] ********************************************
+2025-06-22 18:49:45,073 p=14603 u=ubuntu n=ansible | ok: [db01] => (item=mysql-server)
+2025-06-22 18:49:46,103 p=14603 u=ubuntu n=ansible | ok: [db01] => (item=mysql-client)
+2025-06-22 18:49:47,115 p=14603 u=ubuntu n=ansible | ok: [db01] => (item=python3-pymysql)
+2025-06-22 18:49:48,144 p=14603 u=ubuntu n=ansible | ok: [db01] => (item=libmysqlclient-dev)
+2025-06-22 18:49:48,153 p=14603 u=ubuntu n=ansible | TASK [Ensure MySQL service is running and enabled] *******************************************
+2025-06-22 18:49:48,861 p=14603 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 18:49:48,867 p=14603 u=ubuntu n=ansible | TASK [Creating MySQL user] *******************************************************************
+2025-06-22 18:49:49,413 p=14603 u=ubuntu n=ansible | fatal: [db01]: FAILED! => {"changed": false, "msg": "unable to connect to database, check login_user and login_password are correct or /root/.my.cnf has the credentials. Exception message: (1045, \"Access denied for user 'admin'@'localhost' (using password: YES)\")"}
+2025-06-22 18:49:49,415 p=14603 u=ubuntu n=ansible | PLAY RECAP ***********************************************************************************
+2025-06-22 18:49:49,415 p=14603 u=ubuntu n=ansible | app01                      : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 18:49:49,415 p=14603 u=ubuntu n=ansible | cntl                       : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 18:49:49,415 p=14603 u=ubuntu n=ansible | db01                       : ok=5    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2025-06-22 18:49:49,415 p=14603 u=ubuntu n=ansible | localhost                  : ok=5    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+2025-06-22 18:49:49,416 p=14603 u=ubuntu n=ansible | mc01                       : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 18:49:49,416 p=14603 u=ubuntu n=ansible | rmq01                      : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 18:49:49,416 p=14603 u=ubuntu n=ansible | web01                      : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 19:02:52,125 p=17841 u=ubuntu n=ansible | PLAY [Generate artifact, copy artifact & sql file to files directory] ************************
+2025-06-22 19:02:52,145 p=17841 u=ubuntu n=ansible | TASK [Gathering Facts] ***********************************************************************
+2025-06-22 19:02:53,552 p=17841 u=ubuntu n=ansible | ok: [localhost]
+2025-06-22 19:02:53,557 p=17841 u=ubuntu n=ansible | TASK [Install required packages (OpenJDK, Maven, Git)] ***************************************
+2025-06-22 19:02:56,963 p=17841 u=ubuntu n=ansible | ok: [localhost] => (item=git)
+2025-06-22 19:02:59,841 p=17841 u=ubuntu n=ansible | ok: [localhost] => (item=openjdk-11-jdk)
+2025-06-22 19:03:02,673 p=17841 u=ubuntu n=ansible | ok: [localhost] => (item=maven)
+2025-06-22 19:03:02,683 p=17841 u=ubuntu n=ansible | TASK [Clone the source code repository] ******************************************************
+2025-06-22 19:03:03,708 p=17841 u=ubuntu n=ansible | ok: [localhost]
+2025-06-22 19:03:03,715 p=17841 u=ubuntu n=ansible | TASK [Build the artifact with Maven] *********************************************************
+2025-06-22 19:03:03,729 p=17841 u=ubuntu n=ansible | skipping: [localhost]
+2025-06-22 19:03:03,736 p=17841 u=ubuntu n=ansible | TASK [Copy the built artifact (ROOT.war) to files/ directory] ********************************
+2025-06-22 19:03:05,059 p=17841 u=ubuntu n=ansible | ok: [localhost] => (item=/home/ubuntu/ansible-aws-vpc/provision-stack/Vprofile-repo/target/vprofile-v2.war)
+2025-06-22 19:03:05,068 p=17841 u=ubuntu n=ansible | TASK [Copy the SQL file to files/ directory] *************************************************
+2025-06-22 19:03:05,498 p=17841 u=ubuntu n=ansible | ok: [localhost]
+2025-06-22 19:03:05,500 p=17841 u=ubuntu n=ansible | PLAY [Map private IPs to hostnames in /etc/hosts] ********************************************
+2025-06-22 19:03:05,505 p=17841 u=ubuntu n=ansible | TASK [Gathering Facts] ***********************************************************************
+2025-06-22 19:03:07,041 p=17841 u=ubuntu n=ansible | [WARNING]: Platform linux on host cntl is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 19:03:07,042 p=17841 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 19:03:07,401 p=17841 u=ubuntu n=ansible | [WARNING]: Platform linux on host web01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 19:03:07,402 p=17841 u=ubuntu n=ansible | ok: [web01]
+2025-06-22 19:03:07,405 p=17841 u=ubuntu n=ansible | [WARNING]: Platform linux on host app01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 19:03:07,406 p=17841 u=ubuntu n=ansible | ok: [app01]
+2025-06-22 19:03:07,450 p=17841 u=ubuntu n=ansible | [WARNING]: Platform linux on host rmq01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 19:03:07,450 p=17841 u=ubuntu n=ansible | ok: [rmq01]
+2025-06-22 19:03:07,458 p=17841 u=ubuntu n=ansible | [WARNING]: Platform linux on host mc01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 19:03:07,458 p=17841 u=ubuntu n=ansible | ok: [mc01]
+2025-06-22 19:03:08,602 p=17841 u=ubuntu n=ansible | [WARNING]: Platform linux on host db01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 19:03:08,602 p=17841 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 19:03:08,609 p=17841 u=ubuntu n=ansible | TASK [Import VPC setup variable] *************************************************************
+2025-06-22 19:03:08,654 p=17841 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 19:03:08,677 p=17841 u=ubuntu n=ansible | ok: [web01]
+2025-06-22 19:03:08,700 p=17841 u=ubuntu n=ansible | ok: [app01]
+2025-06-22 19:03:08,719 p=17841 u=ubuntu n=ansible | ok: [rmq01]
+2025-06-22 19:03:08,719 p=17841 u=ubuntu n=ansible | ok: [mc01]
+2025-06-22 19:03:08,729 p=17841 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 19:03:08,735 p=17841 u=ubuntu n=ansible | TASK [Update hosts file for all the hosts] ***************************************************
+2025-06-22 19:03:09,480 p=17841 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 19:03:09,482 p=17841 u=ubuntu n=ansible | ok: [rmq01]
+2025-06-22 19:03:09,483 p=17841 u=ubuntu n=ansible | ok: [mc01]
+2025-06-22 19:03:09,483 p=17841 u=ubuntu n=ansible | ok: [web01]
+2025-06-22 19:03:09,484 p=17841 u=ubuntu n=ansible | ok: [app01]
+2025-06-22 19:03:09,760 p=17841 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 19:03:09,764 p=17841 u=ubuntu n=ansible | PLAY [Setup MySQL with accounts db and remote login] *****************************************
+2025-06-22 19:03:09,771 p=17841 u=ubuntu n=ansible | TASK [installing mysql services and dependencies] ********************************************
+2025-06-22 19:03:10,814 p=17841 u=ubuntu n=ansible | ok: [db01] => (item=mysql-server)
+2025-06-22 19:03:11,832 p=17841 u=ubuntu n=ansible | ok: [db01] => (item=mysql-client)
+2025-06-22 19:03:12,846 p=17841 u=ubuntu n=ansible | ok: [db01] => (item=python3-pymysql)
+2025-06-22 19:03:13,865 p=17841 u=ubuntu n=ansible | ok: [db01] => (item=libmysqlclient-dev)
+2025-06-22 19:03:13,877 p=17841 u=ubuntu n=ansible | TASK [Ensure MySQL service is running and enabled] *******************************************
+2025-06-22 19:03:14,629 p=17841 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 19:03:14,641 p=17841 u=ubuntu n=ansible | TASK [Creating MySQL user] *******************************************************************
+2025-06-22 19:03:15,230 p=17841 u=ubuntu n=ansible | [WARNING]: Option column_case_sensitive is not provided. The default is now false, so the
+column's name will be uppercased. The default will be changed to true in community.mysql
+4.0.0.
+
+2025-06-22 19:03:15,230 p=17841 u=ubuntu n=ansible | changed: [db01]
+2025-06-22 19:03:15,237 p=17841 u=ubuntu n=ansible | TASK [Create accounts database] **************************************************************
+2025-06-22 19:03:15,692 p=17841 u=ubuntu n=ansible | fatal: [db01]: FAILED! => {"changed": false, "msg": "unable to find /root/.my.cnf. Exception message: (1698, \"Access denied for user 'root'@'localhost'\")"}
+2025-06-22 19:03:15,693 p=17841 u=ubuntu n=ansible | PLAY RECAP ***********************************************************************************
+2025-06-22 19:03:15,693 p=17841 u=ubuntu n=ansible | app01                      : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 19:03:15,694 p=17841 u=ubuntu n=ansible | cntl                       : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 19:03:15,694 p=17841 u=ubuntu n=ansible | db01                       : ok=6    changed=1    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2025-06-22 19:03:15,694 p=17841 u=ubuntu n=ansible | localhost                  : ok=5    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+2025-06-22 19:03:15,694 p=17841 u=ubuntu n=ansible | mc01                       : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 19:03:15,694 p=17841 u=ubuntu n=ansible | rmq01                      : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 19:03:15,694 p=17841 u=ubuntu n=ansible | web01                      : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 19:07:10,616 p=19416 u=ubuntu n=ansible | PLAY [Generate artifact, copy artifact & sql file to files directory] ************************
+2025-06-22 19:07:10,635 p=19416 u=ubuntu n=ansible | TASK [Gathering Facts] ***********************************************************************
+2025-06-22 19:07:11,699 p=19416 u=ubuntu n=ansible | ok: [localhost]
+2025-06-22 19:07:11,704 p=19416 u=ubuntu n=ansible | TASK [Install required packages (OpenJDK, Maven, Git)] ***************************************
+2025-06-22 19:07:14,803 p=19416 u=ubuntu n=ansible | ok: [localhost] => (item=git)
+2025-06-22 19:07:18,027 p=19416 u=ubuntu n=ansible | ok: [localhost] => (item=openjdk-11-jdk)
+2025-06-22 19:07:20,675 p=19416 u=ubuntu n=ansible | ok: [localhost] => (item=maven)
+2025-06-22 19:07:20,686 p=19416 u=ubuntu n=ansible | TASK [Clone the source code repository] ******************************************************
+2025-06-22 19:07:21,746 p=19416 u=ubuntu n=ansible | ok: [localhost]
+2025-06-22 19:07:21,752 p=19416 u=ubuntu n=ansible | TASK [Build the artifact with Maven] *********************************************************
+2025-06-22 19:07:21,766 p=19416 u=ubuntu n=ansible | skipping: [localhost]
+2025-06-22 19:07:21,774 p=19416 u=ubuntu n=ansible | TASK [Copy the built artifact (ROOT.war) to files/ directory] ********************************
+2025-06-22 19:07:23,066 p=19416 u=ubuntu n=ansible | ok: [localhost] => (item=/home/ubuntu/ansible-aws-vpc/provision-stack/Vprofile-repo/target/vprofile-v2.war)
+2025-06-22 19:07:23,073 p=19416 u=ubuntu n=ansible | TASK [Copy the SQL file to files/ directory] *************************************************
+2025-06-22 19:07:23,496 p=19416 u=ubuntu n=ansible | ok: [localhost]
+2025-06-22 19:07:23,500 p=19416 u=ubuntu n=ansible | PLAY [Map private IPs to hostnames in /etc/hosts] ********************************************
+2025-06-22 19:07:23,503 p=19416 u=ubuntu n=ansible | TASK [Gathering Facts] ***********************************************************************
+2025-06-22 19:07:25,052 p=19416 u=ubuntu n=ansible | [WARNING]: Platform linux on host cntl is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 19:07:25,052 p=19416 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 19:07:25,408 p=19416 u=ubuntu n=ansible | [WARNING]: Platform linux on host web01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 19:07:25,408 p=19416 u=ubuntu n=ansible | ok: [web01]
+2025-06-22 19:07:25,476 p=19416 u=ubuntu n=ansible | [WARNING]: Platform linux on host app01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 19:07:25,477 p=19416 u=ubuntu n=ansible | ok: [app01]
+2025-06-22 19:07:25,484 p=19416 u=ubuntu n=ansible | [WARNING]: Platform linux on host rmq01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 19:07:25,484 p=19416 u=ubuntu n=ansible | ok: [rmq01]
+2025-06-22 19:07:25,504 p=19416 u=ubuntu n=ansible | [WARNING]: Platform linux on host mc01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 19:07:25,504 p=19416 u=ubuntu n=ansible | ok: [mc01]
+2025-06-22 19:07:26,556 p=19416 u=ubuntu n=ansible | [WARNING]: Platform linux on host db01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 19:07:26,556 p=19416 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 19:07:26,562 p=19416 u=ubuntu n=ansible | TASK [Import VPC setup variable] *************************************************************
+2025-06-22 19:07:26,610 p=19416 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 19:07:26,626 p=19416 u=ubuntu n=ansible | ok: [web01]
+2025-06-22 19:07:26,647 p=19416 u=ubuntu n=ansible | ok: [app01]
+2025-06-22 19:07:26,668 p=19416 u=ubuntu n=ansible | ok: [rmq01]
+2025-06-22 19:07:26,668 p=19416 u=ubuntu n=ansible | ok: [mc01]
+2025-06-22 19:07:26,675 p=19416 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 19:07:26,683 p=19416 u=ubuntu n=ansible | TASK [Update hosts file for all the hosts] ***************************************************
+2025-06-22 19:07:27,386 p=19416 u=ubuntu n=ansible | ok: [web01]
+2025-06-22 19:07:27,393 p=19416 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 19:07:27,404 p=19416 u=ubuntu n=ansible | ok: [app01]
+2025-06-22 19:07:27,410 p=19416 u=ubuntu n=ansible | ok: [rmq01]
+2025-06-22 19:07:27,421 p=19416 u=ubuntu n=ansible | ok: [mc01]
+2025-06-22 19:07:27,687 p=19416 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 19:07:27,692 p=19416 u=ubuntu n=ansible | PLAY [Setup MySQL with accounts db and remote login] *****************************************
+2025-06-22 19:07:27,700 p=19416 u=ubuntu n=ansible | TASK [installing mysql services and dependencies] ********************************************
+2025-06-22 19:07:28,752 p=19416 u=ubuntu n=ansible | ok: [db01] => (item=mysql-server)
+2025-06-22 19:07:29,778 p=19416 u=ubuntu n=ansible | ok: [db01] => (item=mysql-client)
+2025-06-22 19:07:30,796 p=19416 u=ubuntu n=ansible | ok: [db01] => (item=python3-pymysql)
+2025-06-22 19:07:31,806 p=19416 u=ubuntu n=ansible | ok: [db01] => (item=libmysqlclient-dev)
+2025-06-22 19:07:31,819 p=19416 u=ubuntu n=ansible | TASK [Ensure MySQL service is running and enabled] *******************************************
+2025-06-22 19:07:32,575 p=19416 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 19:07:32,588 p=19416 u=ubuntu n=ansible | TASK [Creating MySQL user] *******************************************************************
+2025-06-22 19:07:33,101 p=19416 u=ubuntu n=ansible | [WARNING]: Option column_case_sensitive is not provided. The default is now false, so the
+column's name will be uppercased. The default will be changed to true in community.mysql
+4.0.0.
+
+2025-06-22 19:07:33,102 p=19416 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 19:07:33,108 p=19416 u=ubuntu n=ansible | TASK [Create accounts database] **************************************************************
+2025-06-22 19:07:33,577 p=19416 u=ubuntu n=ansible | changed: [db01]
+2025-06-22 19:07:33,585 p=19416 u=ubuntu n=ansible | TASK [Enable remote login to MySQL svc] ******************************************************
+2025-06-22 19:07:33,999 p=19416 u=ubuntu n=ansible | changed: [db01]
+2025-06-22 19:07:34,009 p=19416 u=ubuntu n=ansible | RUNNING HANDLER [Restart MySQL] **************************************************************
+2025-06-22 19:07:36,836 p=19416 u=ubuntu n=ansible | changed: [db01]
+2025-06-22 19:07:36,840 p=19416 u=ubuntu n=ansible | PLAY [Deploy SQL database backup files to accounts DB] ***************************************
+2025-06-22 19:07:36,846 p=19416 u=ubuntu n=ansible | TASK [Copy SQL DB backup file to dbsrv] ******************************************************
+2025-06-22 19:07:37,579 p=19416 u=ubuntu n=ansible | changed: [db01]
+2025-06-22 19:07:37,586 p=19416 u=ubuntu n=ansible | TASK [Import/Restoring backup into accounts database] ****************************************
+2025-06-22 19:07:38,178 p=19416 u=ubuntu n=ansible | changed: [db01]
+2025-06-22 19:07:38,188 p=19416 u=ubuntu n=ansible | RUNNING HANDLER [Restart mysql] **************************************************************
+2025-06-22 19:07:41,222 p=19416 u=ubuntu n=ansible | changed: [db01]
+2025-06-22 19:07:41,226 p=19416 u=ubuntu n=ansible | PLAY [Setup and configure Memcached service] *************************************************
+2025-06-22 19:07:41,234 p=19416 u=ubuntu n=ansible | TASK [Installing Memcached and dependencies] *************************************************
+2025-06-22 19:08:04,672 p=19416 u=ubuntu n=ansible | changed: [mc01]
+2025-06-22 19:08:04,681 p=19416 u=ubuntu n=ansible | TASK [Configure Memcached to listen on remote login] *****************************************
+2025-06-22 19:08:04,994 p=19416 u=ubuntu n=ansible | changed: [mc01]
+2025-06-22 19:08:05,004 p=19416 u=ubuntu n=ansible | TASK [Ensure Memcached is running and enabled] ***********************************************
+2025-06-22 19:08:05,487 p=19416 u=ubuntu n=ansible | ok: [mc01]
+2025-06-22 19:08:05,496 p=19416 u=ubuntu n=ansible | RUNNING HANDLER [Restart Memcached] **********************************************************
+2025-06-22 19:08:06,977 p=19416 u=ubuntu n=ansible | changed: [mc01]
+2025-06-22 19:08:06,981 p=19416 u=ubuntu n=ansible | PLAY [Install & Setup RabbitMQ with user] ****************************************************
+2025-06-22 19:08:06,987 p=19416 u=ubuntu n=ansible | TASK [Install Erlang repository package] *****************************************************
+2025-06-22 19:08:07,871 p=19416 u=ubuntu n=ansible | fatal: [rmq01]: FAILED! => {"changed": false, "msg": "Failure downloading https://packages.erlang-solutions.com/erlang-solutions_2.0_all.deb, HTTP Error 502: Bad Gateway"}
+2025-06-22 19:08:07,872 p=19416 u=ubuntu n=ansible | PLAY RECAP ***********************************************************************************
+2025-06-22 19:08:07,872 p=19416 u=ubuntu n=ansible | app01                      : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 19:08:07,872 p=19416 u=ubuntu n=ansible | cntl                       : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 19:08:07,872 p=19416 u=ubuntu n=ansible | db01                       : ok=12   changed=6    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 19:08:07,872 p=19416 u=ubuntu n=ansible | localhost                  : ok=5    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+2025-06-22 19:08:07,872 p=19416 u=ubuntu n=ansible | mc01                       : ok=7    changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 19:08:07,872 p=19416 u=ubuntu n=ansible | rmq01                      : ok=3    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2025-06-22 19:08:07,872 p=19416 u=ubuntu n=ansible | web01                      : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 19:16:33,414 p=21090 u=ubuntu n=ansible | PLAY [Generate artifact, copy artifact & sql file to files directory] ************************
+2025-06-22 19:16:33,433 p=21090 u=ubuntu n=ansible | TASK [Gathering Facts] ***********************************************************************
+2025-06-22 19:16:34,505 p=21090 u=ubuntu n=ansible | ok: [localhost]
+2025-06-22 19:16:34,510 p=21090 u=ubuntu n=ansible | TASK [Install required packages (OpenJDK, Maven, Git)] ***************************************
+2025-06-22 19:16:40,262 p=21090 u=ubuntu n=ansible | ok: [localhost] => (item=git)
+2025-06-22 19:16:43,376 p=21090 u=ubuntu n=ansible | ok: [localhost] => (item=openjdk-11-jdk)
+2025-06-22 19:16:46,050 p=21090 u=ubuntu n=ansible | ok: [localhost] => (item=maven)
+2025-06-22 19:16:46,061 p=21090 u=ubuntu n=ansible | TASK [Clone the source code repository] ******************************************************
+2025-06-22 19:16:47,081 p=21090 u=ubuntu n=ansible | ok: [localhost]
+2025-06-22 19:16:47,090 p=21090 u=ubuntu n=ansible | TASK [Build the artifact with Maven] *********************************************************
+2025-06-22 19:16:47,103 p=21090 u=ubuntu n=ansible | skipping: [localhost]
+2025-06-22 19:16:47,110 p=21090 u=ubuntu n=ansible | TASK [Copy the built artifact (ROOT.war) to files/ directory] ********************************
+2025-06-22 19:16:48,460 p=21090 u=ubuntu n=ansible | ok: [localhost] => (item=/home/ubuntu/ansible-aws-vpc/provision-stack/Vprofile-repo/target/vprofile-v2.war)
+2025-06-22 19:16:48,467 p=21090 u=ubuntu n=ansible | TASK [Copy the SQL file to files/ directory] *************************************************
+2025-06-22 19:16:48,883 p=21090 u=ubuntu n=ansible | ok: [localhost]
+2025-06-22 19:16:48,885 p=21090 u=ubuntu n=ansible | PLAY [Map private IPs to hostnames in /etc/hosts] ********************************************
+2025-06-22 19:16:48,889 p=21090 u=ubuntu n=ansible | TASK [Gathering Facts] ***********************************************************************
+2025-06-22 19:16:50,406 p=21090 u=ubuntu n=ansible | [WARNING]: Platform linux on host cntl is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 19:16:50,406 p=21090 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 19:16:50,824 p=21090 u=ubuntu n=ansible | [WARNING]: Platform linux on host rmq01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 19:16:50,824 p=21090 u=ubuntu n=ansible | ok: [rmq01]
+2025-06-22 19:16:50,827 p=21090 u=ubuntu n=ansible | [WARNING]: Platform linux on host app01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 19:16:50,828 p=21090 u=ubuntu n=ansible | ok: [app01]
+2025-06-22 19:16:50,832 p=21090 u=ubuntu n=ansible | [WARNING]: Platform linux on host web01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 19:16:50,832 p=21090 u=ubuntu n=ansible | ok: [web01]
+2025-06-22 19:16:50,873 p=21090 u=ubuntu n=ansible | [WARNING]: Platform linux on host mc01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 19:16:50,873 p=21090 u=ubuntu n=ansible | ok: [mc01]
+2025-06-22 19:16:51,966 p=21090 u=ubuntu n=ansible | [WARNING]: Platform linux on host db01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 19:16:51,966 p=21090 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 19:16:51,972 p=21090 u=ubuntu n=ansible | TASK [Import VPC setup variable] *************************************************************
+2025-06-22 19:16:52,018 p=21090 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 19:16:52,040 p=21090 u=ubuntu n=ansible | ok: [web01]
+2025-06-22 19:16:52,063 p=21090 u=ubuntu n=ansible | ok: [app01]
+2025-06-22 19:16:52,085 p=21090 u=ubuntu n=ansible | ok: [rmq01]
+2025-06-22 19:16:52,086 p=21090 u=ubuntu n=ansible | ok: [mc01]
+2025-06-22 19:16:52,092 p=21090 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 19:16:52,099 p=21090 u=ubuntu n=ansible | TASK [Update hosts file for all the hosts] ***************************************************
+2025-06-22 19:16:52,823 p=21090 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 19:16:52,836 p=21090 u=ubuntu n=ansible | ok: [web01]
+2025-06-22 19:16:52,838 p=21090 u=ubuntu n=ansible | ok: [mc01]
+2025-06-22 19:16:52,839 p=21090 u=ubuntu n=ansible | ok: [rmq01]
+2025-06-22 19:16:52,843 p=21090 u=ubuntu n=ansible | ok: [app01]
+2025-06-22 19:16:53,121 p=21090 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 19:16:53,126 p=21090 u=ubuntu n=ansible | PLAY [Setup MySQL with accounts db and remote login] *****************************************
+2025-06-22 19:16:53,134 p=21090 u=ubuntu n=ansible | TASK [installing mysql services and dependencies] ********************************************
+2025-06-22 19:16:54,167 p=21090 u=ubuntu n=ansible | ok: [db01] => (item=mysql-server)
+2025-06-22 19:16:55,173 p=21090 u=ubuntu n=ansible | ok: [db01] => (item=mysql-client)
+2025-06-22 19:16:56,170 p=21090 u=ubuntu n=ansible | ok: [db01] => (item=python3-pymysql)
+2025-06-22 19:16:57,176 p=21090 u=ubuntu n=ansible | ok: [db01] => (item=libmysqlclient-dev)
+2025-06-22 19:16:57,186 p=21090 u=ubuntu n=ansible | TASK [Ensure MySQL service is running and enabled] *******************************************
+2025-06-22 19:16:57,945 p=21090 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 19:16:57,953 p=21090 u=ubuntu n=ansible | TASK [Creating MySQL user] *******************************************************************
+2025-06-22 19:16:58,451 p=21090 u=ubuntu n=ansible | [WARNING]: Option column_case_sensitive is not provided. The default is now false, so the
+column's name will be uppercased. The default will be changed to true in community.mysql
+4.0.0.
+
+2025-06-22 19:16:58,451 p=21090 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 19:16:58,459 p=21090 u=ubuntu n=ansible | TASK [Create accounts database] **************************************************************
+2025-06-22 19:16:58,921 p=21090 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 19:16:58,927 p=21090 u=ubuntu n=ansible | TASK [Enable remote login to MySQL svc] ******************************************************
+2025-06-22 19:16:59,329 p=21090 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 19:16:59,332 p=21090 u=ubuntu n=ansible | PLAY [Deploy SQL database backup files to accounts DB] ***************************************
+2025-06-22 19:16:59,338 p=21090 u=ubuntu n=ansible | TASK [Copy SQL DB backup file to dbsrv] ******************************************************
+2025-06-22 19:16:59,885 p=21090 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 19:16:59,893 p=21090 u=ubuntu n=ansible | TASK [Import/Restoring backup into accounts database] ****************************************
+2025-06-22 19:17:00,575 p=21090 u=ubuntu n=ansible | changed: [db01]
+2025-06-22 19:17:00,584 p=21090 u=ubuntu n=ansible | RUNNING HANDLER [Restart mysql] **************************************************************
+2025-06-22 19:17:02,853 p=21090 u=ubuntu n=ansible | changed: [db01]
+2025-06-22 19:17:02,856 p=21090 u=ubuntu n=ansible | PLAY [Setup and configure Memcached service] *************************************************
+2025-06-22 19:17:02,863 p=21090 u=ubuntu n=ansible | TASK [Installing Memcached and dependencies] *************************************************
+2025-06-22 19:17:03,976 p=21090 u=ubuntu n=ansible | ok: [mc01]
+2025-06-22 19:17:03,983 p=21090 u=ubuntu n=ansible | TASK [Configure Memcached to listen on remote login] *****************************************
+2025-06-22 19:17:04,277 p=21090 u=ubuntu n=ansible | ok: [mc01]
+2025-06-22 19:17:04,284 p=21090 u=ubuntu n=ansible | TASK [Ensure Memcached is running and enabled] ***********************************************
+2025-06-22 19:17:04,737 p=21090 u=ubuntu n=ansible | ok: [mc01]
+2025-06-22 19:17:04,740 p=21090 u=ubuntu n=ansible | PLAY [Install & Setup RabbitMQ with user] ****************************************************
+2025-06-22 19:17:04,747 p=21090 u=ubuntu n=ansible | TASK [Install Erlang from default Ubuntu repo] ***********************************************
+2025-06-22 19:18:11,964 p=21090 u=ubuntu n=ansible | changed: [rmq01]
+2025-06-22 19:18:11,969 p=21090 u=ubuntu n=ansible | TASK [Add Erlang Solutions public key] *******************************************************
+2025-06-22 19:18:13,396 p=21090 u=ubuntu n=ansible | changed: [rmq01]
+2025-06-22 19:18:13,406 p=21090 u=ubuntu n=ansible | TASK [Install Erlang] ************************************************************************
+2025-06-22 19:18:14,473 p=21090 u=ubuntu n=ansible | ok: [rmq01]
+2025-06-22 19:18:14,479 p=21090 u=ubuntu n=ansible | TASK [Add an apt signing key, using whichever key at the url] ********************************
+2025-06-22 19:18:15,592 p=21090 u=ubuntu n=ansible | changed: [rmq01]
+2025-06-22 19:18:15,598 p=21090 u=ubuntu n=ansible | TASK [Add RabbitMQ apt repository] ***********************************************************
+2025-06-22 19:18:23,690 p=21090 u=ubuntu n=ansible | changed: [rmq01]
+2025-06-22 19:18:23,697 p=21090 u=ubuntu n=ansible | TASK [Install RabbitMQ server] ***************************************************************
+2025-06-22 19:18:26,761 p=21090 u=ubuntu n=ansible | fatal: [rmq01]: FAILED! => {"cache_update_time": 1750619905, "cache_updated": true, "changed": false, "msg": "'/usr/bin/apt-get -y -o \"Dpkg::Options::=--force-confdef\" -o \"Dpkg::Options::=--force-confold\"       install 'rabbitmq-server=3.13.7-1'' failed: E: Unable to correct problems, you have held broken packages.\n", "rc": 100, "stderr": "E: Unable to correct problems, you have held broken packages.\n", "stderr_lines": ["E: Unable to correct problems, you have held broken packages."], "stdout": "Reading package lists...\nBuilding dependency tree...\nReading state information...\nSome packages could not be installed. This may mean that you have\nrequested an impossible situation or if you are using the unstable\ndistribution that some required packages have not yet been created\nor been moved out of Incoming.\nThe following information may help to resolve the situation:\n\nThe following packages have unmet dependencies:\n rabbitmq-server : Depends: erlang-base (>= 1:26.0) but 1:24.2.1+dfsg-1ubuntu0.4 is to be installed or\n                            erlang-base-hipe (>= 1:26.0) but it is not installable or\n                            esl-erlang (>= 1:26.0) but it is not installable\n                   Depends: erlang-crypto (>= 1:26.0) but 1:24.2.1+dfsg-1ubuntu0.4 is to be installed or\n                            esl-erlang (>= 1:26.0) but it is not installable\n                   Depends: erlang-eldap (>= 1:26.0) but 1:24.2.1+dfsg-1ubuntu0.4 is to be installed or\n                            esl-erlang (>= 1:26.0) but it is not installable\n                   Depends: erlang-inets (>= 1:26.0) but 1:24.2.1+dfsg-1ubuntu0.4 is to be installed or\n                            esl-erlang (>= 1:26.0) but it is not installable\n                   Depends: erlang-mnesia (>= 1:26.0) but 1:24.2.1+dfsg-1ubuntu0.4 is to be installed or\n                            esl-erlang (>= 1:26.0) but it is not installable\n                   Depends: erlang-os-mon (>= 1:26.0) but 1:24.2.1+dfsg-1ubuntu0.4 is to be installed or\n                            esl-erlang (>= 1:26.0) but it is not installable\n                   Depends: erlang-parsetools (>= 1:26.0) but 1:24.2.1+dfsg-1ubuntu0.4 is to be installed or\n                            esl-erlang (>= 1:26.0) but it is not installable\n                   Depends: erlang-public-key (>= 1:26.0) but 1:24.2.1+dfsg-1ubuntu0.4 is to be installed or\n                            esl-erlang (>= 1:26.0) but it is not installable\n                   Depends: erlang-runtime-tools (>= 1:26.0) but 1:24.2.1+dfsg-1ubuntu0.4 is to be installed or\n                            esl-erlang (>= 1:26.0) but it is not installable\n                   Depends: erlang-ssl (>= 1:26.0) but 1:24.2.1+dfsg-1ubuntu0.4 is to be installed or\n                            esl-erlang (>= 1:26.0) but it is not installable\n                   Depends: erlang-syntax-tools (>= 1:26.0) but 1:24.2.1+dfsg-1ubuntu0.4 is to be installed or\n                            esl-erlang (>= 1:26.0) but it is not installable\n                   Depends: erlang-tools (>= 1:26.0) but 1:24.2.1+dfsg-1ubuntu0.4 is to be installed or\n                            esl-erlang (>= 1:26.0) but it is not installable\n                   Depends: erlang-xmerl (>= 1:26.0) but 1:24.2.1+dfsg-1ubuntu0.4 is to be installed or\n                            esl-erlang (>= 1:26.0) but it is not installable\n", "stdout_lines": ["Reading package lists...", "Building dependency tree...", "Reading state information...", "Some packages could not be installed. This may mean that you have", "requested an impossible situation or if you are using the unstable", "distribution that some required packages have not yet been created", "or been moved out of Incoming.", "The following information may help to resolve the situation:", "", "The following packages have unmet dependencies:", " rabbitmq-server : Depends: erlang-base (>= 1:26.0) but 1:24.2.1+dfsg-1ubuntu0.4 is to be installed or", "                            erlang-base-hipe (>= 1:26.0) but it is not installable or", "                            esl-erlang (>= 1:26.0) but it is not installable", "                   Depends: erlang-crypto (>= 1:26.0) but 1:24.2.1+dfsg-1ubuntu0.4 is to be installed or", "                            esl-erlang (>= 1:26.0) but it is not installable", "                   Depends: erlang-eldap (>= 1:26.0) but 1:24.2.1+dfsg-1ubuntu0.4 is to be installed or", "                            esl-erlang (>= 1:26.0) but it is not installable", "                   Depends: erlang-inets (>= 1:26.0) but 1:24.2.1+dfsg-1ubuntu0.4 is to be installed or", "                            esl-erlang (>= 1:26.0) but it is not installable", "                   Depends: erlang-mnesia (>= 1:26.0) but 1:24.2.1+dfsg-1ubuntu0.4 is to be installed or", "                            esl-erlang (>= 1:26.0) but it is not installable", "                   Depends: erlang-os-mon (>= 1:26.0) but 1:24.2.1+dfsg-1ubuntu0.4 is to be installed or", "                            esl-erlang (>= 1:26.0) but it is not installable", "                   Depends: erlang-parsetools (>= 1:26.0) but 1:24.2.1+dfsg-1ubuntu0.4 is to be installed or", "                            esl-erlang (>= 1:26.0) but it is not installable", "                   Depends: erlang-public-key (>= 1:26.0) but 1:24.2.1+dfsg-1ubuntu0.4 is to be installed or", "                            esl-erlang (>= 1:26.0) but it is not installable", "                   Depends: erlang-runtime-tools (>= 1:26.0) but 1:24.2.1+dfsg-1ubuntu0.4 is to be installed or", "                            esl-erlang (>= 1:26.0) but it is not installable", "                   Depends: erlang-ssl (>= 1:26.0) but 1:24.2.1+dfsg-1ubuntu0.4 is to be installed or", "                            esl-erlang (>= 1:26.0) but it is not installable", "                   Depends: erlang-syntax-tools (>= 1:26.0) but 1:24.2.1+dfsg-1ubuntu0.4 is to be installed or", "                            esl-erlang (>= 1:26.0) but it is not installable", "                   Depends: erlang-tools (>= 1:26.0) but 1:24.2.1+dfsg-1ubuntu0.4 is to be installed or", "                            esl-erlang (>= 1:26.0) but it is not installable", "                   Depends: erlang-xmerl (>= 1:26.0) but 1:24.2.1+dfsg-1ubuntu0.4 is to be installed or", "                            esl-erlang (>= 1:26.0) but it is not installable"]}
+2025-06-22 19:18:26,762 p=21090 u=ubuntu n=ansible | PLAY RECAP ***********************************************************************************
+2025-06-22 19:18:26,763 p=21090 u=ubuntu n=ansible | app01                      : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 19:18:26,763 p=21090 u=ubuntu n=ansible | cntl                       : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 19:18:26,763 p=21090 u=ubuntu n=ansible | db01                       : ok=11   changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 19:18:26,763 p=21090 u=ubuntu n=ansible | localhost                  : ok=5    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+2025-06-22 19:18:26,763 p=21090 u=ubuntu n=ansible | mc01                       : ok=6    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 19:18:26,763 p=21090 u=ubuntu n=ansible | rmq01                      : ok=8    changed=4    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2025-06-22 19:18:26,763 p=21090 u=ubuntu n=ansible | web01                      : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 19:26:15,983 p=22790 u=ubuntu n=ansible | PLAY [Generate artifact, copy artifact & sql file to files directory] ************************
+2025-06-22 19:26:16,001 p=22790 u=ubuntu n=ansible | TASK [Gathering Facts] ***********************************************************************
+2025-06-22 19:26:17,085 p=22790 u=ubuntu n=ansible | ok: [localhost]
+2025-06-22 19:26:17,090 p=22790 u=ubuntu n=ansible | TASK [Install required packages (OpenJDK, Maven, Git)] ***************************************
+2025-06-22 19:26:20,024 p=22790 u=ubuntu n=ansible | ok: [localhost] => (item=git)
+2025-06-22 19:26:22,859 p=22790 u=ubuntu n=ansible | ok: [localhost] => (item=openjdk-11-jdk)
+2025-06-22 19:26:25,504 p=22790 u=ubuntu n=ansible | ok: [localhost] => (item=maven)
+2025-06-22 19:26:25,516 p=22790 u=ubuntu n=ansible | TASK [Clone the source code repository] ******************************************************
+2025-06-22 19:26:26,423 p=22790 u=ubuntu n=ansible | ok: [localhost]
+2025-06-22 19:26:26,431 p=22790 u=ubuntu n=ansible | TASK [Build the artifact with Maven] *********************************************************
+2025-06-22 19:26:26,444 p=22790 u=ubuntu n=ansible | skipping: [localhost]
+2025-06-22 19:26:26,452 p=22790 u=ubuntu n=ansible | TASK [Copy the built artifact (ROOT.war) to files/ directory] ********************************
+2025-06-22 19:26:27,613 p=22790 u=ubuntu n=ansible | ok: [localhost] => (item=/home/ubuntu/ansible-aws-vpc/provision-stack/Vprofile-repo/target/vprofile-v2.war)
+2025-06-22 19:26:27,620 p=22790 u=ubuntu n=ansible | TASK [Copy the SQL file to files/ directory] *************************************************
+2025-06-22 19:26:28,089 p=22790 u=ubuntu n=ansible | ok: [localhost]
+2025-06-22 19:26:28,092 p=22790 u=ubuntu n=ansible | PLAY [Map private IPs to hostnames in /etc/hosts] ********************************************
+2025-06-22 19:26:28,096 p=22790 u=ubuntu n=ansible | TASK [Gathering Facts] ***********************************************************************
+2025-06-22 19:26:29,565 p=22790 u=ubuntu n=ansible | [WARNING]: Platform linux on host cntl is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 19:26:29,567 p=22790 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 19:26:29,956 p=22790 u=ubuntu n=ansible | [WARNING]: Platform linux on host web01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 19:26:29,956 p=22790 u=ubuntu n=ansible | ok: [web01]
+2025-06-22 19:26:29,986 p=22790 u=ubuntu n=ansible | [WARNING]: Platform linux on host app01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 19:26:29,986 p=22790 u=ubuntu n=ansible | ok: [app01]
+2025-06-22 19:26:30,004 p=22790 u=ubuntu n=ansible | [WARNING]: Platform linux on host mc01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 19:26:30,005 p=22790 u=ubuntu n=ansible | ok: [mc01]
+2025-06-22 19:26:30,248 p=22790 u=ubuntu n=ansible | [WARNING]: Platform linux on host rmq01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 19:26:30,248 p=22790 u=ubuntu n=ansible | ok: [rmq01]
+2025-06-22 19:26:31,124 p=22790 u=ubuntu n=ansible | [WARNING]: Platform linux on host db01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 19:26:31,124 p=22790 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 19:26:31,132 p=22790 u=ubuntu n=ansible | TASK [Import VPC setup variable] *************************************************************
+2025-06-22 19:26:31,160 p=22790 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 19:26:31,195 p=22790 u=ubuntu n=ansible | ok: [web01]
+2025-06-22 19:26:31,217 p=22790 u=ubuntu n=ansible | ok: [app01]
+2025-06-22 19:26:31,240 p=22790 u=ubuntu n=ansible | ok: [rmq01]
+2025-06-22 19:26:31,242 p=22790 u=ubuntu n=ansible | ok: [mc01]
+2025-06-22 19:26:31,250 p=22790 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 19:26:31,256 p=22790 u=ubuntu n=ansible | TASK [Update hosts file for all the hosts] ***************************************************
+2025-06-22 19:26:31,995 p=22790 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 19:26:31,997 p=22790 u=ubuntu n=ansible | ok: [web01]
+2025-06-22 19:26:31,999 p=22790 u=ubuntu n=ansible | ok: [app01]
+2025-06-22 19:26:31,999 p=22790 u=ubuntu n=ansible | ok: [rmq01]
+2025-06-22 19:26:31,999 p=22790 u=ubuntu n=ansible | ok: [mc01]
+2025-06-22 19:26:32,283 p=22790 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 19:26:32,286 p=22790 u=ubuntu n=ansible | PLAY [Setup MySQL with accounts db and remote login] *****************************************
+2025-06-22 19:26:32,294 p=22790 u=ubuntu n=ansible | TASK [installing mysql services and dependencies] ********************************************
+2025-06-22 19:26:33,359 p=22790 u=ubuntu n=ansible | ok: [db01] => (item=mysql-server)
+2025-06-22 19:26:34,364 p=22790 u=ubuntu n=ansible | ok: [db01] => (item=mysql-client)
+2025-06-22 19:26:35,385 p=22790 u=ubuntu n=ansible | ok: [db01] => (item=python3-pymysql)
+2025-06-22 19:26:36,475 p=22790 u=ubuntu n=ansible | ok: [db01] => (item=libmysqlclient-dev)
+2025-06-22 19:26:36,485 p=22790 u=ubuntu n=ansible | TASK [Ensure MySQL service is running and enabled] *******************************************
+2025-06-22 19:26:37,235 p=22790 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 19:26:37,246 p=22790 u=ubuntu n=ansible | TASK [Creating MySQL user] *******************************************************************
+2025-06-22 19:26:37,757 p=22790 u=ubuntu n=ansible | [WARNING]: Option column_case_sensitive is not provided. The default is now false, so the
+column's name will be uppercased. The default will be changed to true in community.mysql
+4.0.0.
+
+2025-06-22 19:26:37,757 p=22790 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 19:26:37,762 p=22790 u=ubuntu n=ansible | TASK [Create accounts database] **************************************************************
+2025-06-22 19:26:38,222 p=22790 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 19:26:38,229 p=22790 u=ubuntu n=ansible | TASK [Enable remote login to MySQL svc] ******************************************************
+2025-06-22 19:26:38,626 p=22790 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 19:26:38,629 p=22790 u=ubuntu n=ansible | PLAY [Deploy SQL database backup files to accounts DB] ***************************************
+2025-06-22 19:26:38,636 p=22790 u=ubuntu n=ansible | TASK [Copy SQL DB backup file to dbsrv] ******************************************************
+2025-06-22 19:26:39,165 p=22790 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 19:26:39,170 p=22790 u=ubuntu n=ansible | TASK [Import/Restoring backup into accounts database] ****************************************
+2025-06-22 19:26:39,844 p=22790 u=ubuntu n=ansible | changed: [db01]
+2025-06-22 19:26:39,853 p=22790 u=ubuntu n=ansible | RUNNING HANDLER [Restart mysql] **************************************************************
+2025-06-22 19:26:42,310 p=22790 u=ubuntu n=ansible | changed: [db01]
+2025-06-22 19:26:42,312 p=22790 u=ubuntu n=ansible | PLAY [Setup and configure Memcached service] *************************************************
+2025-06-22 19:26:42,319 p=22790 u=ubuntu n=ansible | TASK [Installing Memcached and dependencies] *************************************************
+2025-06-22 19:26:43,361 p=22790 u=ubuntu n=ansible | ok: [mc01]
+2025-06-22 19:26:43,368 p=22790 u=ubuntu n=ansible | TASK [Configure Memcached to listen on remote login] *****************************************
+2025-06-22 19:26:43,651 p=22790 u=ubuntu n=ansible | ok: [mc01]
+2025-06-22 19:26:43,656 p=22790 u=ubuntu n=ansible | TASK [Ensure Memcached is running and enabled] ***********************************************
+2025-06-22 19:26:44,110 p=22790 u=ubuntu n=ansible | ok: [mc01]
+2025-06-22 19:26:44,115 p=22790 u=ubuntu n=ansible | PLAY [Install & Setup RabbitMQ with user] ****************************************************
+2025-06-22 19:26:44,123 p=22790 u=ubuntu n=ansible | TASK [Gathering Facts] ***********************************************************************
+2025-06-22 19:26:45,050 p=22790 u=ubuntu n=ansible | ok: [rmq01]
+2025-06-22 19:26:45,055 p=22790 u=ubuntu n=ansible | TASK [Add Erlang Solutions public key] *******************************************************
+2025-06-22 19:26:46,044 p=22790 u=ubuntu n=ansible | ok: [rmq01]
+2025-06-22 19:26:46,052 p=22790 u=ubuntu n=ansible | TASK [Add Erlang Solutions repository] *******************************************************
+2025-06-22 19:27:57,497 p=22790 u=ubuntu n=ansible | fatal: [rmq01]: FAILED! => {"changed": false, "msg": "Failed to update apt cache: unknown reason"}
+2025-06-22 19:27:57,500 p=22790 u=ubuntu n=ansible | PLAY RECAP ***********************************************************************************
+2025-06-22 19:27:57,500 p=22790 u=ubuntu n=ansible | app01                      : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 19:27:57,500 p=22790 u=ubuntu n=ansible | cntl                       : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 19:27:57,500 p=22790 u=ubuntu n=ansible | db01                       : ok=11   changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 19:27:57,500 p=22790 u=ubuntu n=ansible | localhost                  : ok=5    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+2025-06-22 19:27:57,500 p=22790 u=ubuntu n=ansible | mc01                       : ok=6    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 19:27:57,500 p=22790 u=ubuntu n=ansible | rmq01                      : ok=5    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2025-06-22 19:27:57,500 p=22790 u=ubuntu n=ansible | web01                      : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 19:34:47,846 p=24896 u=ubuntu n=ansible | PLAY [Generate artifact, copy artifact & sql file to files directory] ************************
+2025-06-22 19:34:47,868 p=24896 u=ubuntu n=ansible | TASK [Gathering Facts] ***********************************************************************
+2025-06-22 19:34:49,124 p=24896 u=ubuntu n=ansible | ok: [localhost]
+2025-06-22 19:34:49,129 p=24896 u=ubuntu n=ansible | TASK [Install required packages (OpenJDK, Maven, Git)] ***************************************
+2025-06-22 19:34:52,168 p=24896 u=ubuntu n=ansible | ok: [localhost] => (item=git)
+2025-06-22 19:34:54,977 p=24896 u=ubuntu n=ansible | ok: [localhost] => (item=openjdk-11-jdk)
+2025-06-22 19:34:57,607 p=24896 u=ubuntu n=ansible | ok: [localhost] => (item=maven)
+2025-06-22 19:34:57,619 p=24896 u=ubuntu n=ansible | TASK [Clone the source code repository] ******************************************************
+2025-06-22 19:34:58,595 p=24896 u=ubuntu n=ansible | ok: [localhost]
+2025-06-22 19:34:58,606 p=24896 u=ubuntu n=ansible | TASK [Build the artifact with Maven] *********************************************************
+2025-06-22 19:34:58,621 p=24896 u=ubuntu n=ansible | skipping: [localhost]
+2025-06-22 19:34:58,628 p=24896 u=ubuntu n=ansible | TASK [Copy the built artifact (ROOT.war) to files/ directory] ********************************
+2025-06-22 19:34:59,998 p=24896 u=ubuntu n=ansible | ok: [localhost] => (item=/home/ubuntu/ansible-aws-vpc/provision-stack/Vprofile-repo/target/vprofile-v2.war)
+2025-06-22 19:35:00,008 p=24896 u=ubuntu n=ansible | TASK [Copy the SQL file to files/ directory] *************************************************
+2025-06-22 19:35:00,479 p=24896 u=ubuntu n=ansible | ok: [localhost]
+2025-06-22 19:35:00,482 p=24896 u=ubuntu n=ansible | PLAY [Map private IPs to hostnames in /etc/hosts] ********************************************
+2025-06-22 19:35:00,485 p=24896 u=ubuntu n=ansible | TASK [Gathering Facts] ***********************************************************************
+2025-06-22 19:35:02,055 p=24896 u=ubuntu n=ansible | [WARNING]: Platform linux on host cntl is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 19:35:02,055 p=24896 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 19:35:02,330 p=24896 u=ubuntu n=ansible | [WARNING]: Platform linux on host web01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 19:35:02,330 p=24896 u=ubuntu n=ansible | ok: [web01]
+2025-06-22 19:35:02,435 p=24896 u=ubuntu n=ansible | [WARNING]: Platform linux on host mc01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 19:35:02,439 p=24896 u=ubuntu n=ansible | ok: [mc01]
+2025-06-22 19:35:02,454 p=24896 u=ubuntu n=ansible | [WARNING]: Platform linux on host app01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 19:35:02,454 p=24896 u=ubuntu n=ansible | ok: [app01]
+2025-06-22 19:35:02,641 p=24896 u=ubuntu n=ansible | [WARNING]: Platform linux on host rmq01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 19:35:02,641 p=24896 u=ubuntu n=ansible | ok: [rmq01]
+2025-06-22 19:35:03,954 p=24896 u=ubuntu n=ansible | [WARNING]: Platform linux on host db01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 19:35:03,954 p=24896 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 19:35:03,962 p=24896 u=ubuntu n=ansible | TASK [Import VPC setup variable] *************************************************************
+2025-06-22 19:35:04,010 p=24896 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 19:35:04,028 p=24896 u=ubuntu n=ansible | ok: [web01]
+2025-06-22 19:35:04,055 p=24896 u=ubuntu n=ansible | ok: [app01]
+2025-06-22 19:35:04,075 p=24896 u=ubuntu n=ansible | ok: [rmq01]
+2025-06-22 19:35:04,077 p=24896 u=ubuntu n=ansible | ok: [mc01]
+2025-06-22 19:35:04,085 p=24896 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 19:35:04,092 p=24896 u=ubuntu n=ansible | TASK [Update hosts file for all the hosts] ***************************************************
+2025-06-22 19:35:04,823 p=24896 u=ubuntu n=ansible | ok: [web01]
+2025-06-22 19:35:04,831 p=24896 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 19:35:04,844 p=24896 u=ubuntu n=ansible | ok: [mc01]
+2025-06-22 19:35:04,844 p=24896 u=ubuntu n=ansible | ok: [app01]
+2025-06-22 19:35:04,845 p=24896 u=ubuntu n=ansible | ok: [rmq01]
+2025-06-22 19:35:05,123 p=24896 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 19:35:05,129 p=24896 u=ubuntu n=ansible | PLAY [Setup MySQL with accounts db and remote login] *****************************************
+2025-06-22 19:35:05,136 p=24896 u=ubuntu n=ansible | TASK [installing mysql services and dependencies] ********************************************
+2025-06-22 19:35:06,209 p=24896 u=ubuntu n=ansible | ok: [db01] => (item=mysql-server)
+2025-06-22 19:35:07,265 p=24896 u=ubuntu n=ansible | ok: [db01] => (item=mysql-client)
+2025-06-22 19:35:08,317 p=24896 u=ubuntu n=ansible | ok: [db01] => (item=python3-pymysql)
+2025-06-22 19:35:09,364 p=24896 u=ubuntu n=ansible | ok: [db01] => (item=libmysqlclient-dev)
+2025-06-22 19:35:09,375 p=24896 u=ubuntu n=ansible | TASK [Ensure MySQL service is running and enabled] *******************************************
+2025-06-22 19:35:10,133 p=24896 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 19:35:10,143 p=24896 u=ubuntu n=ansible | TASK [Creating MySQL user] *******************************************************************
+2025-06-22 19:35:10,643 p=24896 u=ubuntu n=ansible | [WARNING]: Option column_case_sensitive is not provided. The default is now false, so the
+column's name will be uppercased. The default will be changed to true in community.mysql
+4.0.0.
+
+2025-06-22 19:35:10,644 p=24896 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 19:35:10,650 p=24896 u=ubuntu n=ansible | TASK [Create accounts database] **************************************************************
+2025-06-22 19:35:11,115 p=24896 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 19:35:11,121 p=24896 u=ubuntu n=ansible | TASK [Enable remote login to MySQL svc] ******************************************************
+2025-06-22 19:35:11,516 p=24896 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 19:35:11,520 p=24896 u=ubuntu n=ansible | PLAY [Deploy SQL database backup files to accounts DB] ***************************************
+2025-06-22 19:35:11,527 p=24896 u=ubuntu n=ansible | TASK [Copy SQL DB backup file to dbsrv] ******************************************************
+2025-06-22 19:35:12,049 p=24896 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 19:35:12,055 p=24896 u=ubuntu n=ansible | TASK [Import/Restoring backup into accounts database] ****************************************
+2025-06-22 19:35:12,714 p=24896 u=ubuntu n=ansible | changed: [db01]
+2025-06-22 19:35:12,723 p=24896 u=ubuntu n=ansible | RUNNING HANDLER [Restart mysql] **************************************************************
+2025-06-22 19:35:14,822 p=24896 u=ubuntu n=ansible | changed: [db01]
+2025-06-22 19:35:14,825 p=24896 u=ubuntu n=ansible | PLAY [Setup and configure Memcached service] *************************************************
+2025-06-22 19:35:14,832 p=24896 u=ubuntu n=ansible | TASK [Installing Memcached and dependencies] *************************************************
+2025-06-22 19:35:15,900 p=24896 u=ubuntu n=ansible | ok: [mc01]
+2025-06-22 19:35:15,907 p=24896 u=ubuntu n=ansible | TASK [Configure Memcached to listen on remote login] *****************************************
+2025-06-22 19:35:16,192 p=24896 u=ubuntu n=ansible | ok: [mc01]
+2025-06-22 19:35:16,197 p=24896 u=ubuntu n=ansible | TASK [Ensure Memcached is running and enabled] ***********************************************
+2025-06-22 19:35:16,641 p=24896 u=ubuntu n=ansible | ok: [mc01]
+2025-06-22 19:35:16,645 p=24896 u=ubuntu n=ansible | PLAY [Install & Setup RabbitMQ with user] ****************************************************
+2025-06-22 19:35:16,651 p=24896 u=ubuntu n=ansible | TASK [Gathering Facts] ***********************************************************************
+2025-06-22 19:35:17,570 p=24896 u=ubuntu n=ansible | ok: [rmq01]
+2025-06-22 19:35:17,574 p=24896 u=ubuntu n=ansible | TASK [Install required dependencies] *********************************************************
+2025-06-22 19:35:27,979 p=24896 u=ubuntu n=ansible | changed: [rmq01]
+2025-06-22 19:35:27,985 p=24896 u=ubuntu n=ansible | TASK [Install Erlang (from default Ubuntu repo)] *********************************************
+2025-06-22 19:35:29,023 p=24896 u=ubuntu n=ansible | ok: [rmq01]
+2025-06-22 19:35:29,029 p=24896 u=ubuntu n=ansible | TASK [Install RabbitMQ (from default Ubuntu repo)] *******************************************
+2025-06-22 19:35:30,580 p=24896 u=ubuntu n=ansible | fatal: [rmq01]: FAILED! => {"cache_update_time": 1750620921, "cache_updated": false, "changed": false, "msg": "'/usr/bin/apt-get -y -o \"Dpkg::Options::=--force-confdef\" -o \"Dpkg::Options::=--force-confold\"       install 'rabbitmq-server=3.13.7-1'' failed: E: Unable to correct problems, you have held broken packages.\n", "rc": 100, "stderr": "E: Unable to correct problems, you have held broken packages.\n", "stderr_lines": ["E: Unable to correct problems, you have held broken packages."], "stdout": "Reading package lists...\nBuilding dependency tree...\nReading state information...\nSome packages could not be installed. This may mean that you have\nrequested an impossible situation or if you are using the unstable\ndistribution that some required packages have not yet been created\nor been moved out of Incoming.\nThe following information may help to resolve the situation:\n\nThe following packages have unmet dependencies:\n rabbitmq-server : Depends: erlang-base (>= 1:26.0) but 1:24.2.1+dfsg-1ubuntu0.4 is to be installed or\n                            erlang-base-hipe (>= 1:26.0) but it is not installable or\n                            esl-erlang (>= 1:26.0) but it is not installable\n                   Depends: erlang-crypto (>= 1:26.0) but 1:24.2.1+dfsg-1ubuntu0.4 is to be installed or\n                            esl-erlang (>= 1:26.0) but it is not installable\n                   Depends: erlang-eldap (>= 1:26.0) but 1:24.2.1+dfsg-1ubuntu0.4 is to be installed or\n                            esl-erlang (>= 1:26.0) but it is not installable\n                   Depends: erlang-inets (>= 1:26.0) but 1:24.2.1+dfsg-1ubuntu0.4 is to be installed or\n                            esl-erlang (>= 1:26.0) but it is not installable\n                   Depends: erlang-mnesia (>= 1:26.0) but 1:24.2.1+dfsg-1ubuntu0.4 is to be installed or\n                            esl-erlang (>= 1:26.0) but it is not installable\n                   Depends: erlang-os-mon (>= 1:26.0) but 1:24.2.1+dfsg-1ubuntu0.4 is to be installed or\n                            esl-erlang (>= 1:26.0) but it is not installable\n                   Depends: erlang-parsetools (>= 1:26.0) but 1:24.2.1+dfsg-1ubuntu0.4 is to be installed or\n                            esl-erlang (>= 1:26.0) but it is not installable\n                   Depends: erlang-public-key (>= 1:26.0) but 1:24.2.1+dfsg-1ubuntu0.4 is to be installed or\n                            esl-erlang (>= 1:26.0) but it is not installable\n                   Depends: erlang-runtime-tools (>= 1:26.0) but 1:24.2.1+dfsg-1ubuntu0.4 is to be installed or\n                            esl-erlang (>= 1:26.0) but it is not installable\n                   Depends: erlang-ssl (>= 1:26.0) but 1:24.2.1+dfsg-1ubuntu0.4 is to be installed or\n                            esl-erlang (>= 1:26.0) but it is not installable\n                   Depends: erlang-syntax-tools (>= 1:26.0) but 1:24.2.1+dfsg-1ubuntu0.4 is to be installed or\n                            esl-erlang (>= 1:26.0) but it is not installable\n                   Depends: erlang-tools (>= 1:26.0) but 1:24.2.1+dfsg-1ubuntu0.4 is to be installed or\n                            esl-erlang (>= 1:26.0) but it is not installable\n                   Depends: erlang-xmerl (>= 1:26.0) but 1:24.2.1+dfsg-1ubuntu0.4 is to be installed or\n                            esl-erlang (>= 1:26.0) but it is not installable\n", "stdout_lines": ["Reading package lists...", "Building dependency tree...", "Reading state information...", "Some packages could not be installed. This may mean that you have", "requested an impossible situation or if you are using the unstable", "distribution that some required packages have not yet been created", "or been moved out of Incoming.", "The following information may help to resolve the situation:", "", "The following packages have unmet dependencies:", " rabbitmq-server : Depends: erlang-base (>= 1:26.0) but 1:24.2.1+dfsg-1ubuntu0.4 is to be installed or", "                            erlang-base-hipe (>= 1:26.0) but it is not installable or", "                            esl-erlang (>= 1:26.0) but it is not installable", "                   Depends: erlang-crypto (>= 1:26.0) but 1:24.2.1+dfsg-1ubuntu0.4 is to be installed or", "                            esl-erlang (>= 1:26.0) but it is not installable", "                   Depends: erlang-eldap (>= 1:26.0) but 1:24.2.1+dfsg-1ubuntu0.4 is to be installed or", "                            esl-erlang (>= 1:26.0) but it is not installable", "                   Depends: erlang-inets (>= 1:26.0) but 1:24.2.1+dfsg-1ubuntu0.4 is to be installed or", "                            esl-erlang (>= 1:26.0) but it is not installable", "                   Depends: erlang-mnesia (>= 1:26.0) but 1:24.2.1+dfsg-1ubuntu0.4 is to be installed or", "                            esl-erlang (>= 1:26.0) but it is not installable", "                   Depends: erlang-os-mon (>= 1:26.0) but 1:24.2.1+dfsg-1ubuntu0.4 is to be installed or", "                            esl-erlang (>= 1:26.0) but it is not installable", "                   Depends: erlang-parsetools (>= 1:26.0) but 1:24.2.1+dfsg-1ubuntu0.4 is to be installed or", "                            esl-erlang (>= 1:26.0) but it is not installable", "                   Depends: erlang-public-key (>= 1:26.0) but 1:24.2.1+dfsg-1ubuntu0.4 is to be installed or", "                            esl-erlang (>= 1:26.0) but it is not installable", "                   Depends: erlang-runtime-tools (>= 1:26.0) but 1:24.2.1+dfsg-1ubuntu0.4 is to be installed or", "                            esl-erlang (>= 1:26.0) but it is not installable", "                   Depends: erlang-ssl (>= 1:26.0) but 1:24.2.1+dfsg-1ubuntu0.4 is to be installed or", "                            esl-erlang (>= 1:26.0) but it is not installable", "                   Depends: erlang-syntax-tools (>= 1:26.0) but 1:24.2.1+dfsg-1ubuntu0.4 is to be installed or", "                            esl-erlang (>= 1:26.0) but it is not installable", "                   Depends: erlang-tools (>= 1:26.0) but 1:24.2.1+dfsg-1ubuntu0.4 is to be installed or", "                            esl-erlang (>= 1:26.0) but it is not installable", "                   Depends: erlang-xmerl (>= 1:26.0) but 1:24.2.1+dfsg-1ubuntu0.4 is to be installed or", "                            esl-erlang (>= 1:26.0) but it is not installable"]}
+2025-06-22 19:35:30,581 p=24896 u=ubuntu n=ansible | PLAY RECAP ***********************************************************************************
+2025-06-22 19:35:30,581 p=24896 u=ubuntu n=ansible | app01                      : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 19:35:30,581 p=24896 u=ubuntu n=ansible | cntl                       : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 19:35:30,582 p=24896 u=ubuntu n=ansible | db01                       : ok=11   changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 19:35:30,582 p=24896 u=ubuntu n=ansible | localhost                  : ok=5    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+2025-06-22 19:35:30,582 p=24896 u=ubuntu n=ansible | mc01                       : ok=6    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 19:35:30,582 p=24896 u=ubuntu n=ansible | rmq01                      : ok=6    changed=1    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2025-06-22 19:35:30,582 p=24896 u=ubuntu n=ansible | web01                      : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 19:41:12,810 p=26575 u=ubuntu n=ansible | PLAY [Generate artifact, copy artifact & sql file to files directory] ************************
+2025-06-22 19:41:12,828 p=26575 u=ubuntu n=ansible | TASK [Gathering Facts] ***********************************************************************
+2025-06-22 19:41:14,898 p=26575 u=ubuntu n=ansible | ok: [localhost]
+2025-06-22 19:41:14,903 p=26575 u=ubuntu n=ansible | TASK [Install required packages (OpenJDK, Maven, Git)] ***************************************
+2025-06-22 19:41:17,972 p=26575 u=ubuntu n=ansible | ok: [localhost] => (item=git)
+2025-06-22 19:41:20,734 p=26575 u=ubuntu n=ansible | ok: [localhost] => (item=openjdk-11-jdk)
+2025-06-22 19:41:23,376 p=26575 u=ubuntu n=ansible | ok: [localhost] => (item=maven)
+2025-06-22 19:41:23,383 p=26575 u=ubuntu n=ansible | TASK [Clone the source code repository] ******************************************************
+2025-06-22 19:41:24,194 p=26575 u=ubuntu n=ansible | ok: [localhost]
+2025-06-22 19:41:24,204 p=26575 u=ubuntu n=ansible | TASK [Build the artifact with Maven] *********************************************************
+2025-06-22 19:41:24,217 p=26575 u=ubuntu n=ansible | skipping: [localhost]
+2025-06-22 19:41:24,225 p=26575 u=ubuntu n=ansible | TASK [Copy the built artifact (ROOT.war) to files/ directory] ********************************
+2025-06-22 19:41:25,521 p=26575 u=ubuntu n=ansible | ok: [localhost] => (item=/home/ubuntu/ansible-aws-vpc/provision-stack/Vprofile-repo/target/vprofile-v2.war)
+2025-06-22 19:41:25,527 p=26575 u=ubuntu n=ansible | TASK [Copy the SQL file to files/ directory] *************************************************
+2025-06-22 19:41:25,947 p=26575 u=ubuntu n=ansible | ok: [localhost]
+2025-06-22 19:41:25,951 p=26575 u=ubuntu n=ansible | PLAY [Map private IPs to hostnames in /etc/hosts] ********************************************
+2025-06-22 19:41:25,955 p=26575 u=ubuntu n=ansible | TASK [Gathering Facts] ***********************************************************************
+2025-06-22 19:41:27,430 p=26575 u=ubuntu n=ansible | [WARNING]: Platform linux on host cntl is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 19:41:27,431 p=26575 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 19:41:27,746 p=26575 u=ubuntu n=ansible | [WARNING]: Platform linux on host web01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 19:41:27,746 p=26575 u=ubuntu n=ansible | ok: [web01]
+2025-06-22 19:41:27,808 p=26575 u=ubuntu n=ansible | [WARNING]: Platform linux on host app01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 19:41:27,808 p=26575 u=ubuntu n=ansible | ok: [app01]
+2025-06-22 19:41:27,826 p=26575 u=ubuntu n=ansible | [WARNING]: Platform linux on host mc01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 19:41:27,827 p=26575 u=ubuntu n=ansible | ok: [mc01]
+2025-06-22 19:41:27,985 p=26575 u=ubuntu n=ansible | [WARNING]: Platform linux on host rmq01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 19:41:27,986 p=26575 u=ubuntu n=ansible | ok: [rmq01]
+2025-06-22 19:41:28,977 p=26575 u=ubuntu n=ansible | [WARNING]: Platform linux on host db01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 19:41:28,977 p=26575 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 19:41:28,983 p=26575 u=ubuntu n=ansible | TASK [Import VPC setup variable] *************************************************************
+2025-06-22 19:41:29,031 p=26575 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 19:41:29,052 p=26575 u=ubuntu n=ansible | ok: [web01]
+2025-06-22 19:41:29,071 p=26575 u=ubuntu n=ansible | ok: [app01]
+2025-06-22 19:41:29,091 p=26575 u=ubuntu n=ansible | ok: [rmq01]
+2025-06-22 19:41:29,095 p=26575 u=ubuntu n=ansible | ok: [mc01]
+2025-06-22 19:41:29,104 p=26575 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 19:41:29,109 p=26575 u=ubuntu n=ansible | TASK [Update hosts file for all the hosts] ***************************************************
+2025-06-22 19:41:29,828 p=26575 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 19:41:29,829 p=26575 u=ubuntu n=ansible | ok: [mc01]
+2025-06-22 19:41:29,829 p=26575 u=ubuntu n=ansible | ok: [app01]
+2025-06-22 19:41:29,830 p=26575 u=ubuntu n=ansible | ok: [web01]
+2025-06-22 19:41:29,831 p=26575 u=ubuntu n=ansible | ok: [rmq01]
+2025-06-22 19:41:30,111 p=26575 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 19:41:30,116 p=26575 u=ubuntu n=ansible | PLAY [Setup MySQL with accounts db and remote login] *****************************************
+2025-06-22 19:41:30,124 p=26575 u=ubuntu n=ansible | TASK [installing mysql services and dependencies] ********************************************
+2025-06-22 19:41:31,140 p=26575 u=ubuntu n=ansible | ok: [db01] => (item=mysql-server)
+2025-06-22 19:41:32,171 p=26575 u=ubuntu n=ansible | ok: [db01] => (item=mysql-client)
+2025-06-22 19:41:33,184 p=26575 u=ubuntu n=ansible | ok: [db01] => (item=python3-pymysql)
+2025-06-22 19:41:34,193 p=26575 u=ubuntu n=ansible | ok: [db01] => (item=libmysqlclient-dev)
+2025-06-22 19:41:34,205 p=26575 u=ubuntu n=ansible | TASK [Ensure MySQL service is running and enabled] *******************************************
+2025-06-22 19:41:34,963 p=26575 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 19:41:34,969 p=26575 u=ubuntu n=ansible | TASK [Creating MySQL user] *******************************************************************
+2025-06-22 19:41:35,471 p=26575 u=ubuntu n=ansible | [WARNING]: Option column_case_sensitive is not provided. The default is now false, so the
+column's name will be uppercased. The default will be changed to true in community.mysql
+4.0.0.
+
+2025-06-22 19:41:35,471 p=26575 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 19:41:35,477 p=26575 u=ubuntu n=ansible | TASK [Create accounts database] **************************************************************
+2025-06-22 19:41:35,930 p=26575 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 19:41:35,938 p=26575 u=ubuntu n=ansible | TASK [Enable remote login to MySQL svc] ******************************************************
+2025-06-22 19:41:36,335 p=26575 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 19:41:36,339 p=26575 u=ubuntu n=ansible | PLAY [Deploy SQL database backup files to accounts DB] ***************************************
+2025-06-22 19:41:36,346 p=26575 u=ubuntu n=ansible | TASK [Copy SQL DB backup file to dbsrv] ******************************************************
+2025-06-22 19:41:36,867 p=26575 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 19:41:36,874 p=26575 u=ubuntu n=ansible | TASK [Import/Restoring backup into accounts database] ****************************************
+2025-06-22 19:41:37,524 p=26575 u=ubuntu n=ansible | changed: [db01]
+2025-06-22 19:41:37,533 p=26575 u=ubuntu n=ansible | RUNNING HANDLER [Restart mysql] **************************************************************
+2025-06-22 19:41:40,285 p=26575 u=ubuntu n=ansible | changed: [db01]
+2025-06-22 19:41:40,288 p=26575 u=ubuntu n=ansible | PLAY [Setup and configure Memcached service] *************************************************
+2025-06-22 19:41:40,294 p=26575 u=ubuntu n=ansible | TASK [Installing Memcached and dependencies] *************************************************
+2025-06-22 19:41:41,362 p=26575 u=ubuntu n=ansible | ok: [mc01]
+2025-06-22 19:41:41,369 p=26575 u=ubuntu n=ansible | TASK [Configure Memcached to listen on remote login] *****************************************
+2025-06-22 19:41:41,658 p=26575 u=ubuntu n=ansible | ok: [mc01]
+2025-06-22 19:41:41,665 p=26575 u=ubuntu n=ansible | TASK [Ensure Memcached is running and enabled] ***********************************************
+2025-06-22 19:41:42,112 p=26575 u=ubuntu n=ansible | ok: [mc01]
+2025-06-22 19:41:42,114 p=26575 u=ubuntu n=ansible | PLAY [Install & Setup RabbitMQ with user] ****************************************************
+2025-06-22 19:41:42,122 p=26575 u=ubuntu n=ansible | TASK [Gathering Facts] ***********************************************************************
+2025-06-22 19:41:43,041 p=26575 u=ubuntu n=ansible | ok: [rmq01]
+2025-06-22 19:41:43,046 p=26575 u=ubuntu n=ansible | TASK [Install required dependencies] *********************************************************
+2025-06-22 19:41:45,534 p=26575 u=ubuntu n=ansible | ok: [rmq01]
+2025-06-22 19:41:45,541 p=26575 u=ubuntu n=ansible | TASK [Install Erlang (from default Ubuntu repo)] *********************************************
+2025-06-22 19:41:46,585 p=26575 u=ubuntu n=ansible | ok: [rmq01]
+2025-06-22 19:41:46,591 p=26575 u=ubuntu n=ansible | TASK [Install compatible RabbitMQ version (3.9.27)] ******************************************
+2025-06-22 19:41:58,944 p=26575 u=ubuntu n=ansible | changed: [rmq01]
+2025-06-22 19:41:58,951 p=26575 u=ubuntu n=ansible | TASK [Ensure RabbitMQ service is running and enabled] ****************************************
+2025-06-22 19:41:59,388 p=26575 u=ubuntu n=ansible | fatal: [rmq01]: FAILED! => {"changed": false, "msg": "Could not find the requested service rabbitmq-server=3.9.27-0ubuntu0.2: host"}
+2025-06-22 19:41:59,389 p=26575 u=ubuntu n=ansible | PLAY RECAP ***********************************************************************************
+2025-06-22 19:41:59,389 p=26575 u=ubuntu n=ansible | app01                      : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 19:41:59,389 p=26575 u=ubuntu n=ansible | cntl                       : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 19:41:59,389 p=26575 u=ubuntu n=ansible | db01                       : ok=11   changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 19:41:59,389 p=26575 u=ubuntu n=ansible | localhost                  : ok=5    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+2025-06-22 19:41:59,390 p=26575 u=ubuntu n=ansible | mc01                       : ok=6    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 19:41:59,390 p=26575 u=ubuntu n=ansible | rmq01                      : ok=7    changed=1    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2025-06-22 19:41:59,390 p=26575 u=ubuntu n=ansible | web01                      : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 19:43:56,974 p=28250 u=ubuntu n=ansible | PLAY [Generate artifact, copy artifact & sql file to files directory] ************************
+2025-06-22 19:43:56,993 p=28250 u=ubuntu n=ansible | TASK [Gathering Facts] ***********************************************************************
+2025-06-22 19:43:58,059 p=28250 u=ubuntu n=ansible | ok: [localhost]
+2025-06-22 19:43:58,065 p=28250 u=ubuntu n=ansible | TASK [Install required packages (OpenJDK, Maven, Git)] ***************************************
+2025-06-22 19:44:00,951 p=28250 u=ubuntu n=ansible | ok: [localhost] => (item=git)
+2025-06-22 19:44:03,648 p=28250 u=ubuntu n=ansible | ok: [localhost] => (item=openjdk-11-jdk)
+2025-06-22 19:44:06,289 p=28250 u=ubuntu n=ansible | ok: [localhost] => (item=maven)
+2025-06-22 19:44:06,298 p=28250 u=ubuntu n=ansible | TASK [Clone the source code repository] ******************************************************
+2025-06-22 19:44:07,008 p=28250 u=ubuntu n=ansible | ok: [localhost]
+2025-06-22 19:44:07,015 p=28250 u=ubuntu n=ansible | TASK [Build the artifact with Maven] *********************************************************
+2025-06-22 19:44:07,029 p=28250 u=ubuntu n=ansible | skipping: [localhost]
+2025-06-22 19:44:07,037 p=28250 u=ubuntu n=ansible | TASK [Copy the built artifact (ROOT.war) to files/ directory] ********************************
+2025-06-22 19:44:08,322 p=28250 u=ubuntu n=ansible | ok: [localhost] => (item=/home/ubuntu/ansible-aws-vpc/provision-stack/Vprofile-repo/target/vprofile-v2.war)
+2025-06-22 19:44:08,329 p=28250 u=ubuntu n=ansible | TASK [Copy the SQL file to files/ directory] *************************************************
+2025-06-22 19:44:08,744 p=28250 u=ubuntu n=ansible | ok: [localhost]
+2025-06-22 19:44:08,746 p=28250 u=ubuntu n=ansible | PLAY [Map private IPs to hostnames in /etc/hosts] ********************************************
+2025-06-22 19:44:08,751 p=28250 u=ubuntu n=ansible | TASK [Gathering Facts] ***********************************************************************
+2025-06-22 19:44:10,248 p=28250 u=ubuntu n=ansible | [WARNING]: Platform linux on host cntl is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 19:44:10,249 p=28250 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 19:44:10,537 p=28250 u=ubuntu n=ansible | [WARNING]: Platform linux on host web01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 19:44:10,538 p=28250 u=ubuntu n=ansible | ok: [web01]
+2025-06-22 19:44:10,575 p=28250 u=ubuntu n=ansible | [WARNING]: Platform linux on host app01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 19:44:10,575 p=28250 u=ubuntu n=ansible | ok: [app01]
+2025-06-22 19:44:10,651 p=28250 u=ubuntu n=ansible | [WARNING]: Platform linux on host mc01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 19:44:10,651 p=28250 u=ubuntu n=ansible | ok: [mc01]
+2025-06-22 19:44:10,821 p=28250 u=ubuntu n=ansible | [WARNING]: Platform linux on host rmq01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 19:44:10,822 p=28250 u=ubuntu n=ansible | ok: [rmq01]
+2025-06-22 19:44:11,817 p=28250 u=ubuntu n=ansible | [WARNING]: Platform linux on host db01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 19:44:11,817 p=28250 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 19:44:11,823 p=28250 u=ubuntu n=ansible | TASK [Import VPC setup variable] *************************************************************
+2025-06-22 19:44:11,870 p=28250 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 19:44:11,888 p=28250 u=ubuntu n=ansible | ok: [web01]
+2025-06-22 19:44:11,912 p=28250 u=ubuntu n=ansible | ok: [app01]
+2025-06-22 19:44:11,931 p=28250 u=ubuntu n=ansible | ok: [rmq01]
+2025-06-22 19:44:11,932 p=28250 u=ubuntu n=ansible | ok: [mc01]
+2025-06-22 19:44:11,941 p=28250 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 19:44:11,947 p=28250 u=ubuntu n=ansible | TASK [Update hosts file for all the hosts] ***************************************************
+2025-06-22 19:44:12,717 p=28250 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 19:44:12,717 p=28250 u=ubuntu n=ansible | ok: [app01]
+2025-06-22 19:44:12,727 p=28250 u=ubuntu n=ansible | ok: [web01]
+2025-06-22 19:44:12,727 p=28250 u=ubuntu n=ansible | ok: [mc01]
+2025-06-22 19:44:12,727 p=28250 u=ubuntu n=ansible | ok: [rmq01]
+2025-06-22 19:44:13,107 p=28250 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 19:44:13,114 p=28250 u=ubuntu n=ansible | PLAY [Setup MySQL with accounts db and remote login] *****************************************
+2025-06-22 19:44:13,130 p=28250 u=ubuntu n=ansible | TASK [installing mysql services and dependencies] ********************************************
+2025-06-22 19:44:14,265 p=28250 u=ubuntu n=ansible | ok: [db01] => (item=mysql-server)
+2025-06-22 19:44:15,287 p=28250 u=ubuntu n=ansible | ok: [db01] => (item=mysql-client)
+2025-06-22 19:44:16,297 p=28250 u=ubuntu n=ansible | ok: [db01] => (item=python3-pymysql)
+2025-06-22 19:44:17,296 p=28250 u=ubuntu n=ansible | ok: [db01] => (item=libmysqlclient-dev)
+2025-06-22 19:44:17,305 p=28250 u=ubuntu n=ansible | TASK [Ensure MySQL service is running and enabled] *******************************************
+2025-06-22 19:44:18,049 p=28250 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 19:44:18,055 p=28250 u=ubuntu n=ansible | TASK [Creating MySQL user] *******************************************************************
+2025-06-22 19:44:18,554 p=28250 u=ubuntu n=ansible | [WARNING]: Option column_case_sensitive is not provided. The default is now false, so the
+column's name will be uppercased. The default will be changed to true in community.mysql
+4.0.0.
+
+2025-06-22 19:44:18,554 p=28250 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 19:44:18,561 p=28250 u=ubuntu n=ansible | TASK [Create accounts database] **************************************************************
+2025-06-22 19:44:19,016 p=28250 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 19:44:19,024 p=28250 u=ubuntu n=ansible | TASK [Enable remote login to MySQL svc] ******************************************************
+2025-06-22 19:44:19,418 p=28250 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 19:44:19,422 p=28250 u=ubuntu n=ansible | PLAY [Deploy SQL database backup files to accounts DB] ***************************************
+2025-06-22 19:44:19,428 p=28250 u=ubuntu n=ansible | TASK [Copy SQL DB backup file to dbsrv] ******************************************************
+2025-06-22 19:44:19,951 p=28250 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 19:44:19,957 p=28250 u=ubuntu n=ansible | TASK [Import/Restoring backup into accounts database] ****************************************
+2025-06-22 19:44:20,630 p=28250 u=ubuntu n=ansible | changed: [db01]
+2025-06-22 19:44:20,640 p=28250 u=ubuntu n=ansible | RUNNING HANDLER [Restart mysql] **************************************************************
+2025-06-22 19:44:22,715 p=28250 u=ubuntu n=ansible | changed: [db01]
+2025-06-22 19:44:22,718 p=28250 u=ubuntu n=ansible | PLAY [Setup and configure Memcached service] *************************************************
+2025-06-22 19:44:22,724 p=28250 u=ubuntu n=ansible | TASK [Installing Memcached and dependencies] *************************************************
+2025-06-22 19:44:23,812 p=28250 u=ubuntu n=ansible | ok: [mc01]
+2025-06-22 19:44:23,818 p=28250 u=ubuntu n=ansible | TASK [Configure Memcached to listen on remote login] *****************************************
+2025-06-22 19:44:24,102 p=28250 u=ubuntu n=ansible | ok: [mc01]
+2025-06-22 19:44:24,108 p=28250 u=ubuntu n=ansible | TASK [Ensure Memcached is running and enabled] ***********************************************
+2025-06-22 19:44:24,559 p=28250 u=ubuntu n=ansible | ok: [mc01]
+2025-06-22 19:44:24,564 p=28250 u=ubuntu n=ansible | PLAY [Install & Setup RabbitMQ with user] ****************************************************
+2025-06-22 19:44:24,570 p=28250 u=ubuntu n=ansible | TASK [Gathering Facts] ***********************************************************************
+2025-06-22 19:44:25,495 p=28250 u=ubuntu n=ansible | ok: [rmq01]
+2025-06-22 19:44:25,500 p=28250 u=ubuntu n=ansible | TASK [Install required dependencies] *********************************************************
+2025-06-22 19:44:27,986 p=28250 u=ubuntu n=ansible | ok: [rmq01]
+2025-06-22 19:44:27,993 p=28250 u=ubuntu n=ansible | TASK [Install Erlang (from default Ubuntu repo)] *********************************************
+2025-06-22 19:44:29,057 p=28250 u=ubuntu n=ansible | ok: [rmq01]
+2025-06-22 19:44:29,063 p=28250 u=ubuntu n=ansible | TASK [Install compatible RabbitMQ version (3.9.13)] ******************************************
+2025-06-22 19:44:32,150 p=28250 u=ubuntu n=ansible | fatal: [rmq01]: FAILED! => {"cache_update_time": 1750621470, "cache_updated": true, "changed": false, "msg": "'/usr/bin/apt-get -y -o \"Dpkg::Options::=--force-confdef\" -o \"Dpkg::Options::=--force-confold\"       install 'rabbitmq-server=3.9.13-1'' failed: E: Packages were downgraded and -y was used without --allow-downgrades.\n", "rc": 100, "stderr": "E: Packages were downgraded and -y was used without --allow-downgrades.\n", "stderr_lines": ["E: Packages were downgraded and -y was used without --allow-downgrades."], "stdout": "Reading package lists...\nBuilding dependency tree...\nReading state information...\nThe following packages will be DOWNGRADED:\n  rabbitmq-server\n0 upgraded, 0 newly installed, 1 downgraded, 0 to remove and 55 not upgraded.\n", "stdout_lines": ["Reading package lists...", "Building dependency tree...", "Reading state information...", "The following packages will be DOWNGRADED:", "  rabbitmq-server", "0 upgraded, 0 newly installed, 1 downgraded, 0 to remove and 55 not upgraded."]}
+2025-06-22 19:44:32,152 p=28250 u=ubuntu n=ansible | PLAY RECAP ***********************************************************************************
+2025-06-22 19:44:32,153 p=28250 u=ubuntu n=ansible | app01                      : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 19:44:32,153 p=28250 u=ubuntu n=ansible | cntl                       : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 19:44:32,153 p=28250 u=ubuntu n=ansible | db01                       : ok=11   changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 19:44:32,153 p=28250 u=ubuntu n=ansible | localhost                  : ok=5    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+2025-06-22 19:44:32,153 p=28250 u=ubuntu n=ansible | mc01                       : ok=6    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 19:44:32,153 p=28250 u=ubuntu n=ansible | rmq01                      : ok=6    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2025-06-22 19:44:32,153 p=28250 u=ubuntu n=ansible | web01                      : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 19:48:38,887 p=29918 u=ubuntu n=ansible | PLAY [Generate artifact, copy artifact & sql file to files directory] ************************
+2025-06-22 19:48:38,899 p=29918 u=ubuntu n=ansible | TASK [Gathering Facts] ***********************************************************************
+2025-06-22 19:48:39,965 p=29918 u=ubuntu n=ansible | ok: [localhost]
+2025-06-22 19:48:39,970 p=29918 u=ubuntu n=ansible | TASK [Install required packages (OpenJDK, Maven, Git)] ***************************************
+2025-06-22 19:48:42,929 p=29918 u=ubuntu n=ansible | ok: [localhost] => (item=git)
+2025-06-22 19:48:45,749 p=29918 u=ubuntu n=ansible | ok: [localhost] => (item=openjdk-11-jdk)
+2025-06-22 19:48:48,445 p=29918 u=ubuntu n=ansible | ok: [localhost] => (item=maven)
+2025-06-22 19:48:48,453 p=29918 u=ubuntu n=ansible | TASK [Clone the source code repository] ******************************************************
+2025-06-22 19:48:49,307 p=29918 u=ubuntu n=ansible | ok: [localhost]
+2025-06-22 19:48:49,315 p=29918 u=ubuntu n=ansible | TASK [Build the artifact with Maven] *********************************************************
+2025-06-22 19:48:49,329 p=29918 u=ubuntu n=ansible | skipping: [localhost]
+2025-06-22 19:48:49,336 p=29918 u=ubuntu n=ansible | TASK [Copy the built artifact (ROOT.war) to files/ directory] ********************************
+2025-06-22 19:48:50,611 p=29918 u=ubuntu n=ansible | ok: [localhost] => (item=/home/ubuntu/ansible-aws-vpc/provision-stack/Vprofile-repo/target/vprofile-v2.war)
+2025-06-22 19:48:50,620 p=29918 u=ubuntu n=ansible | TASK [Copy the SQL file to files/ directory] *************************************************
+2025-06-22 19:48:51,104 p=29918 u=ubuntu n=ansible | ok: [localhost]
+2025-06-22 19:48:51,107 p=29918 u=ubuntu n=ansible | PLAY [Map private IPs to hostnames in /etc/hosts] ********************************************
+2025-06-22 19:48:51,110 p=29918 u=ubuntu n=ansible | TASK [Gathering Facts] ***********************************************************************
+2025-06-22 19:48:52,691 p=29918 u=ubuntu n=ansible | [WARNING]: Platform linux on host cntl is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 19:48:52,691 p=29918 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 19:48:52,950 p=29918 u=ubuntu n=ansible | [WARNING]: Platform linux on host web01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 19:48:52,950 p=29918 u=ubuntu n=ansible | ok: [web01]
+2025-06-22 19:48:52,989 p=29918 u=ubuntu n=ansible | [WARNING]: Platform linux on host app01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 19:48:52,989 p=29918 u=ubuntu n=ansible | ok: [app01]
+2025-06-22 19:48:53,014 p=29918 u=ubuntu n=ansible | [WARNING]: Platform linux on host mc01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 19:48:53,015 p=29918 u=ubuntu n=ansible | ok: [mc01]
+2025-06-22 19:48:53,071 p=29918 u=ubuntu n=ansible | [WARNING]: Platform linux on host rmq01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 19:48:53,071 p=29918 u=ubuntu n=ansible | ok: [rmq01]
+2025-06-22 19:48:54,252 p=29918 u=ubuntu n=ansible | [WARNING]: Platform linux on host db01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 19:48:54,254 p=29918 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 19:48:54,262 p=29918 u=ubuntu n=ansible | TASK [Import VPC setup variable] *************************************************************
+2025-06-22 19:48:54,311 p=29918 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 19:48:54,331 p=29918 u=ubuntu n=ansible | ok: [web01]
+2025-06-22 19:48:54,352 p=29918 u=ubuntu n=ansible | ok: [app01]
+2025-06-22 19:48:54,377 p=29918 u=ubuntu n=ansible | ok: [rmq01]
+2025-06-22 19:48:54,377 p=29918 u=ubuntu n=ansible | ok: [mc01]
+2025-06-22 19:48:54,389 p=29918 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 19:48:54,395 p=29918 u=ubuntu n=ansible | TASK [Update hosts file for all the hosts] ***************************************************
+2025-06-22 19:48:55,118 p=29918 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 19:48:55,129 p=29918 u=ubuntu n=ansible | ok: [web01]
+2025-06-22 19:48:55,138 p=29918 u=ubuntu n=ansible | ok: [rmq01]
+2025-06-22 19:48:55,138 p=29918 u=ubuntu n=ansible | ok: [app01]
+2025-06-22 19:48:55,140 p=29918 u=ubuntu n=ansible | ok: [mc01]
+2025-06-22 19:48:55,418 p=29918 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 19:48:55,423 p=29918 u=ubuntu n=ansible | PLAY [Setup MySQL with accounts db and remote login] *****************************************
+2025-06-22 19:48:55,432 p=29918 u=ubuntu n=ansible | TASK [installing mysql services and dependencies] ********************************************
+2025-06-22 19:48:56,463 p=29918 u=ubuntu n=ansible | ok: [db01] => (item=mysql-server)
+2025-06-22 19:48:57,467 p=29918 u=ubuntu n=ansible | ok: [db01] => (item=mysql-client)
+2025-06-22 19:48:58,458 p=29918 u=ubuntu n=ansible | ok: [db01] => (item=python3-pymysql)
+2025-06-22 19:48:59,463 p=29918 u=ubuntu n=ansible | ok: [db01] => (item=libmysqlclient-dev)
+2025-06-22 19:48:59,472 p=29918 u=ubuntu n=ansible | TASK [Ensure MySQL service is running and enabled] *******************************************
+2025-06-22 19:49:00,238 p=29918 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 19:49:00,250 p=29918 u=ubuntu n=ansible | TASK [Creating MySQL user] *******************************************************************
+2025-06-22 19:49:00,765 p=29918 u=ubuntu n=ansible | [WARNING]: Option column_case_sensitive is not provided. The default is now false, so the
+column's name will be uppercased. The default will be changed to true in community.mysql
+4.0.0.
+
+2025-06-22 19:49:00,765 p=29918 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 19:49:00,773 p=29918 u=ubuntu n=ansible | TASK [Create accounts database] **************************************************************
+2025-06-22 19:49:01,240 p=29918 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 19:49:01,246 p=29918 u=ubuntu n=ansible | TASK [Enable remote login to MySQL svc] ******************************************************
+2025-06-22 19:49:01,651 p=29918 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 19:49:01,654 p=29918 u=ubuntu n=ansible | PLAY [Deploy SQL database backup files to accounts DB] ***************************************
+2025-06-22 19:49:01,661 p=29918 u=ubuntu n=ansible | TASK [Copy SQL DB backup file to dbsrv] ******************************************************
+2025-06-22 19:49:02,203 p=29918 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 19:49:02,210 p=29918 u=ubuntu n=ansible | TASK [Import/Restoring backup into accounts database] ****************************************
+2025-06-22 19:49:02,902 p=29918 u=ubuntu n=ansible | changed: [db01]
+2025-06-22 19:49:02,913 p=29918 u=ubuntu n=ansible | RUNNING HANDLER [Restart mysql] **************************************************************
+2025-06-22 19:49:05,147 p=29918 u=ubuntu n=ansible | changed: [db01]
+2025-06-22 19:49:05,149 p=29918 u=ubuntu n=ansible | PLAY [Setup and configure Memcached service] *************************************************
+2025-06-22 19:49:05,155 p=29918 u=ubuntu n=ansible | TASK [Installing Memcached and dependencies] *************************************************
+2025-06-22 19:49:06,204 p=29918 u=ubuntu n=ansible | ok: [mc01]
+2025-06-22 19:49:06,211 p=29918 u=ubuntu n=ansible | TASK [Configure Memcached to listen on remote login] *****************************************
+2025-06-22 19:49:06,497 p=29918 u=ubuntu n=ansible | ok: [mc01]
+2025-06-22 19:49:06,502 p=29918 u=ubuntu n=ansible | TASK [Ensure Memcached is running and enabled] ***********************************************
+2025-06-22 19:49:06,961 p=29918 u=ubuntu n=ansible | ok: [mc01]
+2025-06-22 19:49:06,964 p=29918 u=ubuntu n=ansible | PLAY [Install & Setup RabbitMQ with user] ****************************************************
+2025-06-22 19:49:06,970 p=29918 u=ubuntu n=ansible | TASK [Gathering Facts] ***********************************************************************
+2025-06-22 19:49:07,891 p=29918 u=ubuntu n=ansible | ok: [rmq01]
+2025-06-22 19:49:07,895 p=29918 u=ubuntu n=ansible | TASK [Install required dependencies] *********************************************************
+2025-06-22 19:49:10,478 p=29918 u=ubuntu n=ansible | ok: [rmq01]
+2025-06-22 19:49:10,484 p=29918 u=ubuntu n=ansible | TASK [Install Erlang (from default Ubuntu repo)] *********************************************
+2025-06-22 19:49:11,574 p=29918 u=ubuntu n=ansible | ok: [rmq01]
+2025-06-22 19:49:11,580 p=29918 u=ubuntu n=ansible | TASK [Install compatible RabbitMQ version (3.9.27)] ******************************************
+2025-06-22 19:49:14,202 p=29918 u=ubuntu n=ansible | ok: [rmq01]
+2025-06-22 19:49:14,208 p=29918 u=ubuntu n=ansible | TASK [Ensure RabbitMQ service is running and enabled] ****************************************
+2025-06-22 19:49:14,664 p=29918 u=ubuntu n=ansible | ok: [rmq01]
+2025-06-22 19:49:14,670 p=29918 u=ubuntu n=ansible | TASK [Configure RabbitMQ to allow external connections] **************************************
+2025-06-22 19:49:15,348 p=29918 u=ubuntu n=ansible | changed: [rmq01]
+2025-06-22 19:49:15,354 p=29918 u=ubuntu n=ansible | TASK [Enable RabbitMQ management plugin] *****************************************************
+2025-06-22 19:49:20,135 p=29918 u=ubuntu n=ansible | changed: [rmq01]
+2025-06-22 19:49:20,145 p=29918 u=ubuntu n=ansible | TASK [Create RabbitMQ user with admin rights] ************************************************
+2025-06-22 19:49:26,409 p=29918 u=ubuntu n=ansible | changed: [rmq01]
+2025-06-22 19:49:26,420 p=29918 u=ubuntu n=ansible | RUNNING HANDLER [Restart RabbitMQ] ***********************************************************
+2025-06-22 19:49:37,885 p=29918 u=ubuntu n=ansible | changed: [rmq01]
+2025-06-22 19:49:37,887 p=29918 u=ubuntu n=ansible | PLAY [Setup Tomcat 8 on Ubuntu App Server] ***************************************************
+2025-06-22 19:49:37,895 p=29918 u=ubuntu n=ansible | TASK [Gathering Facts] ***********************************************************************
+2025-06-22 19:49:38,821 p=29918 u=ubuntu n=ansible | ok: [app01]
+2025-06-22 19:49:38,847 p=29918 u=ubuntu n=ansible | TASK [Ensure default packages are up to date] ************************************************
+2025-06-22 19:49:52,092 p=29918 u=ubuntu n=ansible | changed: [app01]
+2025-06-22 19:49:52,099 p=29918 u=ubuntu n=ansible | TASK [Install required packages] *************************************************************
+2025-06-22 19:50:20,798 p=29918 u=ubuntu n=ansible | changed: [app01]
+2025-06-22 19:50:20,805 p=29918 u=ubuntu n=ansible | TASK [Download Tomcat 8 binary] **************************************************************
+2025-06-22 19:50:56,768 p=29918 u=ubuntu n=ansible | changed: [app01]
+2025-06-22 19:50:56,776 p=29918 u=ubuntu n=ansible | TASK [Create tomcat group] *******************************************************************
+2025-06-22 19:50:57,187 p=29918 u=ubuntu n=ansible | changed: [app01]
+2025-06-22 19:50:57,192 p=29918 u=ubuntu n=ansible | TASK [Create tomcat user] ********************************************************************
+2025-06-22 19:50:57,702 p=29918 u=ubuntu n=ansible | changed: [app01]
+2025-06-22 19:50:57,709 p=29918 u=ubuntu n=ansible | TASK [Create temporary extraction directory] *************************************************
+2025-06-22 19:50:57,992 p=29918 u=ubuntu n=ansible | changed: [app01]
+2025-06-22 19:50:58,003 p=29918 u=ubuntu n=ansible | TASK [Extract Tomcat] ************************************************************************
+2025-06-22 19:50:59,129 p=29918 u=ubuntu n=ansible | changed: [app01]
+2025-06-22 19:50:59,136 p=29918 u=ubuntu n=ansible | TASK [Debug top-level folder in archive] *****************************************************
+2025-06-22 19:50:59,156 p=29918 u=ubuntu n=ansible | ok: [app01] => {
+    "msg": "apache-tomcat-8.5.37"
+}
+2025-06-22 19:50:59,174 p=29918 u=ubuntu n=ansible | TASK [Move Tomcat content to destination] ****************************************************
+2025-06-22 19:50:59,803 p=29918 u=ubuntu n=ansible | changed: [app01]
+2025-06-22 19:50:59,809 p=29918 u=ubuntu n=ansible | TASK [Set proper permissions on tomcat home] *************************************************
+2025-06-22 19:51:00,141 p=29918 u=ubuntu n=ansible | changed: [app01]
+2025-06-22 19:51:00,148 p=29918 u=ubuntu n=ansible | TASK [Deploy Tomcat systemd service file for Ubuntu >= 16] ***********************************
+2025-06-22 19:51:00,707 p=29918 u=ubuntu n=ansible | changed: [app01]
+2025-06-22 19:51:00,715 p=29918 u=ubuntu n=ansible | TASK [Reload systemd daemon] *****************************************************************
+2025-06-22 19:51:01,403 p=29918 u=ubuntu n=ansible | ok: [app01]
+2025-06-22 19:51:01,411 p=29918 u=ubuntu n=ansible | TASK [Enable and start Tomcat service] *******************************************************
+2025-06-22 19:51:02,195 p=29918 u=ubuntu n=ansible | changed: [app01]
+2025-06-22 19:51:02,203 p=29918 u=ubuntu n=ansible | TASK [stat] **********************************************************************************
+2025-06-22 19:51:02,729 p=29918 u=ubuntu n=ansible | ok: [app01]
+2025-06-22 19:51:02,736 p=29918 u=ubuntu n=ansible | TASK [Stop tomcat service] *******************************************************************
+2025-06-22 19:51:05,006 p=29918 u=ubuntu n=ansible | changed: [app01]
+2025-06-22 19:51:05,012 p=29918 u=ubuntu n=ansible | TASK [Archive current ROOT dir with timestamp] ***********************************************
+2025-06-22 19:51:05,419 p=29918 u=ubuntu n=ansible | changed: [app01]
+2025-06-22 19:51:05,428 p=29918 u=ubuntu n=ansible | TASK [Copy ROOT dir as old_ROOT] *************************************************************
+2025-06-22 19:51:05,727 p=29918 u=ubuntu n=ansible | changed: [app01]
+2025-06-22 19:51:05,735 p=29918 u=ubuntu n=ansible | TASK [Delete current ROOT directory] *********************************************************
+2025-06-22 19:51:06,042 p=29918 u=ubuntu n=ansible | changed: [app01] => (item=/usr/local/tomcat8/webapps/ROOT)
+2025-06-22 19:51:06,318 p=29918 u=ubuntu n=ansible | ok: [app01] => (item=/usr/local/tomcat8/webapps/ROOT.war)
+2025-06-22 19:51:06,327 p=29918 u=ubuntu n=ansible | TASK [Deploy vprofile artifact] **************************************************************
+2025-06-22 19:51:09,267 p=29918 u=ubuntu n=ansible | changed: [app01]
+2025-06-22 19:51:09,276 p=29918 u=ubuntu n=ansible | TASK [Start tomcat8 svc] *********************************************************************
+2025-06-22 19:51:09,760 p=29918 u=ubuntu n=ansible | changed: [app01]
+2025-06-22 19:51:09,767 p=29918 u=ubuntu n=ansible | TASK [Wait until ROOT directory is extracted from ROOT.war] **********************************
+2025-06-22 19:51:12,355 p=29918 u=ubuntu n=ansible | ok: [app01]
+2025-06-22 19:51:12,366 p=29918 u=ubuntu n=ansible | TASK [Deploy custom web configuration file] **************************************************
+2025-06-22 19:51:13,408 p=29918 u=ubuntu n=ansible | changed: [app01]
+2025-06-22 19:51:13,414 p=29918 u=ubuntu n=ansible | TASK [Clean up temporary Tomcat extraction directory] ****************************************
+2025-06-22 19:51:14,003 p=29918 u=ubuntu n=ansible | changed: [app01]
+2025-06-22 19:51:14,013 p=29918 u=ubuntu n=ansible | RUNNING HANDLER [Restart tomcat] *************************************************************
+2025-06-22 19:51:17,213 p=29918 u=ubuntu n=ansible | changed: [app01]
+2025-06-22 19:51:17,216 p=29918 u=ubuntu n=ansible | PLAY [Setup Nginx on Web Servers] ************************************************************
+2025-06-22 19:51:17,223 p=29918 u=ubuntu n=ansible | TASK [Install Nginx] *************************************************************************
+2025-06-22 19:51:44,375 p=29918 u=ubuntu n=ansible | changed: [web01]
+2025-06-22 19:51:44,381 p=29918 u=ubuntu n=ansible | TASK [Ensure Nginx is started and enabled] ***************************************************
+2025-06-22 19:51:44,857 p=29918 u=ubuntu n=ansible | ok: [web01]
+2025-06-22 19:51:44,863 p=29918 u=ubuntu n=ansible | TASK [Disable default Nginx site] ************************************************************
+2025-06-22 19:51:45,146 p=29918 u=ubuntu n=ansible | changed: [web01]
+2025-06-22 19:51:45,153 p=29918 u=ubuntu n=ansible | TASK [Deploy custom Nginx site config] *******************************************************
+2025-06-22 19:51:45,706 p=29918 u=ubuntu n=ansible | changed: [web01]
+2025-06-22 19:51:45,715 p=29918 u=ubuntu n=ansible | TASK [Enable the new site] *******************************************************************
+2025-06-22 19:51:46,009 p=29918 u=ubuntu n=ansible | changed: [web01]
+2025-06-22 19:51:46,019 p=29918 u=ubuntu n=ansible | RUNNING HANDLER [Restart Nginx] **************************************************************
+2025-06-22 19:51:46,521 p=29918 u=ubuntu n=ansible | changed: [web01]
+2025-06-22 19:51:46,522 p=29918 u=ubuntu n=ansible | PLAY RECAP ***********************************************************************************
+2025-06-22 19:51:46,523 p=29918 u=ubuntu n=ansible | app01                      : ok=28   changed=20   unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 19:51:46,523 p=29918 u=ubuntu n=ansible | cntl                       : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 19:51:46,523 p=29918 u=ubuntu n=ansible | db01                       : ok=11   changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 19:51:46,523 p=29918 u=ubuntu n=ansible | localhost                  : ok=5    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+2025-06-22 19:51:46,523 p=29918 u=ubuntu n=ansible | mc01                       : ok=6    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 19:51:46,523 p=29918 u=ubuntu n=ansible | rmq01                      : ok=12   changed=4    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 19:51:46,523 p=29918 u=ubuntu n=ansible | web01                      : ok=9    changed=5    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
