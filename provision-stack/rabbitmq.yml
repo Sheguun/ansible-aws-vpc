@@ -1,0 +1,96 @@
+---
+- name: Install & Setup RabbitMQ with user
+  hosts: rmqsrvgrp
+  gather_facts: no
+  become: true
+  tasks:
+    - name: Install Erlang repository package
+      apt:
+        deb: https://packages.erlang-solutions.com/erlang-solutions_2.0_all.deb
+        state: present
+      tags:
+        - package
+
+    - name: Add Erlang Solutions public key
+      apt_key:
+        url: https://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc
+        state: present
+      tags:
+        - package
+
+    - name: Install Erlang
+      apt:
+        name: erlang
+        update_cache: yes
+        cache_valid_time: 86400
+        state: present
+      tags:
+        - package
+
+    - name: Add an apt signing key, using whichever key at the url
+      apt_key:
+        url: https://packagecloud.io/rabbitmq/rabbitmq-server/gpgkey
+        state: present
+      tags:
+        - package
+
+    - name: Add RabbitMQ apt repository
+      apt_repository:
+        repo: "deb https://packagecloud.io/rabbitmq/rabbitmq-server/ubuntu/ {{ ansible_distribution_release }} main"
+        state: present
+      tags:
+        - package
+
+    - name: Install RabbitMQ server
+      apt:
+        name: rabbitmq-server
+        state: present
+        update_cache: yes
+      tags:
+        - package
+
+    - name: Ensure RabbitMQ service is running and enabled
+      service:
+        name: rabbitmq-server
+        state: started
+        enabled: yes
+      tags:
+        - svc
+
+    - name: Config setup
+      copy:
+        content: |
+          [{rabbit, [{loopback_users, []}]}].
+        dest: /etc/rabbitmq/rabbitmq.config
+      notify:
+        - Restart RMQ
+      tags:
+        - conf
+
+    - name: Create RabbitMQ user permissions
+      community.rabbitmq.rabbitmq_user:
+        user: test
+        password: test
+        configure_priv: .*
+        read_priv: .*
+        write_priv: .*
+        tags: administrator
+        state: present
+      notify:
+        - Restart RMQ
+      tags:
+        - conf
+
+    - name: Enable RabbitMQ management plugin
+      command: rabbitmq-plugins enable rabbitmq_management
+      args:
+        creates: /etc/rabbitmq/enabled_plugins
+      notify: Restart RabbitMQ
+      tags:
+        - config
+
+  handlers:
+    - name: Restart RabbitMQ
+      service:
+        name: rabbitmq-server
+        state: restarted
