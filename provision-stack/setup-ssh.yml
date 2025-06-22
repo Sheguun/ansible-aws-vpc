@@ -1,0 +1,20 @@
+---
+- name: Fix SSH access for all Vprofile instances
+  hosts: stack_inst
+  become: true
+  tasks:
+    - name: Ensure .ssh directory exists
+      file:
+        path: /home/ubuntu/.ssh
+        state: directory
+        owner: ubuntu
+        group: ubuntu
+        mode: "0700"
+
+    - name: Add public key to authorized_keys
+      copy:
+        src: ../vpro-key.pub # This should be your SSH public key
+        dest: /home/ubuntu/.ssh/authorized_keys
+        owner: ubuntu
+        group: ubuntu
+        mode: "0600"
