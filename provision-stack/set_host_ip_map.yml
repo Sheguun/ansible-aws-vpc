@@ -6,7 +6,7 @@
     - name: Import VPC setup variable
       include_vars: group_vars/hostsip
 
-    - name:
+    - name: Update hosts file for all the hosts
       blockinfile:
         path: /etc/hosts
         block: |
