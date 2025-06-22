@@ -1,0 +1,463 @@
+2025-06-22 09:43:52,529 p=930 u=ubuntu n=ansible | PLAY [Generate artifact, copy artifact & sql file to files directory] ************************
+2025-06-22 09:43:52,545 p=930 u=ubuntu n=ansible | TASK [Gathering Facts] ***********************************************************************
+2025-06-22 09:43:53,713 p=930 u=ubuntu n=ansible | ok: [localhost]
+2025-06-22 09:43:53,721 p=930 u=ubuntu n=ansible | TASK [Install required packages (OpenJDK, Maven, Git)] ***************************************
+2025-06-22 09:44:03,949 p=930 u=ubuntu n=ansible | ok: [localhost] => (item=git)
+2025-06-22 09:44:37,564 p=930 u=ubuntu n=ansible | changed: [localhost] => (item=openjdk-11-jdk)
+2025-06-22 09:44:48,465 p=930 u=ubuntu n=ansible | changed: [localhost] => (item=maven)
+2025-06-22 09:44:48,480 p=930 u=ubuntu n=ansible | TASK [Clone the source code repository] ******************************************************
+2025-06-22 09:44:54,847 p=930 u=ubuntu n=ansible | changed: [localhost]
+2025-06-22 09:44:54,855 p=930 u=ubuntu n=ansible | TASK [Build the artifact with Maven] *********************************************************
+2025-06-22 09:45:42,383 p=930 u=ubuntu n=ansible | changed: [localhost]
+2025-06-22 09:45:42,407 p=930 u=ubuntu n=ansible | TASK [Copy the built artifact (ROOT.war) to files/ directory] ********************************
+2025-06-22 09:45:43,529 p=930 u=ubuntu n=ansible | changed: [localhost] => (item=/home/ubuntu/ansible-aws-vpc/provision-stack/Vprofile-repo/target/vprofile-v2.war)
+2025-06-22 09:45:43,538 p=930 u=ubuntu n=ansible | TASK [Copy the SQL file to files/ directory] *************************************************
+2025-06-22 09:45:43,913 p=930 u=ubuntu n=ansible | changed: [localhost]
+2025-06-22 09:45:43,914 p=930 u=ubuntu n=ansible | PLAY RECAP ***********************************************************************************
+2025-06-22 09:45:43,915 p=930 u=ubuntu n=ansible | localhost                  : ok=6    changed=5    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 09:48:02,482 p=5081 u=ubuntu n=ansible | ERROR! the playbook: ls could not be found
+2025-06-22 09:49:43,903 p=5104 u=ubuntu n=ansible | PLAY [Map private IPs to hostnames in /etc/hosts] ********************************************
+2025-06-22 09:49:43,921 p=5104 u=ubuntu n=ansible | TASK [Gathering Facts] ***********************************************************************
+2025-06-22 09:49:45,593 p=5104 u=ubuntu n=ansible | [WARNING]: Platform linux on host cntl is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 09:49:45,596 p=5104 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 09:49:45,596 p=5104 u=ubuntu n=ansible | fatal: [rmq01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.11: Permission denied (publickey).", "unreachable": true}
+2025-06-22 09:49:45,629 p=5104 u=ubuntu n=ansible | fatal: [web01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.192: Permission denied (publickey).", "unreachable": true}
+2025-06-22 09:49:45,653 p=5104 u=ubuntu n=ansible | fatal: [mc01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.14: Permission denied (publickey).", "unreachable": true}
+2025-06-22 09:49:45,665 p=5104 u=ubuntu n=ansible | fatal: [app01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.125: Permission denied (publickey).", "unreachable": true}
+2025-06-22 09:49:47,052 p=5104 u=ubuntu n=ansible | fatal: [db01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.167: Permission denied (publickey).", "unreachable": true}
+2025-06-22 09:49:47,061 p=5104 u=ubuntu n=ansible | TASK [Import VPC setup variable] *************************************************************
+2025-06-22 09:49:47,075 p=5104 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 09:49:47,083 p=5104 u=ubuntu n=ansible | TASK [Update hosts file for all the hosts] ***************************************************
+2025-06-22 09:49:47,406 p=5104 u=ubuntu n=ansible | changed: [cntl]
+2025-06-22 09:49:47,407 p=5104 u=ubuntu n=ansible | PLAY RECAP ***********************************************************************************
+2025-06-22 09:49:47,407 p=5104 u=ubuntu n=ansible | app01                      : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 09:49:47,407 p=5104 u=ubuntu n=ansible | cntl                       : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 09:49:47,407 p=5104 u=ubuntu n=ansible | db01                       : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 09:49:47,407 p=5104 u=ubuntu n=ansible | mc01                       : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 09:49:47,407 p=5104 u=ubuntu n=ansible | rmq01                      : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 09:49:47,407 p=5104 u=ubuntu n=ansible | web01                      : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 10:19:17,187 p=5410 u=ubuntu n=ansible | PLAY [Map private IPs to hostnames in /etc/hosts] ********************************************
+2025-06-22 10:19:17,193 p=5410 u=ubuntu n=ansible | TASK [Gathering Facts] ***********************************************************************
+2025-06-22 10:19:18,615 p=5410 u=ubuntu n=ansible | [WARNING]: Platform linux on host cntl is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 10:19:18,615 p=5410 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 10:19:18,795 p=5410 u=ubuntu n=ansible | fatal: [web01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.192: Permission denied (publickey).", "unreachable": true}
+2025-06-22 10:19:18,816 p=5410 u=ubuntu n=ansible | fatal: [rmq01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.11: Permission denied (publickey).", "unreachable": true}
+2025-06-22 10:19:18,868 p=5410 u=ubuntu n=ansible | fatal: [app01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.125: Permission denied (publickey).", "unreachable": true}
+2025-06-22 10:19:18,881 p=5410 u=ubuntu n=ansible | fatal: [mc01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.14: Permission denied (publickey).", "unreachable": true}
+2025-06-22 10:19:20,196 p=5410 u=ubuntu n=ansible | fatal: [db01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.167: Permission denied (publickey).", "unreachable": true}
+2025-06-22 10:19:20,202 p=5410 u=ubuntu n=ansible | TASK [Import VPC setup variable] *************************************************************
+2025-06-22 10:19:20,216 p=5410 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 10:19:20,222 p=5410 u=ubuntu n=ansible | TASK [Update hosts file for all the hosts] ***************************************************
+2025-06-22 10:19:20,542 p=5410 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 10:19:20,545 p=5410 u=ubuntu n=ansible | PLAY RECAP ***********************************************************************************
+2025-06-22 10:19:20,545 p=5410 u=ubuntu n=ansible | app01                      : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 10:19:20,545 p=5410 u=ubuntu n=ansible | cntl                       : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 10:19:20,545 p=5410 u=ubuntu n=ansible | db01                       : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 10:19:20,545 p=5410 u=ubuntu n=ansible | mc01                       : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 10:19:20,545 p=5410 u=ubuntu n=ansible | rmq01                      : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 10:19:20,546 p=5410 u=ubuntu n=ansible | web01                      : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 10:33:24,259 p=5576 u=ubuntu n=ansible | PLAY [Map private IPs to hostnames in /etc/hosts] ********************************************
+2025-06-22 10:33:24,265 p=5576 u=ubuntu n=ansible | TASK [Gathering Facts] ***********************************************************************
+2025-06-22 10:33:25,714 p=5576 u=ubuntu n=ansible | [WARNING]: Platform linux on host cntl is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 10:33:25,714 p=5576 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 10:33:25,770 p=5576 u=ubuntu n=ansible | fatal: [web01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: no such identity: ./vpro-key.pem: No such file or directory\r\nubuntu@172.20.4.192: Permission denied (publickey).", "unreachable": true}
+2025-06-22 10:33:25,784 p=5576 u=ubuntu n=ansible | fatal: [app01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: no such identity: ./vpro-key.pem: No such file or directory\r\nubuntu@172.20.4.125: Permission denied (publickey).", "unreachable": true}
+2025-06-22 10:33:25,815 p=5576 u=ubuntu n=ansible | fatal: [mc01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: no such identity: ./vpro-key.pem: No such file or directory\r\nubuntu@172.20.4.14: Permission denied (publickey).", "unreachable": true}
+2025-06-22 10:33:25,816 p=5576 u=ubuntu n=ansible | fatal: [rmq01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: no such identity: ./vpro-key.pem: No such file or directory\r\nubuntu@172.20.4.11: Permission denied (publickey).", "unreachable": true}
+2025-06-22 10:33:27,096 p=5576 u=ubuntu n=ansible | fatal: [db01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: no such identity: ./vpro-key.pem: No such file or directory\r\nubuntu@172.20.4.167: Permission denied (publickey).", "unreachable": true}
+2025-06-22 10:33:27,104 p=5576 u=ubuntu n=ansible | TASK [Import VPC setup variable] *************************************************************
+2025-06-22 10:33:27,117 p=5576 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 10:33:27,123 p=5576 u=ubuntu n=ansible | TASK [Update hosts file for all the hosts] ***************************************************
+2025-06-22 10:33:27,440 p=5576 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 10:33:27,441 p=5576 u=ubuntu n=ansible | PLAY RECAP ***********************************************************************************
+2025-06-22 10:33:27,442 p=5576 u=ubuntu n=ansible | app01                      : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 10:33:27,442 p=5576 u=ubuntu n=ansible | cntl                       : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 10:33:27,442 p=5576 u=ubuntu n=ansible | db01                       : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 10:33:27,442 p=5576 u=ubuntu n=ansible | mc01                       : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 10:33:27,442 p=5576 u=ubuntu n=ansible | rmq01                      : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 10:33:27,442 p=5576 u=ubuntu n=ansible | web01                      : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 10:51:50,954 p=5732 u=ubuntu n=ansible | PLAY [Map private IPs to hostnames in /etc/hosts] ********************************************
+2025-06-22 10:51:50,960 p=5732 u=ubuntu n=ansible | TASK [Gathering Facts] ***********************************************************************
+2025-06-22 10:51:52,412 p=5732 u=ubuntu n=ansible | [WARNING]: Platform linux on host cntl is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 10:51:52,412 p=5732 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 10:51:52,562 p=5732 u=ubuntu n=ansible | fatal: [web01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.192: Permission denied (publickey).", "unreachable": true}
+2025-06-22 10:51:52,644 p=5732 u=ubuntu n=ansible | fatal: [rmq01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.11: Permission denied (publickey).", "unreachable": true}
+2025-06-22 10:51:52,689 p=5732 u=ubuntu n=ansible | fatal: [mc01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.14: Permission denied (publickey).", "unreachable": true}
+2025-06-22 10:51:52,698 p=5732 u=ubuntu n=ansible | fatal: [app01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.125: Permission denied (publickey).", "unreachable": true}
+2025-06-22 10:51:53,922 p=5732 u=ubuntu n=ansible | fatal: [db01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.167: Permission denied (publickey).", "unreachable": true}
+2025-06-22 10:51:53,929 p=5732 u=ubuntu n=ansible | TASK [Import VPC setup variable] *************************************************************
+2025-06-22 10:51:53,942 p=5732 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 10:51:53,948 p=5732 u=ubuntu n=ansible | TASK [Update hosts file for all the hosts] ***************************************************
+2025-06-22 10:51:54,265 p=5732 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 10:51:54,266 p=5732 u=ubuntu n=ansible | PLAY RECAP ***********************************************************************************
+2025-06-22 10:51:54,267 p=5732 u=ubuntu n=ansible | app01                      : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 10:51:54,267 p=5732 u=ubuntu n=ansible | cntl                       : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 10:51:54,267 p=5732 u=ubuntu n=ansible | db01                       : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 10:51:54,267 p=5732 u=ubuntu n=ansible | mc01                       : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 10:51:54,267 p=5732 u=ubuntu n=ansible | rmq01                      : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 10:51:54,267 p=5732 u=ubuntu n=ansible | web01                      : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 10:53:32,874 p=5875 u=ubuntu n=ansible | PLAY [Map private IPs to hostnames in /etc/hosts] ********************************************
+2025-06-22 10:53:32,880 p=5875 u=ubuntu n=ansible | TASK [Gathering Facts] ***********************************************************************
+2025-06-22 10:53:34,302 p=5875 u=ubuntu n=ansible | [WARNING]: Platform linux on host cntl is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 10:53:34,303 p=5875 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 10:53:34,483 p=5875 u=ubuntu n=ansible | fatal: [app01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.125: Permission denied (publickey).", "unreachable": true}
+2025-06-22 10:53:34,515 p=5875 u=ubuntu n=ansible | fatal: [web01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.192: Permission denied (publickey).", "unreachable": true}
+2025-06-22 10:53:34,563 p=5875 u=ubuntu n=ansible | fatal: [mc01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.14: Permission denied (publickey).", "unreachable": true}
+2025-06-22 10:53:34,572 p=5875 u=ubuntu n=ansible | fatal: [rmq01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.11: Permission denied (publickey).", "unreachable": true}
+2025-06-22 10:53:35,807 p=5875 u=ubuntu n=ansible | fatal: [db01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.167: Permission denied (publickey).", "unreachable": true}
+2025-06-22 10:53:35,814 p=5875 u=ubuntu n=ansible | TASK [Import VPC setup variable] *************************************************************
+2025-06-22 10:53:35,829 p=5875 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 10:53:35,834 p=5875 u=ubuntu n=ansible | TASK [Update hosts file for all the hosts] ***************************************************
+2025-06-22 10:53:36,158 p=5875 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 10:53:36,159 p=5875 u=ubuntu n=ansible | PLAY RECAP ***********************************************************************************
+2025-06-22 10:53:36,159 p=5875 u=ubuntu n=ansible | app01                      : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 10:53:36,159 p=5875 u=ubuntu n=ansible | cntl                       : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 10:53:36,159 p=5875 u=ubuntu n=ansible | db01                       : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 10:53:36,160 p=5875 u=ubuntu n=ansible | mc01                       : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 10:53:36,160 p=5875 u=ubuntu n=ansible | rmq01                      : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 10:53:36,160 p=5875 u=ubuntu n=ansible | web01                      : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 11:10:44,718 p=6024 u=ubuntu n=ansible | PLAY [Map private IPs to hostnames in /etc/hosts] ********************************************
+2025-06-22 11:10:44,724 p=6024 u=ubuntu n=ansible | TASK [Gathering Facts] ***********************************************************************
+2025-06-22 11:10:46,155 p=6024 u=ubuntu n=ansible | [WARNING]: Platform linux on host cntl is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 11:10:46,155 p=6024 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 11:10:46,324 p=6024 u=ubuntu n=ansible | fatal: [web01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.192: Permission denied (publickey).", "unreachable": true}
+2025-06-22 11:10:46,411 p=6024 u=ubuntu n=ansible | fatal: [app01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.125: Permission denied (publickey).", "unreachable": true}
+2025-06-22 11:10:46,422 p=6024 u=ubuntu n=ansible | fatal: [rmq01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.11: Permission denied (publickey).", "unreachable": true}
+2025-06-22 11:10:46,430 p=6024 u=ubuntu n=ansible | fatal: [mc01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.14: Permission denied (publickey).", "unreachable": true}
+2025-06-22 11:10:47,650 p=6024 u=ubuntu n=ansible | fatal: [db01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.167: Permission denied (publickey).", "unreachable": true}
+2025-06-22 11:10:47,656 p=6024 u=ubuntu n=ansible | TASK [Import VPC setup variable] *************************************************************
+2025-06-22 11:10:47,670 p=6024 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 11:10:47,675 p=6024 u=ubuntu n=ansible | TASK [Update hosts file for all the hosts] ***************************************************
+2025-06-22 11:10:47,995 p=6024 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 11:10:47,996 p=6024 u=ubuntu n=ansible | PLAY RECAP ***********************************************************************************
+2025-06-22 11:10:47,996 p=6024 u=ubuntu n=ansible | app01                      : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 11:10:47,996 p=6024 u=ubuntu n=ansible | cntl                       : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 11:10:47,996 p=6024 u=ubuntu n=ansible | db01                       : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 11:10:47,996 p=6024 u=ubuntu n=ansible | mc01                       : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 11:10:47,996 p=6024 u=ubuntu n=ansible | rmq01                      : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 11:10:47,997 p=6024 u=ubuntu n=ansible | web01                      : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 11:20:53,453 p=6185 u=ubuntu n=ansible | ERROR! the playbook: provision-stack/setup-ssh.yml could not be found
+2025-06-22 11:23:11,366 p=6204 u=ubuntu n=ansible | ERROR! the playbook: provision-stack/setup-ssh.yml could not be found
+2025-06-22 11:28:28,003 p=6212 u=ubuntu n=ansible | PLAY [Fix SSH access for all Vprofile instances] *********************************************
+2025-06-22 11:28:28,009 p=6212 u=ubuntu n=ansible | TASK [Gathering Facts] ***********************************************************************
+2025-06-22 11:28:29,568 p=6212 u=ubuntu n=ansible | fatal: [db01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.167: Permission denied (publickey).", "unreachable": true}
+2025-06-22 11:28:29,582 p=6212 u=ubuntu n=ansible | fatal: [web01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.192: Permission denied (publickey).", "unreachable": true}
+2025-06-22 11:28:29,613 p=6212 u=ubuntu n=ansible | fatal: [rmq01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.11: Permission denied (publickey).", "unreachable": true}
+2025-06-22 11:28:29,625 p=6212 u=ubuntu n=ansible | fatal: [mc01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.14: Permission denied (publickey).", "unreachable": true}
+2025-06-22 11:28:29,649 p=6212 u=ubuntu n=ansible | fatal: [app01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.125: Permission denied (publickey).", "unreachable": true}
+2025-06-22 11:28:29,650 p=6212 u=ubuntu n=ansible | PLAY RECAP ***********************************************************************************
+2025-06-22 11:28:29,650 p=6212 u=ubuntu n=ansible | app01                      : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 11:28:29,650 p=6212 u=ubuntu n=ansible | db01                       : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 11:28:29,650 p=6212 u=ubuntu n=ansible | mc01                       : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 11:28:29,650 p=6212 u=ubuntu n=ansible | rmq01                      : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 11:28:29,650 p=6212 u=ubuntu n=ansible | web01                      : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 11:29:48,790 p=6238 u=ubuntu n=ansible | PLAY [Fix SSH access for all Vprofile instances] *********************************************
+2025-06-22 11:29:48,796 p=6238 u=ubuntu n=ansible | TASK [Gathering Facts] ***********************************************************************
+2025-06-22 11:29:50,349 p=6238 u=ubuntu n=ansible | fatal: [web01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.192: Permission denied (publickey).", "unreachable": true}
+2025-06-22 11:29:50,363 p=6238 u=ubuntu n=ansible | fatal: [db01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.167: Permission denied (publickey).", "unreachable": true}
+2025-06-22 11:29:50,384 p=6238 u=ubuntu n=ansible | fatal: [app01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.125: Permission denied (publickey).", "unreachable": true}
+2025-06-22 11:29:50,385 p=6238 u=ubuntu n=ansible | fatal: [rmq01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.11: Permission denied (publickey).", "unreachable": true}
+2025-06-22 11:29:50,418 p=6238 u=ubuntu n=ansible | fatal: [mc01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.14: Permission denied (publickey).", "unreachable": true}
+2025-06-22 11:29:50,419 p=6238 u=ubuntu n=ansible | PLAY RECAP ***********************************************************************************
+2025-06-22 11:29:50,419 p=6238 u=ubuntu n=ansible | app01                      : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 11:29:50,419 p=6238 u=ubuntu n=ansible | db01                       : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 11:29:50,419 p=6238 u=ubuntu n=ansible | mc01                       : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 11:29:50,419 p=6238 u=ubuntu n=ansible | rmq01                      : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 11:29:50,420 p=6238 u=ubuntu n=ansible | web01                      : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 11:52:11,737 p=6327 u=ubuntu n=ansible | [WARNING]: Platform linux on host cntl is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 11:52:11,740 p=6327 u=ubuntu n=ansible | cntl | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.10"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+2025-06-22 11:52:12,264 p=6327 u=ubuntu n=ansible | [WARNING]: Platform linux on host web01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 11:52:12,265 p=6327 u=ubuntu n=ansible | web01 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.10"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+2025-06-22 11:52:12,721 p=6327 u=ubuntu n=ansible | [WARNING]: Platform linux on host app01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 11:52:12,721 p=6327 u=ubuntu n=ansible | app01 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.10"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+2025-06-22 11:52:12,784 p=6327 u=ubuntu n=ansible | [WARNING]: Platform linux on host rmq01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 11:52:12,785 p=6327 u=ubuntu n=ansible | rmq01 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.10"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+2025-06-22 11:52:12,831 p=6327 u=ubuntu n=ansible | [WARNING]: Platform linux on host mc01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 11:52:12,833 p=6327 u=ubuntu n=ansible | mc01 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.10"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+2025-06-22 11:52:13,190 p=6327 u=ubuntu n=ansible | [WARNING]: Platform linux on host db01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 11:52:13,192 p=6327 u=ubuntu n=ansible | db01 | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.10"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+2025-06-22 11:53:46,503 p=6434 u=ubuntu n=ansible | PLAY [Map private IPs to hostnames in /etc/hosts] ********************************************
+2025-06-22 11:53:46,510 p=6434 u=ubuntu n=ansible | TASK [Gathering Facts] ***********************************************************************
+2025-06-22 11:53:48,190 p=6434 u=ubuntu n=ansible | [WARNING]: Platform linux on host cntl is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 11:53:48,190 p=6434 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 11:53:48,399 p=6434 u=ubuntu n=ansible | [WARNING]: Platform linux on host web01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 11:53:48,399 p=6434 u=ubuntu n=ansible | ok: [web01]
+2025-06-22 11:53:48,462 p=6434 u=ubuntu n=ansible | [WARNING]: Platform linux on host app01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 11:53:48,464 p=6434 u=ubuntu n=ansible | ok: [app01]
+2025-06-22 11:53:48,495 p=6434 u=ubuntu n=ansible | [WARNING]: Platform linux on host rmq01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 11:53:48,497 p=6434 u=ubuntu n=ansible | ok: [rmq01]
+2025-06-22 11:53:48,500 p=6434 u=ubuntu n=ansible | [WARNING]: Platform linux on host mc01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 11:53:48,500 p=6434 u=ubuntu n=ansible | ok: [mc01]
+2025-06-22 11:53:49,739 p=6434 u=ubuntu n=ansible | [WARNING]: Platform linux on host db01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 11:53:49,739 p=6434 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 11:53:49,744 p=6434 u=ubuntu n=ansible | TASK [Import VPC setup variable] *************************************************************
+2025-06-22 11:53:49,787 p=6434 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 11:53:49,808 p=6434 u=ubuntu n=ansible | ok: [web01]
+2025-06-22 11:53:49,826 p=6434 u=ubuntu n=ansible | ok: [app01]
+2025-06-22 11:53:49,847 p=6434 u=ubuntu n=ansible | ok: [rmq01]
+2025-06-22 11:53:49,847 p=6434 u=ubuntu n=ansible | ok: [mc01]
+2025-06-22 11:53:49,856 p=6434 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 11:53:49,861 p=6434 u=ubuntu n=ansible | TASK [Update hosts file for all the hosts] ***************************************************
+2025-06-22 11:53:50,576 p=6434 u=ubuntu n=ansible | changed: [web01]
+2025-06-22 11:53:50,581 p=6434 u=ubuntu n=ansible | changed: [app01]
+2025-06-22 11:53:50,586 p=6434 u=ubuntu n=ansible | changed: [rmq01]
+2025-06-22 11:53:50,586 p=6434 u=ubuntu n=ansible | changed: [mc01]
+2025-06-22 11:53:50,586 p=6434 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 11:53:50,859 p=6434 u=ubuntu n=ansible | changed: [db01]
+2025-06-22 11:53:50,862 p=6434 u=ubuntu n=ansible | PLAY RECAP ***********************************************************************************
+2025-06-22 11:53:50,862 p=6434 u=ubuntu n=ansible | app01                      : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 11:53:50,862 p=6434 u=ubuntu n=ansible | cntl                       : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 11:53:50,862 p=6434 u=ubuntu n=ansible | db01                       : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 11:53:50,862 p=6434 u=ubuntu n=ansible | mc01                       : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 11:53:50,862 p=6434 u=ubuntu n=ansible | rmq01                      : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 11:53:50,863 p=6434 u=ubuntu n=ansible | web01                      : ok=3    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 12:19:56,309 p=6738 u=ubuntu n=ansible | PLAY [Map private IPs to hostnames in /etc/hosts] ********************************************
+2025-06-22 12:19:56,315 p=6738 u=ubuntu n=ansible | TASK [Gathering Facts] ***********************************************************************
+2025-06-22 12:19:57,994 p=6738 u=ubuntu n=ansible | [WARNING]: Platform linux on host cntl is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 12:19:57,996 p=6738 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 12:19:58,123 p=6738 u=ubuntu n=ansible | [WARNING]: Platform linux on host web01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 12:19:58,123 p=6738 u=ubuntu n=ansible | ok: [web01]
+2025-06-22 12:19:58,192 p=6738 u=ubuntu n=ansible | [WARNING]: Platform linux on host app01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 12:19:58,192 p=6738 u=ubuntu n=ansible | ok: [app01]
+2025-06-22 12:19:58,210 p=6738 u=ubuntu n=ansible | [WARNING]: Platform linux on host rmq01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 12:19:58,212 p=6738 u=ubuntu n=ansible | ok: [rmq01]
+2025-06-22 12:19:58,231 p=6738 u=ubuntu n=ansible | [WARNING]: Platform linux on host mc01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 12:19:58,231 p=6738 u=ubuntu n=ansible | ok: [mc01]
+2025-06-22 12:19:59,522 p=6738 u=ubuntu n=ansible | [WARNING]: Platform linux on host db01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 12:19:59,522 p=6738 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 12:19:59,528 p=6738 u=ubuntu n=ansible | TASK [Import VPC setup variable] *************************************************************
+2025-06-22 12:19:59,570 p=6738 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 12:19:59,593 p=6738 u=ubuntu n=ansible | ok: [web01]
+2025-06-22 12:19:59,614 p=6738 u=ubuntu n=ansible | ok: [app01]
+2025-06-22 12:19:59,631 p=6738 u=ubuntu n=ansible | ok: [rmq01]
+2025-06-22 12:19:59,635 p=6738 u=ubuntu n=ansible | ok: [mc01]
+2025-06-22 12:19:59,645 p=6738 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 12:19:59,651 p=6738 u=ubuntu n=ansible | TASK [Update hosts file for all the hosts] ***************************************************
+2025-06-22 12:20:00,402 p=6738 u=ubuntu n=ansible | ok: [app01]
+2025-06-22 12:20:00,406 p=6738 u=ubuntu n=ansible | ok: [web01]
+2025-06-22 12:20:00,407 p=6738 u=ubuntu n=ansible | ok: [mc01]
+2025-06-22 12:20:00,409 p=6738 u=ubuntu n=ansible | ok: [rmq01]
+2025-06-22 12:20:00,413 p=6738 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 12:20:00,688 p=6738 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 12:20:00,691 p=6738 u=ubuntu n=ansible | PLAY RECAP ***********************************************************************************
+2025-06-22 12:20:00,691 p=6738 u=ubuntu n=ansible | app01                      : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 12:20:00,691 p=6738 u=ubuntu n=ansible | cntl                       : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 12:20:00,691 p=6738 u=ubuntu n=ansible | db01                       : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 12:20:00,691 p=6738 u=ubuntu n=ansible | mc01                       : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 12:20:00,692 p=6738 u=ubuntu n=ansible | rmq01                      : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 12:20:00,692 p=6738 u=ubuntu n=ansible | web01                      : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 12:25:03,027 p=6999 u=ubuntu n=ansible | PLAY [Map private IPs to hostnames in /etc/hosts] ********************************************
+2025-06-22 12:25:03,035 p=6999 u=ubuntu n=ansible | TASK [Gathering Facts] ***********************************************************************
+2025-06-22 12:25:04,472 p=6999 u=ubuntu n=ansible | [WARNING]: Platform linux on host cntl is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 12:25:04,472 p=6999 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 12:25:04,685 p=6999 u=ubuntu n=ansible | fatal: [web01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.192: Permission denied (publickey).", "unreachable": true}
+2025-06-22 12:25:04,700 p=6999 u=ubuntu n=ansible | fatal: [rmq01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.11: Permission denied (publickey).", "unreachable": true}
+2025-06-22 12:25:04,749 p=6999 u=ubuntu n=ansible | fatal: [app01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.125: Permission denied (publickey).", "unreachable": true}
+2025-06-22 12:25:04,753 p=6999 u=ubuntu n=ansible | fatal: [mc01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.14: Permission denied (publickey).", "unreachable": true}
+2025-06-22 12:25:06,001 p=6999 u=ubuntu n=ansible | fatal: [db01]: UNREACHABLE! => {"changed": false, "msg": "Failed to connect to the host via ssh: ubuntu@172.20.4.167: Permission denied (publickey).", "unreachable": true}
+2025-06-22 12:25:06,008 p=6999 u=ubuntu n=ansible | TASK [Import VPC setup variable] *************************************************************
+2025-06-22 12:25:06,024 p=6999 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 12:25:06,029 p=6999 u=ubuntu n=ansible | TASK [Update hosts file for all the hosts] ***************************************************
+2025-06-22 12:25:06,354 p=6999 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 12:25:06,356 p=6999 u=ubuntu n=ansible | PLAY RECAP ***********************************************************************************
+2025-06-22 12:25:06,356 p=6999 u=ubuntu n=ansible | app01                      : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 12:25:06,356 p=6999 u=ubuntu n=ansible | cntl                       : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 12:25:06,357 p=6999 u=ubuntu n=ansible | db01                       : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 12:25:06,357 p=6999 u=ubuntu n=ansible | mc01                       : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 12:25:06,357 p=6999 u=ubuntu n=ansible | rmq01                      : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 12:25:06,357 p=6999 u=ubuntu n=ansible | web01                      : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 12:28:09,961 p=7154 u=ubuntu n=ansible | PLAY [Map private IPs to hostnames in /etc/hosts] ********************************************
+2025-06-22 12:28:09,967 p=7154 u=ubuntu n=ansible | TASK [Gathering Facts] ***********************************************************************
+2025-06-22 12:28:11,635 p=7154 u=ubuntu n=ansible | [WARNING]: Platform linux on host cntl is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 12:28:11,636 p=7154 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 12:28:11,784 p=7154 u=ubuntu n=ansible | [WARNING]: Platform linux on host web01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 12:28:11,784 p=7154 u=ubuntu n=ansible | ok: [web01]
+2025-06-22 12:28:11,849 p=7154 u=ubuntu n=ansible | [WARNING]: Platform linux on host app01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 12:28:11,849 p=7154 u=ubuntu n=ansible | ok: [app01]
+2025-06-22 12:28:11,872 p=7154 u=ubuntu n=ansible | [WARNING]: Platform linux on host rmq01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 12:28:11,872 p=7154 u=ubuntu n=ansible | ok: [rmq01]
+2025-06-22 12:28:11,894 p=7154 u=ubuntu n=ansible | [WARNING]: Platform linux on host mc01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 12:28:11,894 p=7154 u=ubuntu n=ansible | ok: [mc01]
+2025-06-22 12:28:13,178 p=7154 u=ubuntu n=ansible | [WARNING]: Platform linux on host db01 is using the discovered Python interpreter at
+/usr/bin/python3.10, but future installation of another Python interpreter could change the
+meaning of that path. See https://docs.ansible.com/ansible-
+core/2.17/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-22 12:28:13,178 p=7154 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 12:28:13,184 p=7154 u=ubuntu n=ansible | TASK [Import VPC setup variable] *************************************************************
+2025-06-22 12:28:13,229 p=7154 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 12:28:13,247 p=7154 u=ubuntu n=ansible | ok: [web01]
+2025-06-22 12:28:13,268 p=7154 u=ubuntu n=ansible | ok: [app01]
+2025-06-22 12:28:13,289 p=7154 u=ubuntu n=ansible | ok: [rmq01]
+2025-06-22 12:28:13,289 p=7154 u=ubuntu n=ansible | ok: [mc01]
+2025-06-22 12:28:13,298 p=7154 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 12:28:13,303 p=7154 u=ubuntu n=ansible | TASK [Update hosts file for all the hosts] ***************************************************
+2025-06-22 12:28:14,003 p=7154 u=ubuntu n=ansible | ok: [cntl]
+2025-06-22 12:28:14,006 p=7154 u=ubuntu n=ansible | ok: [mc01]
+2025-06-22 12:28:14,019 p=7154 u=ubuntu n=ansible | ok: [app01]
+2025-06-22 12:28:14,020 p=7154 u=ubuntu n=ansible | ok: [web01]
+2025-06-22 12:28:14,021 p=7154 u=ubuntu n=ansible | ok: [rmq01]
+2025-06-22 12:28:14,294 p=7154 u=ubuntu n=ansible | ok: [db01]
+2025-06-22 12:28:14,296 p=7154 u=ubuntu n=ansible | PLAY RECAP ***********************************************************************************
+2025-06-22 12:28:14,296 p=7154 u=ubuntu n=ansible | app01                      : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 12:28:14,296 p=7154 u=ubuntu n=ansible | cntl                       : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 12:28:14,296 p=7154 u=ubuntu n=ansible | db01                       : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 12:28:14,297 p=7154 u=ubuntu n=ansible | mc01                       : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 12:28:14,297 p=7154 u=ubuntu n=ansible | rmq01                      : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-22 12:28:14,297 p=7154 u=ubuntu n=ansible | web01                      : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
