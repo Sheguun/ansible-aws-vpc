@@ -19,14 +19,15 @@
         name: erlang
         state: present
 
-    - name: Install RabbitMQ (from default Ubuntu repo)
+    - name: Install compatible RabbitMQ version (3.9.27)
       apt:
-        name: rabbitmq-server
+        name: rabbitmq-server=3.9.27-0ubuntu0.2
         state: present
+        update_cache: yes
 
     - name: Ensure RabbitMQ service is running and enabled
       service:
-        name: rabbitmq-server
+        name: rabbitmq-server=3.9.27-0ubuntu0.2
         state: started
         enabled: yes
 
