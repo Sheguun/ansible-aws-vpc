@@ -14,17 +14,6 @@
         - openjdk-11-jdk
         - maven
 
-    # - name: Ensure files directory exists
-    #   file:
-    #     path: "{{ files_dir }}"
-    #     state: directory
-    #     mode: "0755"
-
-    # - name: Remove existing project directory (if any)
-    #   file:
-    #     path: "{{ project_dir }}"
-    #     state: absent
-
     - name: Clone the source code repository
       git:
         repo: "https://github.com/devopshydclub/vprofile-project.git"
